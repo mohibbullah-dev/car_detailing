@@ -1,44 +1,4 @@
-// import { apiFetch } from "../lib/apiClient";
-
-// // GET /api/portfolio
-// export function getPortfolioApi() {
-//   return apiFetch("/api/portfolio");
-// }
-
-// // POST /api/portfolio
-// export function createPortfolioApi({
-//   title,
-//   location,
-//   notes,
-//   tags,
-//   beforeFile,
-//   afterFile,
-// }) {
-//   const fd = new FormData();
-//   fd.append("title", title);
-//   fd.append("location", location);
-//   fd.append("notes", notes);
-//   fd.append("tags", tags || "");
-
-//   // must match multer fields:
-//   fd.append("before", beforeFile);
-//   fd.append("after", afterFile);
-
-//   return apiFetch("/api/portfolio", {
-//     method: "POST",
-//     body: fd,
-//   });
-// }
-
-// // DELETE /api/portfolio/:id
-// export function deletePortfolioApi(id) {
-//   return apiFetch(`/api/portfolio/${id}`, {
-//     method: "DELETE",
-//   });
-// }
-
 // frontend/src/api/portfolio.api.js
-
 import { apiFetch } from "../lib/apiClient";
 import { tokenStorage } from "../lib/storage";
 
@@ -47,7 +7,7 @@ export function getPortfolioApi() {
   return apiFetch("/api/portfolio");
 }
 
-// POST /api/portfolio
+// POST /api/portfolio (multipart) - needs Bearer token
 export function createPortfolioApi({
   title,
   location,
@@ -65,7 +25,7 @@ export function createPortfolioApi({
   fd.append("notes", notes);
   fd.append("tags", tags || "");
 
-  // ✅ must match backend multer fields:
+  // must match multer fields:
   fd.append("before", beforeFile);
   fd.append("after", afterFile);
 
@@ -73,13 +33,13 @@ export function createPortfolioApi({
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      // ❌ DO NOT set Content-Type manually for FormData
+      // IMPORTANT: FormData হলে Content-Type set করবে না
     },
     body: fd,
   });
 }
 
-// DELETE /api/portfolio/:id
+// DELETE /api/portfolio/:id - needs Bearer token
 export function deletePortfolioApi(id) {
   const token = tokenStorage.get();
   if (!token) throw new Error("Admin token missing. Please login again.");
