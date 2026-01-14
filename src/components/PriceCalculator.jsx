@@ -110,6 +110,43 @@ export default function PriceCalculator() {
                 </span>
               ))}
             </div>
+
+            {/* Conversion box (fills the empty space) */}
+            <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+              <div className="text-sm font-extrabold text-zinc-900">
+                What’s included
+              </div>
+              <p className="mt-1 text-sm text-zinc-600">
+                Quick, professional mobile service — perfect for Google Maps
+                outreach demos.
+              </p>
+
+              <ul className="mt-4 space-y-3 text-sm text-zinc-700">
+                {[
+                  "We come to your home or workplace",
+                  "Safe products • paint-friendly process",
+                  "Upfront pricing with live total",
+                  "Book instantly via WhatsApp",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-blue-700" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-5 rounded-xl border border-zinc-200 bg-zinc-50 p-4">
+                <div className="text-xs font-semibold text-zinc-600">
+                  Service area
+                </div>
+                <div className="mt-1 text-sm font-bold text-zinc-900">
+                  {business.city} • Within {business.serviceRadiusMiles} miles
+                </div>
+                <div className="mt-1 text-xs text-zinc-600">
+                  Same-week slots often available — message to confirm.
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div

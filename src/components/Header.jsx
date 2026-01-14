@@ -1,5 +1,6 @@
 import { Car, PhoneCall } from "lucide-react";
 import { business } from "../data/business";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const navItems = [
@@ -23,6 +24,12 @@ export default function Header() {
             </div>
           </div>
         </a>
+        {/* <Link
+          to="/portfolio"
+          className="text-sm font-semibold text-zinc-700 hover:text-zinc-900 transition"
+        >
+          Portfolio
+        </Link> */}
 
         <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (

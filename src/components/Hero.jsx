@@ -2,6 +2,12 @@ import { motion } from "framer-motion";
 import { Car, CheckCircle2, ShieldCheck, Sparkles, Star } from "lucide-react";
 import { business } from "../data/business";
 
+/** Replace these two image links anytime */
+const BEFORE_IMG =
+  "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80";
+const AFTER_IMG =
+  "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1200&q=80";
+
 function Badge({ children }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-semibold text-zinc-900">
@@ -33,11 +39,31 @@ function SecondaryButton({ children, href }) {
   );
 }
 
+function ImageBox({ label, src, caption }) {
+  return (
+    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+      <div className="text-xs font-semibold text-zinc-600">{label}</div>
+
+      {/* Image */}
+      <img
+        src={src}
+        alt={`${label} car detailing`}
+        className="mt-3 h-40 w-full rounded-xl border border-zinc-200 object-cover bg-white"
+        loading="lazy"
+      />
+
+      {/* Caption */}
+      <div className="mt-3 text-xs text-zinc-500">{caption}</div>
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-white">
       <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-2">
+          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,6 +133,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
+          {/* RIGHT */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,24 +161,16 @@ export default function Hero() {
               </div>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <div className="text-xs font-semibold text-zinc-600">
-                    Before
-                  </div>
-                  <div className="mt-3 h-28 rounded-xl border border-zinc-200 bg-white" />
-                  <div className="mt-3 text-xs text-zinc-500">
-                    Light swirls • Dust • Marks
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <div className="text-xs font-semibold text-zinc-600">
-                    After
-                  </div>
-                  <div className="mt-3 h-28 rounded-xl border border-zinc-200 bg-white" />
-                  <div className="mt-3 text-xs text-zinc-500">
-                    Gloss • Depth • Protection
-                  </div>
-                </div>
+                <ImageBox
+                  label="Before"
+                  src={BEFORE_IMG}
+                  caption="Light swirls • Dust • Marks"
+                />
+                <ImageBox
+                  label="After"
+                  src={AFTER_IMG}
+                  caption="Gloss • Depth • Protection"
+                />
               </div>
 
               <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4">
