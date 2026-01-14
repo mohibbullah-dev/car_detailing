@@ -42,15 +42,14 @@
 
 // frontend/src/api/portfolio.api.js
 import { apiFetch } from "../lib/apiClient";
-import { tokenStorage } from "../lib/storage";
 
 // GET /api/portfolio
-export async function getPortfolioApi() {
+export function getPortfolioApi() {
   return apiFetch("/api/portfolio");
 }
 
-// POST /api/portfolio (multipart)
-export async function createPortfolioApi({
+// POST /api/portfolio
+export function createPortfolioApi({
   title,
   location,
   notes,
@@ -58,38 +57,25 @@ export async function createPortfolioApi({
   beforeFile,
   afterFile,
 }) {
-  const token = tokenStorage.get();
-  if (!token) throw new Error("Admin token missing. Please login again.");
-
   const fd = new FormData();
   fd.append("title", title);
   fd.append("location", location);
   fd.append("notes", notes);
   fd.append("tags", tags || "");
 
-  // ✅ MUST match backend multer field names:
+  // must match multer fields:
   fd.append("before", beforeFile);
   fd.append("after", afterFile);
 
   return apiFetch("/api/portfolio", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      // ❌ do NOT set Content-Type for FormData
-    },
     body: fd,
   });
 }
 
 // DELETE /api/portfolio/:id
-export async function deletePortfolioApi(id) {
-  const token = tokenStorage.get();
-  if (!token) throw new Error("Admin token missing. Please login again.");
-
+export function deletePortfolioApi(id) {
   return apiFetch(`/api/portfolio/${id}`, {
     method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
 }
