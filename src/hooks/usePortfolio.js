@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { updatePortfolioApi } from "../api/portfolio.api";
 import {
   getPortfolioApi,
   createPortfolioApi,
@@ -25,6 +26,14 @@ export function useCreatePortfolio() {
       qc.invalidateQueries({ queryKey: keys.list });
       window.location.href = "/admin/portfolio";
     },
+  });
+}
+
+export function useUpdatePortfolio() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: updatePortfolioApi,
+    onSuccess: () => qc.invalidateQueries({ queryKey: keys.list }),
   });
 }
 

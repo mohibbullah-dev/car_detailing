@@ -39,6 +39,38 @@ export function createPortfolioApi({
   });
 }
 
+// PUT /api/portfolio/:id (multipart) - needs Bearer token
+export function updatePortfolioApi({
+  id,
+  title,
+  location,
+  notes,
+  tags,
+  beforeFile, // optional
+  afterFile, // optional
+}) {
+  const token = tokenStorage.get();
+  if (!token) throw new Error("Admin token missing. Please login again.");
+
+  const fd = new FormData();
+  if (title !== undefined) fd.append("title", title);
+  if (location !== undefined) fd.append("location", location);
+  if (notes !== undefined) fd.append("notes", notes);
+  if (tags !== undefined) fd.append("tags", tags || "");
+
+  // optional images
+  if (beforeFile) fd.append("before", beforeFile);
+  if (afterFile) fd.append("after", afterFile);
+
+  return apiFetch(`/api/portfolio/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: fd,
+  });
+}
+
 // DELETE /api/portfolio/:id - needs Bearer token
 export function deletePortfolioApi(id) {
   const token = tokenStorage.get();
