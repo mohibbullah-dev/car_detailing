@@ -1,5 +1,6 @@
 // frontend/src/lib/apiClient.js
-const rawBase = import.meta.env.VITE_API_BASE || "http://localhost:8080";
+const rawBase =
+  import.meta.env.VITE_API_BASE || "https://car-detailling-backend.vercel.app/";
 
 export const API_BASE = rawBase.replace(/\/$/, ""); // remove trailing slash
 
