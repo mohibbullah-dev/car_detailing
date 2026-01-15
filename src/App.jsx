@@ -5,6 +5,7 @@ import AdminLogin from "./pages/AdminLogin";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import AdminUpload from "./pages/AdminUpload";
+import AdminPortfolio from "./pages/AdminPortfolio";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/upload" element={<AdminUpload />} />
+        <Route path="/admin/portfolio" element={<AdminPortfolio />} />
       </Routes>
       <Footer />
     </div>
