@@ -1,13 +1,5 @@
-// frontend/src/lib/apiClient.js
-const rawBase = import.meta.env.VITE_API_BASE;
-
-if (!rawBase) {
-  console.warn(
-    "❌ VITE_API_BASE missing. Add it to .env.local or Vercel env vars."
-  );
-}
-
-export const API_BASE = (rawBase || "").replace(/\/$/, "");
+const rawBase = import.meta.env.VITE_API_BASE || "https://YOUR_BACKEND_DOMAIN";
+export const API_BASE = rawBase.replace(/\/$/, "");
 
 export async function apiFetch(path, options = {}) {
   const url = API_BASE + path;
@@ -20,7 +12,8 @@ export async function apiFetch(path, options = {}) {
   }
 
   const text = await res.text();
-  let data;
+  let data = null;
+
   try {
     data = text ? JSON.parse(text) : null;
   } catch {
