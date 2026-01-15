@@ -1,8 +1,13 @@
 // frontend/src/lib/apiClient.js
-const rawBase =
-  import.meta.env.VITE_API_BASE || "https://car-detailling-backend.vercel.app/";
+const rawBase = import.meta.env.VITE_API_BASE;
 
-export const API_BASE = rawBase.replace(/\/$/, ""); // remove trailing slash
+if (!rawBase) {
+  console.warn(
+    "❌ VITE_API_BASE missing. Add it to .env.local or Vercel env vars."
+  );
+}
+
+export const API_BASE = (rawBase || "").replace(/\/$/, "");
 
 export async function apiFetch(path, options = {}) {
   const url = API_BASE + path;
@@ -10,14 +15,12 @@ export async function apiFetch(path, options = {}) {
   let res;
   try {
     res = await fetch(url, options);
-  } catch (e) {
-    // network/CORS/backend-down
+  } catch {
     throw new Error("Network error: backend not reachable / CORS blocked");
   }
 
   const text = await res.text();
-  let data = null;
-
+  let data;
   try {
     data = text ? JSON.parse(text) : null;
   } catch {

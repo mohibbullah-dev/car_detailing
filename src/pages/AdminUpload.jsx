@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useMemo, useState } from "react";
 import { useCreatePortfolio } from "../hooks/usePortfolio";
 import { tokenStorage } from "../lib/storage";
@@ -74,6 +72,7 @@ export default function AdminUpload() {
       e.target.reset();
     } catch (err) {
       // axios error details
+      setErrMsg(err?.message || "Upload failed");
       const status = err?.response?.status;
       const msg = err?.response?.data?.message;
 
