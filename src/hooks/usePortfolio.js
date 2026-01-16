@@ -22,7 +22,10 @@ export function useCreatePortfolio() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: createPortfolioApi,
-    onSuccess: () => qc.invalidateQueries({ queryKey: keys.list }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: keys.list });
+      window.location.href = "/admin/portfolio";
+    },
   });
 }
 
