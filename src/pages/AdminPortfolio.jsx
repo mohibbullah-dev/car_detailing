@@ -269,7 +269,7 @@ export default function AdminPortfolio() {
                       <div className="mt-4 grid gap-4 sm:grid-cols-2">
                         {/* BEFORE */}
                         <div className="space-y-2">
-                          <div className="text-xs font-bold h-[30px] text-zinc-900">
+                          <div className="text-xs font-bold h-7.5 text-zinc-900">
                             Replace Before (optional)
                           </div>
 
@@ -305,7 +305,7 @@ export default function AdminPortfolio() {
 
                         {/* AFTER */}
                         <div className="space-y-2">
-                          <div className="text-xs h-[30px] font-bold text-zinc-900">
+                          <div className="text-xs h-7.5 font-bold text-zinc-900">
                             Replace After (optional)
                           </div>
 
