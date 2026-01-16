@@ -29,6 +29,10 @@ export default function AdminPortfolio() {
   });
 
   // previews
+
+  const [replaceBefore, setReplaceBefore] = useState(null);
+  const [replaceAfter, setReplaceAfter] = useState(null);
+
   const [beforePreview, setBeforePreview] = useState("");
   const [afterPreview, setAfterPreview] = useState("");
 
@@ -36,6 +40,20 @@ export default function AdminPortfolio() {
     if (!data?.length || !editId) return null;
     return data.find((x) => x._id === editId) || null;
   }, [data, editId]);
+
+  useEffect(() => {
+    if (!replaceBefore) return setBeforePreview("");
+    const url = URL.createObjectURL(replaceBefore);
+    setBeforePreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [replaceBefore]);
+
+  useEffect(() => {
+    if (!replaceAfter) return setAfterPreview("");
+    const url = URL.createObjectURL(replaceAfter);
+    setAfterPreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [replaceAfter]);
 
   // when editId changes -> fill form with that item
   useEffect(() => {
@@ -248,35 +266,75 @@ export default function AdminPortfolio() {
                         placeholder="Notes"
                       />
 
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div>
-                          <label className="text-xs font-bold text-zinc-700">
+                      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                        {/* BEFORE */}
+                        <div className="space-y-2">
+                          <div className="text-xs font-bold text-zinc-900">
                             Replace Before (optional)
-                          </label>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) =>
-                              setForm((s) => ({
-                                ...s,
-                                beforeFile: e.target.files?.[0] || null,
-                              }))
-                            }
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <label className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 shadow-sm hover:bg-zinc-50">
+                              Choose File
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) =>
+                                  setReplaceBefore(e.target.files?.[0] || null)
+                                }
+                              />
+                            </label>
+
+                            <div className="min-w-0 flex-1">
+                              <div className="truncate text-xs text-zinc-600">
+                                {replaceBefore
+                                  ? replaceBefore.name
+                                  : "No file selected"}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Preview: selected file -> show preview, else show existing image */}
+                          <img
+                            src={beforePreview || item.beforeUrl}
+                            alt="Before preview"
+                            className="h-28 w-full rounded-xl border border-zinc-200 object-cover"
                           />
                         </div>
-                        <div>
-                          <label className="text-xs font-bold text-zinc-700">
+
+                        {/* AFTER */}
+                        <div className="space-y-2">
+                          <div className="text-xs font-bold text-zinc-900">
                             Replace After (optional)
-                          </label>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) =>
-                              setForm((s) => ({
-                                ...s,
-                                afterFile: e.target.files?.[0] || null,
-                              }))
-                            }
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <label className="inline-flex cursor-pointer items-center justify-center rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 shadow-sm hover:bg-zinc-50">
+                              Choose File
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) =>
+                                  setReplaceAfter(e.target.files?.[0] || null)
+                                }
+                              />
+                            </label>
+
+                            <div className="min-w-0 flex-1">
+                              <div className="truncate text-xs text-zinc-600">
+                                {replaceAfter
+                                  ? replaceAfter.name
+                                  : "No file selected"}
+                              </div>
+                            </div>
+                          </div>
+
+                          <img
+                            src={afterPreview || item.afterUrl}
+                            alt="After preview"
+                            className="h-28 w-full rounded-xl border border-zinc-200 object-cover"
                           />
                         </div>
                       </div>
