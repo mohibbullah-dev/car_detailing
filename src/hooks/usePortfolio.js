@@ -24,7 +24,7 @@ export function useCreatePortfolio() {
     mutationFn: createPortfolioApi,
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: keys.list });
-      // window.location.href = "/admin/portfolio";
+      window.location.href = "/admin/portfolio";
     },
   });
 }
