@@ -568,7 +568,7 @@ export default function PreviousWorkSlider({ limit = 4 }) {
                   style={{ width: `${sliderPos}%` }}
                   transition={{ type: "spring", bounce: 0, duration: 0.1 }}
                 >
-                  <div className="relative h-full w-[1000px] sm:w-[1200px]">
+                  <div className="relative h-full w-250 sm:w-300">
                     <img
                       src={item.beforeImg}
                       alt="Before"
