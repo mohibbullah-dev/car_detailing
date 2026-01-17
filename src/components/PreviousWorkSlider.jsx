@@ -650,7 +650,7 @@ export default function PreviousWorkSlider({ limit = 4 }) {
                     Project <span className="text-white">{i + 1}</span> /{" "}
                     {items.length}
                   </div>
-                  <Link
+                  {/* <Link
                     to={`/portfolio/${item.id}`}
                     className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
                   >
@@ -659,7 +659,7 @@ export default function PreviousWorkSlider({ limit = 4 }) {
                       size={12}
                       className="group-hover:translate-x-1 transition-transform"
                     />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </motion.div>
