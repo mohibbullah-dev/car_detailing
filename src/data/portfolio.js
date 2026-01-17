@@ -102,56 +102,56 @@ export const portfolioItems = [
     id: "job-1",
     title: "Tesla Model 3 Ceramic",
     location: "Birmingham",
-    // Before: Dirty car / Flat paint
+    // Before: Dusty/Dirty Paint Surface
     beforeImg:
-      "https://images.unsplash.com/photo-1507136566006-bb7aef55f155?q=80&w=1400&auto=format&fit=crop",
-    // After: Glossy blue Tesla
+      "https://images.unsplash.com/photo-1597404294360-feeefa0443eb?q=80&w=1400&auto=format&fit=crop",
+    // After: High Gloss Shiny Blue Car
     afterImg:
       "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1400&auto=format&fit=crop",
     notes:
-      "Full paint decontamination followed by a 3-year Gtechniq Ceramic Coating. Restored depth and high-gloss finish.",
+      "Full exterior decontamination followed by a 1-step machine polish and 3-year ceramic coating application.",
     tags: ["Ceramic Coating", "Paint Correction"],
   },
   {
     id: "job-2",
     title: "Porsche 911 Restoration",
     location: "Solihull",
-    // Before: Grimy wheel/side
+    // Before: Dirty Wheel/Tire Detail
     beforeImg:
-      "https://images.unsplash.com/photo-1605515298946-d062f2e9da53?q=80&w=1400&auto=format&fit=crop",
-    // After: Clean Porsche 911
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1400&auto=format&fit=crop",
+    // After: Showroom Clean Porsche
     afterImg:
       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1400&auto=format&fit=crop",
     notes:
-      "Multi-stage machine polish to remove heavy swirl marks. The silver metallic flake now pops under direct light.",
-    tags: ["Swirl Removal", "Stage 2 Polish"],
+      "Deep leather cleaning and conditioning with steam sanitization and high-end fabric protection.",
+    tags: ["Interior Deep Clean", "Leather Care"],
   },
   {
     id: "job-3",
-    title: "Luxury Interior Detail",
+    title: "BMW M4 Enhancement",
     location: "Birmingham",
-    // Before: Dusty/Used interior
+    // Before: Dull car in garage
     beforeImg:
-      "https://images.unsplash.com/photo-1518131327318-62950db2e00d?q=80&w=1400&auto=format&fit=crop",
-    // After: Clean leather interior
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1400&auto=format&fit=crop",
+    // After: Glossy BMW M4 profile
     afterImg:
-      "https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1400&auto=format&fit=crop",
     notes:
-      "Steam extraction on carpets and deep leather nourishment. Removed odors and restored the 'new car' smell.",
-    tags: ["Interior", "Leather Care"],
+      "Removed heavy swirl marks and restored a showroom mirror finish with a dual-stage paint correction.",
+    tags: ["Paint Correction", "Showroom Finish"],
   },
   {
     id: "job-4",
     title: "Range Rover Protection",
     location: "Sutton Coldfield",
-    // Before: Muddy SUV
+    // Before: Dusty SUV front
     beforeImg:
-      "https://images.unsplash.com/photo-1541447237128-f4bcb25f558a?q=80&w=1400&auto=format&fit=crop",
-    // After: Shiny Range Rover
+      "https://images.unsplash.com/photo-1506469717960-433ce8b66ddc?q=80&w=1400&auto=format&fit=crop",
+    // After: Ultra Clean Range Rover
     afterImg:
       "https://images.unsplash.com/photo-1606611013016-969c19ba27bb?q=80&w=1400&auto=format&fit=crop",
     notes:
-      "Winter shield package. Hydrophobic glass coating and wheel sealant to protect against road salt and grime.",
-    tags: ["Winter Prep", "Hydrophobic"],
+      "Winter protection package including ceramic glass coating and specialized wheel face protection.",
+    tags: ["Winter Shield", "Wheel Ceramic"],
   },
 ];
