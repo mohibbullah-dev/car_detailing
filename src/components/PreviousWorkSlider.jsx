@@ -125,167 +125,202 @@
 // }
 
 import React, { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  MapPin,
-  Sparkles,
-} from "lucide-react";
-import { Link } from "react-router-dom";
-import { portfolioItems } from "../data/portfolio";
+import { motion } from "framer-motion";
+import { CheckCircle2, MessageCircle, PhoneCall, Sparkles } from "lucide-react";
+import { business } from "../data/business";
 
-export default function PreviousWorkSlider({ limit = 4 }) {
-  const items = useMemo(() => portfolioItems.slice(0, limit), [limit]);
-  const [i, setI] = useState(0);
+const SIZE_MULTIPLIER = { Small: 1, Sedan: 1.15, SUV: 1.3 };
 
-  const item = items[i];
+const SERVICES = [
+  {
+    name: "Express Wash",
+    price: 30,
+    description: "Quick refresh • Exterior wash • Wheels cleaned",
+  },
+  {
+    name: "Full Detail",
+    price: 80,
+    description: "Interior + exterior • Decon • Gloss finish",
+  },
+  {
+    name: "Ceramic Coating",
+    price: 200,
+    description: "Long-lasting protection • Deep shine • Hydrophobic",
+  },
+];
 
-  const next = () => setI((p) => (p + 1) % items.length);
-  const prev = () => setI((p) => (p - 1 + items.length) % items.length);
+const formatGBP = (n) =>
+  new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
+    n,
+  );
+
+export default function PriceCalculator() {
+  const [carSize, setCarSize] = useState("Sedan");
+  const [serviceType, setServiceType] = useState(SERVICES[1].name);
+
+  const selectedService = useMemo(
+    () => SERVICES.find((s) => s.name === serviceType) ?? SERVICES[0],
+    [serviceType],
+  );
+
+  const total = useMemo(() => {
+    const multiplier = SIZE_MULTIPLIER[carSize] ?? 1;
+    return Math.round(selectedService.price * multiplier);
+  }, [carSize, selectedService.price]);
+
+  const waLink = `https://wa.me/${business.whatsappNumber}?text=Hi! I'd like to book ${selectedService.name} for my ${carSize}. Total: ${formatGBP(total)}`;
 
   return (
-    <section className="bg-zinc-50 overflow-hidden" id="work">
-      <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
-          <div className="max-w-xl">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3 flex items-center gap-2">
-              <Sparkles className="h-4 w-4" /> Portfolio Showcase
-            </h2>
-            <h3 className="text-4xl font-black text-zinc-900 tracking-tight sm:text-5xl">
-              Recent{" "}
-              <span className="text-zinc-400 font-medium italic">
-                Transformations
-              </span>
-            </h3>
-            <p className="mt-4 text-lg text-zinc-600 leading-relaxed">
-              Experience the difference of professional care through our most
-              recent client projects.
-            </p>
-          </div>
+    // CHANGED: bg-white to bg-zinc-950
+    <section id="quote" className="bg-zinc-950 py-24 relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] pointer-events-none" />
 
-          <div className="flex items-center gap-4">
-            <div className="flex bg-white rounded-full p-1 border border-zinc-200 shadow-sm">
-              <button
-                onClick={prev}
-                className="rounded-full p-3 text-zinc-600 transition hover:bg-zinc-100 hover:text-blue-600 active:scale-95"
-                aria-label="Previous"
-              >
-                <ArrowLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={next}
-                className="rounded-full p-3 text-zinc-600 transition hover:bg-zinc-100 hover:text-blue-600 active:scale-95"
-                aria-label="Next"
-              >
-                <ArrowRight className="h-5 w-5" />
-              </button>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 lg:px-8">
+        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+          {/* Left Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div>
+              <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-blue-500 mb-4 flex items-center gap-2">
+                <Sparkles className="h-4 w-4" /> Instant Quote
+              </h2>
+              <h3 className="text-5xl font-black text-white tracking-tighter uppercase leading-[0.9]">
+                Precision <br />
+                <span className="text-zinc-500 italic">Estimator.</span>
+              </h3>
+              <p className="mt-6 text-zinc-400 text-lg leading-relaxed">
+                Select your vehicle size and treatment. Your total updates
+                live—book in seconds via WhatsApp.
+              </p>
             </div>
-            <Link
-              to="/portfolio"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-zinc-900 px-8 text-sm font-bold text-white transition hover:bg-zinc-800 hover:shadow-lg"
-            >
-              View Full Gallery
-            </Link>
-          </div>
-        </div>
 
-        {/* Main Slider Display */}
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-white border border-zinc-200 p-4 shadow-xl shadow-zinc-200/50 sm:p-8">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.5, ease: "circOut" }}
-              className="grid gap-12 lg:grid-cols-12"
-            >
-              {/* Visuals: Before/After (8 Columns) */}
-              <div className="lg:col-span-8">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {/* Before Frame */}
-                  <div className="group relative aspect-video overflow-hidden rounded-3xl bg-zinc-100 border border-zinc-200">
-                    <div className="absolute top-4 left-4 z-10 rounded-full bg-black/60 backdrop-blur-md px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white">
-                      Before
-                    </div>
-                    <img
-                      src={item.beforeImg}
-                      alt="Condition Before"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  {/* After Frame */}
-                  <div className="group relative aspect-video overflow-hidden rounded-3xl bg-zinc-100 border-2 border-blue-500/20 shadow-2xl shadow-blue-500/10">
-                    <div className="absolute top-4 left-4 z-10 rounded-full bg-blue-600 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg">
-                      After
-                    </div>
-                    <img
-                      src={item.afterImg}
-                      alt="Result After"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
+            <div className="grid gap-4">
+              {[
+                "Transparent pricing",
+                `Mobile service in ${business.city}`,
+                "Fast booking",
+              ].map((t) => (
+                <div
+                  key={t}
+                  className="flex items-center gap-3 text-zinc-300 font-bold"
+                >
+                  <CheckCircle2 className="h-5 w-5 text-blue-500" />
+                  {t}
+                </div>
+              ))}
+            </div>
+
+            {/* Service Area Card */}
+            <div className="rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm">
+              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+                Coverage Area
+              </div>
+              <div className="text-xl font-bold text-white uppercase italic">
+                {business.city}{" "}
+                <span className="text-blue-500 text-sm not-italic ml-2">
+                  Within {business.serviceRadiusMiles} miles
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: The Calculator Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            // CHANGED: bg-white to bg-zinc-900 with white/10 border
+            className="rounded-[2.5rem] border border-white/10 bg-zinc-900 p-8 shadow-2xl sm:p-10"
+          >
+            <div className="space-y-8">
+              {/* Car Size Selector */}
+              <div>
+                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                  Vehicle Size
+                </label>
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  {Object.keys(SIZE_MULTIPLIER).map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setCarSize(size)}
+                      className={`rounded-xl py-3 text-[11px] font-black uppercase tracking-widest transition-all ${
+                        carSize === size
+                          ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
+                          : "bg-white/5 text-zinc-400 hover:bg-white/10"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              {/* Information Panel (4 Columns) */}
-              <div className="lg:col-span-4 flex flex-col justify-between">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-2xl font-black text-zinc-900 tracking-tight leading-tight">
-                      {item.title}
-                    </h4>
-                    <div className="mt-2 flex items-center gap-2 text-sm font-medium text-zinc-500">
-                      <MapPin className="h-4 w-4 text-blue-600" />
-                      {item.location}
-                    </div>
-                  </div>
-
-                  <div className="relative rounded-2xl bg-zinc-50 p-6 border border-zinc-100">
-                    <div className="absolute -top-3 left-6 bg-blue-600 text-[10px] font-bold text-white px-3 py-1 rounded-full uppercase tracking-tighter">
-                      Project Notes
-                    </div>
-                    <p className="text-sm leading-relaxed text-zinc-600 italic">
-                      "{item.notes}"
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {item.tags?.map((t) => (
-                      <span
-                        key={t}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-[11px] font-bold text-zinc-800 transition hover:border-blue-500 hover:text-blue-600"
-                      >
-                        <CheckCircle2 className="h-3 w-3 text-blue-600" />
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Progress Indicator */}
-                <div className="pt-8 mt-8 border-t border-zinc-100 flex items-center justify-between">
-                  <div className="flex gap-1.5">
-                    {items.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-8 bg-blue-600" : "w-2 bg-zinc-200"}`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">
-                    {i + 1} <span className="mx-1 text-zinc-200">/</span>{" "}
-                    {items.length}
-                  </span>
+              {/* Service Type Selector */}
+              <div>
+                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                  Service Type
+                </label>
+                <div className="mt-3 space-y-3">
+                  {SERVICES.map((s) => (
+                    <button
+                      key={s.name}
+                      onClick={() => setServiceType(s.name)}
+                      className={`w-full rounded-2xl border p-4 text-left transition-all ${
+                        serviceType === s.name
+                          ? "border-blue-500 bg-blue-500/10"
+                          : "border-white/5 bg-white/5 hover:border-white/10"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-sm font-black uppercase text-white">
+                            {s.name}
+                          </div>
+                          <div className="text-[10px] text-zinc-500">
+                            {s.description}
+                          </div>
+                        </div>
+                        <div className="font-black text-white">
+                          {formatGBP(s.price)}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+
+              {/* Total Card */}
+              <div className="rounded-2xl bg-white p-6 text-black flex items-center justify-between">
+                <div className="text-[10px] font-black uppercase tracking-widest opacity-50">
+                  Estimated Total
+                </div>
+                <div className="text-3xl font-black tracking-tighter">
+                  {formatGBP(total)}
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="grid gap-3 sm:grid-cols-2">
+                <a
+                  href={waLink}
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-blue-600 py-4 text-xs font-black uppercase tracking-widest text-white hover:bg-blue-700 transition-all"
+                >
+                  Book WhatsApp <MessageCircle className="h-4 w-4" />
+                </a>
+                <a
+                  href={`tel:${business.phoneTel}`}
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-zinc-800 py-4 text-xs font-black uppercase tracking-widest text-white hover:border-white/30 transition-all"
+                >
+                  Call Now <PhoneCall className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
