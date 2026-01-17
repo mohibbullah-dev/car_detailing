@@ -233,7 +233,7 @@ export default function PriceCalculator() {
                 </a>
                 <a
                   href={`tel:${business.phoneTel}`}
-                  className="flex-1 flex h-16 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 text-[12px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white hover:border-white/20 active:scale-95"
+                  className="flex-1 flex h-16 items-center sm:h-16 justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 text-[12px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white hover:border-white/20 active:scale-95"
                 >
                   Questions? <PhoneCall size={18} />
                 </a>
