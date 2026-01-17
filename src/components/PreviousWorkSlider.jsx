@@ -131,7 +131,7 @@ import {
   ArrowRight,
   CheckCircle2,
   MapPin,
-  Camera,
+  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { portfolioItems } from "../data/portfolio";
@@ -146,125 +146,142 @@ export default function PreviousWorkSlider({ limit = 4 }) {
   const prev = () => setI((p) => (p - 1 + items.length) % items.length);
 
   return (
-    <section className="relative overflow-hidden bg-zinc-950 py-24" id="work">
-      {/* Decorative Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] pointer-events-none" />
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+    <section className="bg-zinc-50 overflow-hidden" id="work">
+      <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        {/* Header Section */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 text-blue-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
-              <Camera className="h-3 w-3" /> Recent Transformations
-            </div>
-            <h2 className="text-4xl font-black tracking-tighter text-white sm:text-5xl uppercase">
-              The <span className="text-zinc-500 italic">Finish</span> Line
+          <div className="max-w-xl">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3 flex items-center gap-2">
+              <Sparkles className="h-4 w-4" /> Portfolio Showcase
             </h2>
+            <h3 className="text-4xl font-black text-zinc-900 tracking-tight sm:text-5xl">
+              Recent{" "}
+              <span className="text-zinc-400 font-medium italic">
+                Transformations
+              </span>
+            </h3>
+            <p className="mt-4 text-lg text-zinc-600 leading-relaxed">
+              Experience the difference of professional care through our most
+              recent client projects.
+            </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex gap-2 mr-4">
+          <div className="flex items-center gap-4">
+            <div className="flex bg-white rounded-full p-1 border border-zinc-200 shadow-sm">
               <button
                 onClick={prev}
-                className="group grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-zinc-900 text-white transition-all hover:border-blue-500 hover:text-blue-500"
+                className="rounded-full p-3 text-zinc-600 transition hover:bg-zinc-100 hover:text-blue-600 active:scale-95"
                 aria-label="Previous"
               >
-                <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+                <ArrowLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={next}
-                className="group grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-zinc-900 text-white transition-all hover:border-blue-500 hover:text-blue-500"
+                className="rounded-full p-3 text-zinc-600 transition hover:bg-zinc-100 hover:text-blue-600 active:scale-95"
                 aria-label="Next"
               >
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5" />
               </button>
             </div>
-
             <Link
               to="/portfolio"
-              className="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-black transition-all hover:bg-blue-600 hover:text-white"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-zinc-900 px-8 text-sm font-bold text-white transition hover:bg-zinc-800 hover:shadow-lg"
             >
-              Full Gallery
+              View Full Gallery
             </Link>
           </div>
         </div>
 
-        <div className="relative">
+        {/* Main Slider Display */}
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-white border border-zinc-200 p-4 shadow-xl shadow-zinc-200/50 sm:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.02 }}
-              transition={{ duration: 0.4, ease: "circOut" }}
-              className="grid gap-8 lg:grid-cols-12"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.5, ease: "circOut" }}
+              className="grid gap-12 lg:grid-cols-12"
             >
-              {/* Visual Showcase (8 Columns) */}
-              <div className="lg:col-span-8 grid gap-4 sm:grid-cols-2">
-                <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-zinc-900">
-                  <div className="absolute top-4 left-4 z-20 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white border border-white/10">
-                    Before
+              {/* Visuals: Before/After (8 Columns) */}
+              <div className="lg:col-span-8">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {/* Before Frame */}
+                  <div className="group relative aspect-video overflow-hidden rounded-3xl bg-zinc-100 border border-zinc-200">
+                    <div className="absolute top-4 left-4 z-10 rounded-full bg-black/60 backdrop-blur-md px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white">
+                      Before
+                    </div>
+                    <img
+                      src={item.beforeImg}
+                      alt="Condition Before"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
-                  <img
-                    src={item.beforeImg}
-                    alt="Before detailing"
-                    className="h-[300px] sm:h-[450px] w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60"
-                  />
-                </div>
-
-                <div className="group relative overflow-hidden rounded-3xl border border-blue-500/20 bg-zinc-900 shadow-[0_0_40px_rgba(37,99,235,0.15)]">
-                  <div className="absolute top-4 left-4 z-20 rounded-full bg-blue-600 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white">
-                    After
+                  {/* After Frame */}
+                  <div className="group relative aspect-video overflow-hidden rounded-3xl bg-zinc-100 border-2 border-blue-500/20 shadow-2xl shadow-blue-500/10">
+                    <div className="absolute top-4 left-4 z-10 rounded-full bg-blue-600 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg">
+                      After
+                    </div>
+                    <img
+                      src={item.afterImg}
+                      alt="Result After"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
-                  <img
-                    src={item.afterImg}
-                    alt="After detailing"
-                    className="h-[300px] sm:h-[450px] w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {/* Subtle Glow Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
                 </div>
               </div>
 
               {/* Information Panel (4 Columns) */}
-              <div className="lg:col-span-4 flex flex-col justify-center space-y-6">
-                <div>
-                  <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-2">
-                    <MapPin className="h-3 w-3" /> {item.location}
+              <div className="lg:col-span-4 flex flex-col justify-between">
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-2xl font-black text-zinc-900 tracking-tight leading-tight">
+                      {item.title}
+                    </h4>
+                    <div className="mt-2 flex items-center gap-2 text-sm font-medium text-zinc-500">
+                      <MapPin className="h-4 w-4 text-blue-600" />
+                      {item.location}
+                    </div>
                   </div>
-                  <h3 className="text-3xl font-black text-white uppercase leading-none tracking-tighter">
-                    {item.title}
-                  </h3>
+
+                  <div className="relative rounded-2xl bg-zinc-50 p-6 border border-zinc-100">
+                    <div className="absolute -top-3 left-6 bg-blue-600 text-[10px] font-bold text-white px-3 py-1 rounded-full uppercase tracking-tighter">
+                      Project Notes
+                    </div>
+                    <p className="text-sm leading-relaxed text-zinc-600 italic">
+                      "{item.notes}"
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {item.tags?.map((t) => (
+                      <span
+                        key={t}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-[11px] font-bold text-zinc-800 transition hover:border-blue-500 hover:text-blue-600"
+                      >
+                        <CheckCircle2 className="h-3 w-3 text-blue-600" />
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm">
-                  <p className="text-zinc-400 text-sm leading-relaxed italic">
-                    "{item.notes}"
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {item.tags?.map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-400"
-                    >
-                      <CheckCircle2 className="h-3 w-3" />
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
-                    Project {i + 1} <span className="mx-2">/</span>{" "}
+                {/* Progress Indicator */}
+                <div className="pt-8 mt-8 border-t border-zinc-100 flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    {items.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-8 bg-blue-600" : "w-2 bg-zinc-200"}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                    {i + 1} <span className="mx-1 text-zinc-200">/</span>{" "}
                     {items.length}
-                  </div>
-                  <Link
-                    to={`/portfolio/${item.id}`}
-                    className="text-[10px] font-black uppercase tracking-widest text-white hover:text-blue-500 transition-colors"
-                  >
-                    View Details
-                  </Link>
+                  </span>
                 </div>
               </div>
             </motion.div>
