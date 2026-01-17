@@ -264,14 +264,14 @@
 // }
 
 import React, { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "framer-motion";
 import {
   CheckCircle2,
   MessageCircle,
   PhoneCall,
-  Zap,
-  Shield,
   Sparkles,
+  ShieldCheck,
+  Zap,
 } from "lucide-react";
 import { business } from "../data/business";
 
@@ -282,19 +282,19 @@ const SERVICES = [
     name: "Express Wash",
     price: 30,
     icon: <Zap className="h-4 w-4" />,
-    description: "Exterior restoration & wheel decontamination",
+    description: "Exterior restoration • Wheel decontamination",
   },
   {
     name: "Full Detail",
     price: 80,
     icon: <Sparkles className="h-4 w-4" />,
-    description: "Deep interior steam & paint gloss enhancement",
+    description: "Deep interior steam • Paint gloss enhancement",
   },
   {
     name: "Ceramic Coating",
     price: 200,
-    icon: <Shield className="h-4 w-4" />,
-    description: "Ultimate hydrophobic protection & 12-month seal",
+    icon: <ShieldCheck className="h-4 w-4" />,
+    description: "12-month hydrophobic shield • Mirror finish",
   },
 ];
 
@@ -302,29 +302,6 @@ const formatGBP = (n) =>
   new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
     n,
   );
-
-// Luxury Button Components
-function PrimaryButton({ children, href, className = "" }) {
-  return (
-    <a
-      href={href}
-      className={`group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-white px-8 py-4 text-xs font-black uppercase tracking-widest text-black transition-all hover:bg-blue-600 hover:text-white ${className}`}
-    >
-      {children}
-    </a>
-  );
-}
-
-function SecondaryButton({ children, href, className = "" }) {
-  return (
-    <a
-      href={href}
-      className={`flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900 px-8 py-4 text-xs font-black uppercase tracking-widest text-white transition-all hover:border-white/40 ${className}`}
-    >
-      {children}
-    </a>
-  );
-}
 
 export default function PriceCalculator() {
   const [carSize, setCarSize] = useState("Sedan");
@@ -340,16 +317,16 @@ export default function PriceCalculator() {
     return Math.round(selectedService.price * multiplier);
   }, [carSize, selectedService.price]);
 
-  const waLink = `https://wa.me/${business.whatsappNumber}?text=Hi! I want to book ${selectedService.name} for my ${carSize}. Total: ${formatGBP(total)}`;
+  const waLink = `https://wa.me/${business.whatsappNumber}?text=Hi! I'd like to book ${selectedService.name} for my ${carSize}. Total: ${formatGBP(total)}`;
 
   return (
     <section id="quote" className="relative bg-zinc-950 py-24 overflow-hidden">
-      {/* Background radial glow */}
-      <div className="absolute -top-[20%] -right-[10%] h-[500px] w-[500px] bg-blue-600/10 blur-[120px]" />
+      {/* Dynamic Background Glow */}
+      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-600/10 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          {/* Left Column: Value Prop */}
+          {/* Left Column: Context & Value */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -357,42 +334,43 @@ export default function PriceCalculator() {
             className="space-y-8"
           >
             <div>
-              <div className="text-blue-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
-                Transparent Estimates
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-blue-500 mb-4">
+                <Sparkles className="h-3 w-3" /> Live Estimates
               </div>
-              <h2 className="text-5xl font-black tracking-tighter text-white sm:text-6xl uppercase leading-[0.9]">
+              <h2 className="text-5xl font-black tracking-tighter text-white sm:text-6xl uppercase leading-[0.85]">
                 Precision <br />
                 <span className="text-zinc-600 italic">Pricing.</span>
               </h2>
               <p className="mt-6 max-w-md text-lg text-zinc-400 leading-relaxed">
-                No hidden fees. No guesswork. Select your vehicle profile and
-                get an instant mobile detailing quote in {business.city}.
+                Premium mobile detailing with zero guesswork. Select your
+                vehicle profile and receive an instant quote for {business.city}
+                .
               </p>
             </div>
 
             <div className="space-y-4">
               {[
-                "Fully Equipped Mobile Units",
-                "Premium Grade Chemicals Only",
-                "Insured & Certified Professionals",
-              ].map((item) => (
+                "Full Mobile Equipment",
+                "Eco-Friendly Premium Chemicals",
+                "Same-Week Bookings",
+              ].map((t) => (
                 <div
-                  key={item}
+                  key={t}
                   className="flex items-center gap-3 text-sm font-bold text-zinc-300"
                 >
-                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-500">
                     <CheckCircle2 className="h-3 w-3" />
                   </div>
-                  {item}
+                  {t}
                 </div>
               ))}
             </div>
 
-            <div className="rounded-3xl border border-white/5 bg-white/5 p-8 backdrop-blur-md">
+            <div className="rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-md">
               <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-2">
                 Service Radius
               </div>
-              <div className="text-xl font-bold text-white uppercase italic">
+              <div className="text-xl font-bold text-white italic uppercase">
                 {business.city}{" "}
                 <span className="text-blue-500 text-sm not-italic ml-2">
                   ± {business.serviceRadiusMiles} Miles
@@ -401,25 +379,25 @@ export default function PriceCalculator() {
             </div>
           </motion.div>
 
-          {/* Right Column: The Calculator */}
+          {/* Right Column: The Dashboard */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative rounded-[2.5rem] border border-white/10 bg-zinc-900/50 p-8 shadow-2xl backdrop-blur-xl sm:p-10"
+            className="rounded-[2.5rem] border border-white/10 bg-zinc-900/50 p-6 shadow-2xl backdrop-blur-xl sm:p-10"
           >
             <div className="space-y-8">
-              {/* Car Size Selector */}
+              {/* Size Selector */}
               <div>
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">
-                  1. Select Vehicle Size
+                  1. Vehicle Size
                 </label>
-                <div className="mt-4 grid grid-cols-3 gap-3">
+                <div className="mt-4 grid grid-cols-3 gap-2">
                   {Object.keys(SIZE_MULTIPLIER).map((size) => (
                     <button
                       key={size}
                       onClick={() => setCarSize(size)}
-                      className={`relative overflow-hidden rounded-xl py-4 text-[10px] font-black uppercase tracking-widest transition-all ${
+                      className={`rounded-xl py-4 text-[10px] font-black uppercase tracking-widest transition-all ${
                         carSize === size
                           ? "bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.3)]"
                           : "bg-white/5 text-zinc-400 hover:bg-white/10"
@@ -431,17 +409,17 @@ export default function PriceCalculator() {
                 </div>
               </div>
 
-              {/* Service Type Selector */}
+              {/* Service Selector */}
               <div>
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">
-                  2. Select Treatment
+                  2. Treatment Plan
                 </label>
                 <div className="mt-4 space-y-3">
                   {SERVICES.map((s) => (
                     <button
                       key={s.name}
                       onClick={() => setServiceType(s.name)}
-                      className={`w-full group rounded-2xl border p-5 text-left transition-all ${
+                      className={`w-full group rounded-2xl border p-4 text-left transition-all ${
                         serviceType === s.name
                           ? "border-blue-500 bg-blue-500/10"
                           : "border-white/5 bg-white/5 hover:border-white/20"
@@ -450,12 +428,12 @@ export default function PriceCalculator() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                           <div
-                            className={`rounded-lg p-2 transition-colors ${serviceType === s.name ? "bg-blue-500 text-white" : "bg-zinc-800 text-zinc-400"}`}
+                            className={`rounded-lg p-2 ${serviceType === s.name ? "bg-blue-600 text-white" : "bg-zinc-800 text-zinc-500"}`}
                           >
                             {s.icon}
                           </div>
                           <div>
-                            <div className="text-sm font-black uppercase tracking-tight text-white">
+                            <div className="text-xs font-black uppercase text-white tracking-tight">
                               {s.name}
                             </div>
                             <div className="text-[10px] text-zinc-500">
@@ -473,9 +451,9 @@ export default function PriceCalculator() {
               </div>
 
               {/* Total Display */}
-              <div className="rounded-2xl bg-white p-6 text-black">
+              <div className="rounded-2xl bg-white p-6 text-black shadow-inner">
                 <div className="flex items-center justify-between">
-                  <div className="text-[10px] font-black uppercase tracking-widest opacity-50">
+                  <div className="text-[10px] font-black uppercase tracking-widest opacity-40">
                     Estimated Total
                   </div>
                   <div className="text-3xl font-black tracking-tighter">
@@ -484,19 +462,21 @@ export default function PriceCalculator() {
                 </div>
               </div>
 
-              {/* CTAs */}
+              {/* Actions */}
               <div className="grid gap-3 sm:grid-cols-2">
-                <PrimaryButton href={waLink}>
-                  Book Now <MessageCircle className="h-4 w-4" />
-                </PrimaryButton>
-                <SecondaryButton href={`tel:${business.phoneTel}`}>
-                  Call <PhoneCall className="h-4 w-4" />
-                </SecondaryButton>
+                <a
+                  href={waLink}
+                  className="flex h-14 items-center justify-center gap-2 rounded-2xl bg-blue-600 text-[11px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-600/20 active:scale-95"
+                >
+                  Book via WhatsApp <MessageCircle className="h-4 w-4" />
+                </a>
+                <a
+                  href={`tel:${business.phoneTel}`}
+                  className="flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-zinc-800 text-[11px] font-black uppercase tracking-widest text-white transition-all hover:border-white/30 active:scale-95"
+                >
+                  Call Specialist <PhoneCall className="h-4 w-4" />
+                </a>
               </div>
-
-              <p className="text-center text-[9px] font-medium uppercase tracking-widest text-zinc-600">
-                Final price confirmed upon vehicle inspection
-              </p>
             </div>
           </motion.div>
         </div>
