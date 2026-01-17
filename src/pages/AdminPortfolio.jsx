@@ -476,7 +476,7 @@ export default function AdminPortfolio() {
   if (!token) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4">
-        <div className="w-full max-w-md rounded-[2rem] border border-white/5 bg-zinc-900 p-8 text-center shadow-2xl">
+        <div className="w-full max-w-md rounded-4xl border border-white/5 bg-zinc-900 p-8 text-center shadow-2xl">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-500/10 text-red-500">
             <Lock className="h-8 w-8" />
           </div>
@@ -532,7 +532,7 @@ export default function AdminPortfolio() {
               return (
                 <div
                   key={item._id}
-                  className={`relative rounded-[2rem] border transition-all duration-300 ${
+                  className={`relative rounded-4x border transition-all duration-300 ${
                     isEditing
                       ? "border-blue-500/50 bg-zinc-900 ring-1 ring-blue-500/20"
                       : "border-white/5 bg-zinc-900/50 hover:bg-zinc-900"
