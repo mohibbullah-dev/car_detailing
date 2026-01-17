@@ -1,157 +1,58 @@
-// export const portfolioItems = [
-//   {
-//     id: "job-1",
-//     title: "Bathroom Pipe Repair",
-//     location: "Birmingham",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1400&q=80",
-//     notes: "Replaced corroded pipe, sealed joints, pressure-tested system.",
-//     tags: ["Emergency", "Leak Fix"],
-//   },
-//   {
-//     id: "job-2",
-//     title: "Kitchen Sink Unblock",
-//     location: "Solihull",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1400&q=80",
-//     notes: "Cleared blockage, cleaned trap, improved water flow.",
-//     tags: ["Drain", "Same Day"],
-//   },
-//   {
-//     id: "job-3",
-//     title: "Boiler Service",
-//     location: "Birmingham",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1400&q=80",
-//     notes: "Safety checks, cleaned components, improved efficiency.",
-//     tags: ["Boiler", "Maintenance"],
-//   },
-//   {
-//     id: "job-4",
-//     title: "Shower Re-Seal",
-//     location: "Sutton Coldfield",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1600566752734-f5d64eacb8d1?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1600566752229-250ed79470d1?auto=format&fit=crop&w=1400&q=80",
-//     notes:
-//       "Removed moulded sealant, re-sealed shower edges, leak-proof finish.",
-//     tags: ["Bathroom", "Sealant"],
-//   },
-// ];
-
-// export const portfolioItems = [
-//   {
-//     id: "job-1",
-//     title: "Tesla Model 3 Detail",
-//     location: "Birmingham",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1599256621730-535171e28e50?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1617719113223-d975b6c7001b?auto=format&fit=crop&w=1400&q=80",
-//     notes:
-//       "Full exterior decontamination followed by a 1-step machine polish and 3-year ceramic coating application.",
-//     tags: ["Ceramic Coating", "Paint Correction"],
-//   },
-//   {
-//     id: "job-2",
-//     title: "Porsche 911 Interior",
-//     location: "Solihull",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1593460354583-4224ab273faf?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
-//     notes:
-//       "Deep leather cleaning and conditioning with steam sanitization and high-end fabric protection.",
-//     tags: ["Interior Deep Clean", "Leather Care"],
-//   },
-//   {
-//     id: "job-3",
-//     title: "BMW M4 Enhancement",
-//     location: "Birmingham",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1556122071-e404be74535e?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1400&q=80",
-//     notes:
-//       "Removed heavy swirl marks and restored a showroom mirror finish with a dual-stage paint correction.",
-//     tags: ["Paint Correction", "Showroom Finish"],
-//   },
-//   {
-//     id: "job-4",
-//     title: "Range Rover Protection",
-//     location: "Sutton Coldfield",
-//     beforeImg:
-//       "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=1400&q=80",
-//     afterImg:
-//       "https://images.unsplash.com/photo-1549399542-7e3f8b79c34b?auto=format&fit=crop&w=1400&q=80",
-//     notes:
-//       "Winter protection package including ceramic glass coating and specialized wheel face protection.",
-//     tags: ["Winter Shield", "Wheel Ceramic"],
-//   },
-// ];
-
 export const portfolioItems = [
   {
     id: "job-1",
     title: "Tesla Model 3 Ceramic",
     location: "Birmingham",
-    // Before: Dusty/Dirty Paint Surface
+    // Before: Dirty wheel/bodywork
     beforeImg:
-      "https://images.unsplash.com/photo-1597404294360-feeefa0443eb?q=80&w=1400&auto=format&fit=crop",
-    // After: High Gloss Shiny Blue Car
+      "https://images.pexels.com/photos/3354648/pexels-photo-3354648.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    // After: Glossy blue car finish
     afterImg:
-      "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1400&auto=format&fit=crop",
+      "https://images.pexels.com/photos/110844/pexels-photo-110844.jpeg?auto=compress&cs=tinysrgb&w=1400",
     notes:
-      "Full exterior decontamination followed by a 1-step machine polish and 3-year ceramic coating application.",
+      "Full paint decontamination followed by a 3-year Ceramic Coating application. Restored depth and high-gloss finish.",
     tags: ["Ceramic Coating", "Paint Correction"],
   },
   {
     id: "job-2",
-    title: "Porsche 911 Restoration",
+    title: "Classic Sport Restoration",
     location: "Solihull",
-    // Before: Dirty Wheel/Tire Detail
+    // Before: Dusty/Barn find look
     beforeImg:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1400&auto=format&fit=crop",
-    // After: Showroom Clean Porsche
+      "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    // After: Shiny polished red car
     afterImg:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1400&auto=format&fit=crop",
+      "https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1400",
     notes:
-      "Deep leather cleaning and conditioning with steam sanitization and high-end fabric protection.",
-    tags: ["Interior Deep Clean", "Leather Care"],
+      "Multi-stage machine polish to remove heavy swirl marks and oxidation. Finished with luxury carnauba wax.",
+    tags: ["Restoration", "Stage 2 Polish"],
   },
   {
     id: "job-3",
-    title: "BMW M4 Enhancement",
+    title: "Luxury Interior Detail",
     location: "Birmingham",
-    // Before: Dull car in garage
+    // Before: Working on interior/cleaning
     beforeImg:
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1400&auto=format&fit=crop",
-    // After: Glossy BMW M4 profile
+      "https://images.pexels.com/photos/4489734/pexels-photo-4489734.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    // After: Clean leather interior cockpit
     afterImg:
-      "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1400&auto=format&fit=crop",
+      "https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=1400",
     notes:
-      "Removed heavy swirl marks and restored a showroom mirror finish with a dual-stage paint correction.",
-    tags: ["Paint Correction", "Showroom Finish"],
+      "Deep leather cleaning and steam extraction on all carpets. Protected with UV-resistant interior sealant.",
+    tags: ["Interior", "Leather Care"],
   },
   {
     id: "job-4",
-    title: "Range Rover Protection",
+    title: "Range Rover Shield",
     location: "Sutton Coldfield",
-    // Before: Dusty SUV front
+    // Before: SUV in rain/dirt
     beforeImg:
-      "https://images.unsplash.com/photo-1506469717960-433ce8b66ddc?q=80&w=1400&auto=format&fit=crop",
-    // After: Ultra Clean Range Rover
+      "https://images.pexels.com/photos/100650/pexels-photo-100650.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    // After: Ultra-reflective black SUV
     afterImg:
-      "https://images.unsplash.com/photo-1606611013016-969c19ba27bb?q=80&w=1400&auto=format&fit=crop",
+      "https://images.pexels.com/photos/11139552/pexels-photo-11139552.jpeg?auto=compress&cs=tinysrgb&w=1400",
     notes:
-      "Winter protection package including ceramic glass coating and specialized wheel face protection.",
-    tags: ["Winter Shield", "Wheel Ceramic"],
+      "Hydrophobic glass coating and specialized wheel face protection to defend against road grime.",
+    tags: ["Protection", "Hydrophobic"],
   },
 ];
