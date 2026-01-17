@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import AdminUpload from "./pages/AdminUpload";
 import AdminPortfolio from "./pages/AdminPortfolio";
+import ProjectDetail from "./pages/ProjectDetail";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio/:id" element={<ProjectDetail />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/upload" element={<AdminUpload />} />
         <Route path="/admin/portfolio" element={<AdminPortfolio />} />
