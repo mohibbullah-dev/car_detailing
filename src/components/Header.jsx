@@ -435,7 +435,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-[100] w-full transition-all duration-300 ${
+      className={`fixed top-0 z-100 w-full transition-all duration-300 ${
         scrolled
           ? "border-b border-white/10 bg-zinc-950/90 backdrop-blur-xl py-2"
           : "border-b border-transparent bg-transparent py-4"
@@ -482,7 +482,7 @@ export default function Header() {
               className="group relative text-[10px] uppercase tracking-[0.2em] font-black text-zinc-400 hover:text-white transition-colors"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-blue-600 transition-all group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-blue-600 transition-all group-hover:w-full" />
             </a>
           ))}
         </nav>

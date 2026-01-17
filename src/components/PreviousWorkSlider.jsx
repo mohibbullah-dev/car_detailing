@@ -301,7 +301,7 @@ export default function PreviousWorkSlider({ limit = 4 }) {
   return (
     <section className="relative overflow-hidden bg-zinc-950 py-24" id="work">
       {/* Decorative Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-blue-600/10 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         {/* Header Section */}
@@ -354,7 +354,7 @@ export default function PreviousWorkSlider({ limit = 4 }) {
               className="grid gap-8 lg:grid-cols-12"
             >
               {/* Interactive Visual Showcase (8 Columns) */}
-              <div className="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-zinc-900 aspect-video sm:h-[500px] cursor-crosshair">
+              <div className="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-zinc-900 aspect-video sm:h-125 cursor-crosshair">
                 {/* AFTER IMAGE (The "Result") */}
                 <img
                   src={item.afterImg}

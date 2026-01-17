@@ -223,7 +223,7 @@ export default function Hero() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-zinc-950 to-zinc-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops)) from-blue-900/20 via-zinc-950 to-zinc-950"></div>
         <img
           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
           className="w-full h-full object-cover opacity-30 mix-blend-overlay"
@@ -245,7 +245,7 @@ export default function Hero() {
 
           <h1 className="text-5xl font-black leading-[0.9] tracking-tighter text-white sm:text-7xl lg:text-8xl uppercase mb-8">
             Showroom <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-600">
               Perfection
             </span>{" "}
             <br />

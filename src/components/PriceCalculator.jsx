@@ -230,7 +230,7 @@
   className="relative group rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-6 shadow-2xl backdrop-blur-xl sm:p-10"
 >
   {/* Inner Glow Effect */}
-  <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+  <div className="absolute inset-0 rounded-[2.5rem] bg-linear-to-b from-blue-500/5 to-transparent pointer-events-none" />
 
   <div className="relative z-10 space-y-8">
     {/* 1. Size Selector - Improved Pills */}
