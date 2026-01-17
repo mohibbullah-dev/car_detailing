@@ -224,16 +224,20 @@ export default function PriceCalculator() {
               </div>
 
               {/* Actions - Call to Action hierarchy */}
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3 sm:flex-row w-full">
+                {" "}
+                {/* Added w-full */}
                 <a
                   href={waLink}
-                  className="flex-1 flex h-16 items-center justify-center gap-3 rounded-2xl bg-blue-600 text-[12px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-600/20 active:scale-95"
+                  target="_blank" // Recommended for external links
+                  rel="noopener noreferrer"
+                  className="w-full flex h-16 items-center justify-center gap-3 rounded-2xl bg-blue-600 text-[12px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 active:scale-95 shadow-lg shadow-blue-600/20"
                 >
                   Book Now <MessageCircle size={18} />
                 </a>
                 <a
                   href={`tel:${business.phoneTel}`}
-                  className="flex-1 flex h-16 items-center sm:h-16 justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 text-[12px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white hover:border-white/20 active:scale-95"
+                  className="w-full flex h-16 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 text-[12px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white hover:border-white/20 active:scale-95"
                 >
                   Questions? <PhoneCall size={18} />
                 </a>
