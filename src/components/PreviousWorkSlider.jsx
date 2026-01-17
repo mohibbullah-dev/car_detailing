@@ -123,6 +123,157 @@
 //     </section>
 //   );
 // }
+// import React, { useMemo, useState } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import {
+//   ArrowLeft,
+//   ArrowRight,
+//   CheckCircle2,
+//   MapPin,
+//   Camera,
+// } from "lucide-react";
+// import { Link } from "react-router-dom";
+// import { portfolioItems } from "../data/portfolio";
+
+// export default function PreviousWorkSlider({ limit = 4 }) {
+//   const items = useMemo(() => portfolioItems.slice(0, limit), [limit]);
+//   const [i, setI] = useState(0);
+
+//   const item = items[i];
+
+//   const next = () => setI((p) => (p + 1) % items.length);
+//   const prev = () => setI((p) => (p - 1 + items.length) % items.length);
+
+//   return (
+//     <section className="relative overflow-hidden bg-zinc-950 py-24" id="work">
+//       {/* Decorative Background Glow */}
+//       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] pointer-events-none" />
+
+//       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+//         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
+//           <div>
+//             <div className="inline-flex items-center gap-2 text-blue-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
+//               <Camera className="h-3 w-3" /> Recent Transformations
+//             </div>
+//             <h2 className="text-4xl font-black tracking-tighter text-white sm:text-5xl uppercase">
+//               The <span className="text-zinc-500 italic">Finish</span> Line
+//             </h2>
+//           </div>
+
+//           <div className="flex items-center gap-3">
+//             <div className="flex gap-2 mr-4">
+//               <button
+//                 onClick={prev}
+//                 className="group grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-zinc-900 text-white transition-all hover:border-blue-500 hover:text-blue-500"
+//                 aria-label="Previous"
+//               >
+//                 <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
+//               </button>
+//               <button
+//                 onClick={next}
+//                 className="group grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-zinc-900 text-white transition-all hover:border-blue-500 hover:text-blue-500"
+//                 aria-label="Next"
+//               >
+//                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+//               </button>
+//             </div>
+
+//             <Link
+//               to="/portfolio"
+//               className="hidden sm:inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-widest text-black transition-all hover:bg-blue-600 hover:text-white"
+//             >
+//               Full Gallery
+//             </Link>
+//           </div>
+//         </div>
+
+//         <div className="relative">
+//           <AnimatePresence mode="wait">
+//             <motion.div
+//               key={item.id}
+//               initial={{ opacity: 0, scale: 0.98 }}
+//               animate={{ opacity: 1, scale: 1 }}
+//               exit={{ opacity: 0, scale: 1.02 }}
+//               transition={{ duration: 0.4, ease: "circOut" }}
+//               className="grid gap-8 lg:grid-cols-12"
+//             >
+//               {/* Visual Showcase (8 Columns) */}
+//               <div className="lg:col-span-8 grid gap-4 sm:grid-cols-2">
+//                 <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-zinc-900">
+//                   <div className="absolute top-4 left-4 z-20 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white border border-white/10">
+//                     Before
+//                   </div>
+//                   <img
+//                     src={item.beforeImg}
+//                     alt="Before detailing"
+//                     className="h-[300px] sm:h-[450px] w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60"
+//                   />
+//                 </div>
+
+//                 <div className="group relative overflow-hidden rounded-3xl border border-blue-500/20 bg-zinc-900 shadow-[0_0_40px_rgba(37,99,235,0.15)]">
+//                   <div className="absolute top-4 left-4 z-20 rounded-full bg-blue-600 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white">
+//                     After
+//                   </div>
+//                   <img
+//                     src={item.afterImg}
+//                     alt="After detailing"
+//                     className="h-[300px] sm:h-[450px] w-full object-cover transition-transform duration-700 group-hover:scale-110"
+//                   />
+//                   {/* Subtle Glow Overlay */}
+//                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
+//                 </div>
+//               </div>
+
+//               {/* Information Panel (4 Columns) */}
+//               <div className="lg:col-span-4 flex flex-col justify-center space-y-6">
+//                 <div>
+//                   <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-2">
+//                     <MapPin className="h-3 w-3" /> {item.location}
+//                   </div>
+//                   <h3 className="text-3xl font-black text-white uppercase leading-none tracking-tighter">
+//                     {item.title}
+//                   </h3>
+//                 </div>
+
+//                 <div className="rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm">
+//                   <p className="text-zinc-400 text-sm leading-relaxed italic">
+//                     "{item.notes}"
+//                   </p>
+//                 </div>
+
+//                 <div className="flex flex-wrap gap-2">
+//                   {item.tags?.map((t) => (
+//                     <span
+//                       key={t}
+//                       className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-400"
+//                     >
+//                       <CheckCircle2 className="h-3 w-3" />
+//                       {t}
+//                     </span>
+//                   ))}
+//                 </div>
+
+//                 <div className="flex items-center justify-between pt-4 border-t border-white/5">
+//                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
+//                     Project {i + 1} <span className="mx-2">/</span>{" "}
+//                     {items.length}
+//                   </div>
+//                   <Link
+//                     to={`/portfolio/${item.id}`}
+//                     className="text-[10px] font-black uppercase tracking-widest text-white hover:text-blue-500 transition-colors"
+//                   >
+//                     View Details
+//                   </Link>
+//                 </div>
+//               </div>
+//             </motion.div>
+//           </AnimatePresence>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -131,6 +282,7 @@ import {
   CheckCircle2,
   MapPin,
   Camera,
+  MousePointer2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { portfolioItems } from "../data/portfolio";
@@ -144,12 +296,15 @@ export default function PreviousWorkSlider({ limit = 4 }) {
   const next = () => setI((p) => (p + 1) % items.length);
   const prev = () => setI((p) => (p - 1 + items.length) % items.length);
 
+  if (!item) return null;
+
   return (
     <section className="relative overflow-hidden bg-zinc-950 py-24" id="work">
       {/* Decorative Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+        {/* Header Section */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
           <div>
             <div className="inline-flex items-center gap-2 text-blue-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
@@ -187,82 +342,113 @@ export default function PreviousWorkSlider({ limit = 4 }) {
           </div>
         </div>
 
+        {/* Main Display Grid */}
         <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.02 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.4, ease: "circOut" }}
               className="grid gap-8 lg:grid-cols-12"
             >
-              {/* Visual Showcase (8 Columns) */}
-              <div className="lg:col-span-8 grid gap-4 sm:grid-cols-2">
-                <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-zinc-900">
-                  <div className="absolute top-4 left-4 z-20 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white border border-white/10">
-                    Before
-                  </div>
+              {/* Interactive Visual Showcase (8 Columns) */}
+              <div className="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-zinc-900 aspect-video sm:h-[500px] cursor-crosshair">
+                {/* AFTER IMAGE (The "Result") */}
+                <img
+                  src={item.afterImg}
+                  alt="After detailing"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute top-6 right-6 z-20 rounded-full bg-blue-600 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-xl shadow-blue-600/40">
+                  Pro Result
+                </div>
+
+                {/* BEFORE IMAGE (The "Curtain") */}
+                <motion.div
+                  className="absolute inset-0 z-10 overflow-hidden border-r-2 border-blue-500/50 shadow-[15px_0_30px_rgba(0,0,0,0.5)]"
+                  initial={{ width: "50%" }}
+                  whileHover={{ width: "15%" }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
                   <img
                     src={item.beforeImg}
                     alt="Before detailing"
-                    className="h-[300px] sm:h-[450px] w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60"
+                    className="h-full w-[80vw] max-w-none object-cover brightness-[0.7] grayscale-[0.3]"
+                    style={{ width: "1000px" }} // Set a fixed large width so it doesn't squish when the container shrinks
                   />
-                </div>
-
-                <div className="group relative overflow-hidden rounded-3xl border border-blue-500/20 bg-zinc-900 shadow-[0_0_40px_rgba(37,99,235,0.15)]">
-                  <div className="absolute top-4 left-4 z-20 rounded-full bg-blue-600 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white">
-                    After
+                  <div className="absolute top-6 left-6 rounded-full bg-black/60 backdrop-blur-md px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-white border border-white/10">
+                    Original State
                   </div>
-                  <img
-                    src={item.afterImg}
-                    alt="After detailing"
-                    className="h-[300px] sm:h-[450px] w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {/* Subtle Glow Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
+                </motion.div>
+
+                {/* Interactive Hint */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+                  <div className="bg-zinc-950/80 backdrop-blur-md px-5 py-2.5 rounded-full text-[10px] font-black text-white uppercase tracking-[0.2em] flex items-center gap-3 border border-white/10">
+                    <MousePointer2
+                      size={14}
+                      className="text-blue-500 animate-bounce"
+                    />
+                    Hover to reveal
+                  </div>
                 </div>
               </div>
 
               {/* Information Panel (4 Columns) */}
-              <div className="lg:col-span-4 flex flex-col justify-center space-y-6">
-                <div>
-                  <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest mb-2">
-                    <MapPin className="h-3 w-3" /> {item.location}
+              <div className="lg:col-span-4 flex flex-col justify-center space-y-8">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
+                    <MapPin className="h-3.5 w-3.5 text-blue-500" />{" "}
+                    {item.location}
                   </div>
-                  <h3 className="text-3xl font-black text-white uppercase leading-none tracking-tighter">
+                  <h3 className="text-4xl font-black text-white uppercase leading-[0.9] tracking-tighter">
                     {item.title}
                   </h3>
                 </div>
 
-                <div className="rounded-2xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm">
-                  <p className="text-zinc-400 text-sm leading-relaxed italic">
-                    "{item.notes}"
+                <div className="relative rounded-3xl border border-white/5 bg-white/5 p-6 backdrop-blur-sm overflow-hidden group">
+                  {/* Decorative quote mark */}
+                  <span className="absolute -top-2 -right-2 text-6xl font-serif text-white/5 select-none">
+                    "
+                  </span>
+                  <p className="relative z-10 text-zinc-400 text-sm leading-relaxed italic font-medium">
+                    {item.notes}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {item.tags?.map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-400"
-                    >
-                      <CheckCircle2 className="h-3 w-3" />
-                      {t}
-                    </span>
-                  ))}
+                <div className="space-y-4">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-zinc-600">
+                    Key Treatments
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {item.tags?.map((t) => (
+                      <span
+                        key={t}
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-blue-500/10 bg-blue-500/5 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-blue-400"
+                      >
+                        <CheckCircle2 className="h-3 w-3" />
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
-                    Project {i + 1} <span className="mx-2">/</span>{" "}
-                    {items.length}
+                {/* Footer Link */}
+                <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-700">
+                    Project <span className="text-white">{i + 1}</span>{" "}
+                    <span className="mx-2 text-zinc-800">/</span> {items.length}
                   </div>
                   <Link
                     to={`/portfolio/${item.id}`}
-                    className="text-[10px] font-black uppercase tracking-widest text-white hover:text-blue-500 transition-colors"
+                    className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
                   >
-                    View Details
+                    View Case Study{" "}
+                    <ArrowRight
+                      size={12}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
                   </Link>
                 </div>
               </div>
