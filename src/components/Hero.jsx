@@ -137,186 +137,283 @@
 //   );
 // }
 
+// import { motion } from "framer-motion";
+// import { ShieldCheck, Sparkles, Star, ChevronRight, Zap } from "lucide-react";
+// import { business } from "../data/business";
+
+// export default function Hero() {
+//   return (
+//     <section
+//       id="top"
+//       className="relative min-h-screen overflow-hidden bg-zinc-950 pt-20 flex items-center"
+//     >
+//       {/* --- Premium Background Layer --- */}
+//       <div className="absolute inset-0 z-0">
+//         {/* Animated Mesh Glows */}
+//         <div className="absolute top-[10%] -left-[10%] h-[50%] w-[50%] rounded-full bg-blue-600/10 blur-[140px] animate-pulse" />
+//         <div className="absolute bottom-[10%] -right-[10%] h-[50%] w-[50%] rounded-full bg-zinc-600/5 blur-[140px]" />
+
+//         {/* Subtle Noise Texture */}
+//         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+//         <img
+//           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
+//           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+//           alt="Luxury Car Detail"
+//         />
+//         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-zinc-950 to-zinc-950" />
+//       </div>
+
+//       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-16">
+//         {/* --- Left Side: Copy --- */}
+//         <motion.div
+//           initial={{ opacity: 0, x: -30 }}
+//           animate={{ opacity: 1, x: 0 }}
+//           transition={{ duration: 0.8, ease: "easeOut" }}
+//           className="lg:w-3/5"
+//         >
+//           <motion.div
+//             initial={{ opacity: 0, y: 10 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ delay: 0.3 }}
+//             className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 mb-8"
+//           >
+//             <Zap className="h-3 w-3 fill-blue-400" />
+//             Premium Mobile Detailing in {business.city}
+//           </motion.div>
+
+//           <h1 className="text-6xl font-black leading-[0.85] tracking-tighter text-white sm:text-8xl lg:text-9xl uppercase mb-8">
+//             Showroom <br />
+//             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 drop-shadow-[0_0_25px_rgba(59,130,246,0.4)]">
+//               Perfection
+//             </span>{" "}
+//             <br />
+//             Delivered.
+//           </h1>
+
+//           <p className="max-w-xl text-lg sm:text-xl text-zinc-400 font-medium mb-10 leading-relaxed italic">
+//             Professional detailing at your doorstep. We use industry-leading
+//             ceramic coatings to restore your vehicle to its peak condition.
+//           </p>
+
+//           <div className="flex flex-wrap gap-6 items-center">
+//             {/* Shimmering Button */}
+//             <motion.a
+//               href="#quote"
+//               whileHover={{ scale: 1.02 }}
+//               whileTap={{ scale: 0.98 }}
+//               className="group relative overflow-hidden flex items-center gap-2 rounded-2xl bg-blue-600 px-10 py-5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-500"
+//             >
+//               <span className="relative z-10 flex items-center gap-2">
+//                 Book Your Detail{" "}
+//                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+//               </span>
+//               {/* Shimmer Effect */}
+//               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+//             </motion.a>
+
+//             <div className="flex items-center gap-4 px-2">
+//               <div className="flex -space-x-3">
+//                 {[1, 2, 3].map((i) => (
+//                   <div
+//                     key={i}
+//                     className="h-10 w-10 rounded-full border-2 border-zinc-950 bg-zinc-800 flex items-center justify-center overflow-hidden"
+//                   >
+//                     <img
+//                       src={`https://i.pravatar.cc/100?img=${i + 10}`}
+//                       alt="client"
+//                       className="opacity-80"
+//                     />
+//                   </div>
+//                 ))}
+//               </div>
+//               <div className="text-[10px] font-black uppercase tracking-[0.15em] text-zinc-500">
+//                 Joined by <span className="text-white">200+</span> <br />
+//                 Local Owners
+//               </div>
+//             </div>
+//           </div>
+//         </motion.div>
+
+//         {/* --- Right Side: Floating Transformation Card --- */}
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.9, y: 20 }}
+//           animate={{ opacity: 1, scale: 1, y: 0 }}
+//           transition={{
+//             delay: 0.4,
+//             duration: 0.8,
+//             y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, // Floating effect
+//           }}
+//           style={{ y: [0, -20, 0] }} // Framer motion floating sequence
+//           className="mt-16 lg:mt-0 lg:w-2/5 relative"
+//         >
+//           {/* External Glow behind card */}
+//           <div className="absolute -inset-4 bg-blue-600/10 rounded-[3rem] blur-3xl opacity-50" />
+
+//           <div className="relative rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-5 backdrop-blur-2xl shadow-2xl overflow-hidden">
+//             <div className="flex items-center justify-between mb-5 px-2">
+//               <div className="flex items-center gap-2">
+//                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+//                 <span className="text-[10px] font-black uppercase tracking-widest text-white/70">
+//                   Transformation Live
+//                 </span>
+//               </div>
+//               <div className="flex items-center gap-1 rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-[10px] font-bold text-blue-400">
+//                 <Star className="h-3 w-3 fill-blue-400" /> 5.0
+//               </div>
+//             </div>
+
+//             {/* Visual Comparison Area */}
+//             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] border border-white/5 group">
+//               <img
+//                 src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80"
+//                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+//                 alt="Detailing Result"
+//               />
+//               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
+
+//               <div className="absolute bottom-5 left-5 right-5">
+//                 <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-blue-400 mb-2">
+//                   <Sparkles size={10} /> Latest Result
+//                 </div>
+//                 <div className="text-lg font-black text-white uppercase tracking-tighter italic leading-none">
+//                   Ceramic Pro <br /> Tesla Model 3
+//                 </div>
+//               </div>
+//             </div>
+
+//             <div className="mt-5 grid grid-cols-2 gap-4">
+//               <div className="group rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10">
+//                 <ShieldCheck className="h-5 w-5 text-blue-500 mb-2" />
+//                 <div className="text-[10px] font-black text-white uppercase mb-1 tracking-widest">
+//                   Insured
+//                 </div>
+//                 <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">
+//                   Peace of Mind
+//                 </div>
+//               </div>
+//               <div className="group rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10">
+//                 <Sparkles className="h-5 w-5 text-blue-500 mb-2" />
+//                 <div className="text-[10px] font-black text-white uppercase mb-1 tracking-widest">
+//                   Mobile
+//                 </div>
+//                 <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">
+//                   We Come To You
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </motion.div>
+//       </div>
+
+//       {/* Scroll Indicator */}
+//       <motion.div
+//         animate={{ y: [0, 10, 0] }}
+//         transition={{ repeat: Infinity, duration: 2 }}
+//         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
+//       >
+//         <span className="text-[8px] font-black uppercase tracking-[0.4em] text-white">
+//           Explore
+//         </span>
+//         <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
+//       </motion.div>
+//     </section>
+//   );
+// }
+
 import { motion } from "framer-motion";
-import { ShieldCheck, Sparkles, Star, ChevronRight, Zap } from "lucide-react";
+import { ChevronRight, Zap, Star } from "lucide-react";
 import { business } from "../data/business";
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen overflow-hidden bg-zinc-950 pt-20 flex items-center"
+      className="relative min-h-[90vh] overflow-hidden bg-zinc-950 pt-20 flex items-center justify-center"
     >
       {/* --- Premium Background Layer --- */}
-      <div className="absolute inset-0 z-0">
-        {/* Animated Mesh Glows */}
-        <div className="absolute top-[10%] -left-[10%] h-[50%] w-[50%] rounded-full bg-blue-600/10 blur-[140px] animate-pulse" />
-        <div className="absolute bottom-[10%] -right-[10%] h-[50%] w-[50%] rounded-full bg-zinc-600/5 blur-[140px]" />
-
-        {/* Subtle Noise Texture */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-
+      <div className="absolute inset-0 z-0 text-center">
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 h-[60%] w-[60%] rounded-full bg-blue-600/10 blur-[140px] animate-pulse" />
         <img
           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
           alt="Luxury Car Detail"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-zinc-950 to-zinc-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/20 via-zinc-950 to-zinc-950" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-20 lg:flex lg:items-center lg:gap-16">
-        {/* --- Left Side: Copy --- */}
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-20 text-center flex flex-col items-center">
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:w-3/5"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 mb-8"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 mb-8"
-          >
-            <Zap className="h-3 w-3 fill-blue-400" />
-            Premium Mobile Detailing in {business.city}
-          </motion.div>
-
-          <h1 className="text-6xl font-black leading-[0.85] tracking-tighter text-white sm:text-8xl lg:text-9xl uppercase mb-8">
-            Showroom <br />
-            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 drop-shadow-[0_0_25px_rgba(59,130,246,0.4)]">
-              Perfection
-            </span>{" "}
-            <br />
-            Delivered.
-          </h1>
-
-          <p className="max-w-xl text-lg sm:text-xl text-zinc-400 font-medium mb-10 leading-relaxed italic">
-            Professional detailing at your doorstep. We use industry-leading
-            ceramic coatings to restore your vehicle to its peak condition.
-          </p>
-
-          <div className="flex flex-wrap gap-6 items-center">
-            {/* Shimmering Button */}
-            <motion.a
-              href="#quote"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative overflow-hidden flex items-center gap-2 rounded-2xl bg-blue-600 px-10 py-5 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-500"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Book Your Detail{" "}
-                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-              {/* Shimmer Effect */}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
-            </motion.a>
-
-            <div className="flex items-center gap-4 px-2">
-              <div className="flex -space-x-3">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-10 w-10 rounded-full border-2 border-zinc-950 bg-zinc-800 flex items-center justify-center overflow-hidden"
-                  >
-                    <img
-                      src={`https://i.pravatar.cc/100?img=${i + 10}`}
-                      alt="client"
-                      className="opacity-80"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="text-[10px] font-black uppercase tracking-[0.15em] text-zinc-500">
-                Joined by <span className="text-white">200+</span> <br />
-                Local Owners
-              </div>
-            </div>
-          </div>
+          <Zap className="h-3 w-3 fill-blue-400" />
+          The Gold Standard of Mobile Detailing
         </motion.div>
 
-        {/* --- Right Side: Floating Transformation Card --- */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{
-            delay: 0.4,
-            duration: 0.8,
-            y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, // Floating effect
-          }}
-          style={{ y: [0, -20, 0] }} // Framer motion floating sequence
-          className="mt-16 lg:mt-0 lg:w-2/5 relative"
+        {/* Main Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-6xl font-black leading-[0.85] tracking-tighter text-white sm:text-8xl lg:text-[120px] uppercase mb-8"
         >
-          {/* External Glow behind card */}
-          <div className="absolute -inset-4 bg-blue-600/10 rounded-[3rem] blur-3xl opacity-50" />
+          Showroom <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+            Perfection
+          </span>
+        </motion.h1>
 
-          <div className="relative rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-5 backdrop-blur-2xl shadow-2xl overflow-hidden">
-            <div className="flex items-center justify-between mb-5 px-2">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-white/70">
-                  Transformation Live
-                </span>
-              </div>
-              <div className="flex items-center gap-1 rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-[10px] font-bold text-blue-400">
-                <Star className="h-3 w-3 fill-blue-400" /> 5.0
-              </div>
+        {/* Subtext */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="max-w-2xl text-lg sm:text-xl text-zinc-400 font-medium mb-10 leading-relaxed italic"
+        >
+          Professional mobile detailing at your doorstep in {business.city}. We
+          restore, protect, and maintain your vehicle to its peak condition.
+        </motion.p>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col items-center gap-8"
+        >
+          <a
+            href="#quote"
+            className="group relative flex items-center gap-3 rounded-2xl bg-blue-600 px-12 py-6 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-500 hover:-translate-y-1"
+          >
+            Get an Instant Quote
+            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+
+          {/* Social Proof Social Proof */}
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex items-center gap-1 text-amber-500">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={14} fill="currentColor" />
+              ))}
+              <span className="ml-2 text-white font-black text-xs uppercase tracking-widest">
+                5.0 Rated
+              </span>
             </div>
-
-            {/* Visual Comparison Area */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] border border-white/5 group">
-              <img
-                src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                alt="Detailing Result"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
-
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-blue-400 mb-2">
-                  <Sparkles size={10} /> Latest Result
-                </div>
-                <div className="text-lg font-black text-white uppercase tracking-tighter italic leading-none">
-                  Ceramic Pro <br /> Tesla Model 3
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-5 grid grid-cols-2 gap-4">
-              <div className="group rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10">
-                <ShieldCheck className="h-5 w-5 text-blue-500 mb-2" />
-                <div className="text-[10px] font-black text-white uppercase mb-1 tracking-widest">
-                  Insured
-                </div>
-                <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">
-                  Peace of Mind
-                </div>
-              </div>
-              <div className="group rounded-2xl border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10">
-                <Sparkles className="h-5 w-5 text-blue-500 mb-2" />
-                <div className="text-[10px] font-black text-white uppercase mb-1 tracking-widest">
-                  Mobile
-                </div>
-                <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter">
-                  We Come To You
-                </div>
-              </div>
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-zinc-700" />
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+              Trusted by <span className="text-white">200+</span> Local Owners
             </div>
           </div>
         </motion.div>
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
-      >
-        <span className="text-[8px] font-black uppercase tracking-[0.4em] text-white">
-          Explore
-        </span>
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20">
         <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
-      </motion.div>
+      </div>
     </section>
   );
 }
