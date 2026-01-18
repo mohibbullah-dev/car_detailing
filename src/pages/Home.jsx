@@ -5,6 +5,7 @@ import PreviousWorkSlider from "../components/PreviousWorkSlider";
 import TestimonialSlider from "../components/TestimonialSlider";
 import MaintenanceSection from "../components/MaintenanceSection";
 import ServiceArea from "../components/ServiceArea";
+import FAQ from "../components/FAQ";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <PriceCalculator />
       <Services />
       <TestimonialSlider />
+      <FAQ />
       <ServiceArea />
     </>
   );
