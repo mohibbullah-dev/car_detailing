@@ -29,9 +29,9 @@ export const business = {
   ],
 
   // Contact Info
-  phoneDisplay: "0121 123 4567",
-  phoneTel: "+441211234567",
-  whatsappNumber: "441211234567",
+  phoneDisplay: "01515247233",
+  phoneTel: "+201515247233",
+  whatsappNumber: "201515247233",
 
   // Service Settings
   serviceRadiusMiles: 10,
