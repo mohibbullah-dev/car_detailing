@@ -1,174 +1,98 @@
-import React, { useState } from "react";
-import {
-  Car,
-  PhoneCall,
-  LayoutDashboard,
-  LogOut,
-  Menu,
-  X,
-  Calendar,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronRight, Zap, Star } from "lucide-react";
 import { business } from "../data/business";
-import { Link, useNavigate } from "react-router-dom";
-import { tokenStorage } from "../lib/storage";
-import { generateWhatsAppLink } from "../lib/whatsapp"; // Ensure this helper exists
 
-export default function Header() {
-  const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // Check if admin is logged in
-  const isAdmin = !!tokenStorage.get();
-
-  const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "Reviews", href: "#reviews" },
-    { label: "Work", href: "#work" },
-  ];
-
-  const handleLogout = () => {
-    tokenStorage.clear();
-    setIsMenuOpen(false);
-    navigate("/");
-    window.location.reload();
-  };
-
+export default function Hero({ onOpenBooking }) {
+  // Add the prop here
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-md">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6">
-        {/* Logo Section */}
-        <Link
-          to="/"
-          onClick={() => setIsMenuOpen(false)}
-          className="flex items-center gap-3 group relative z-50"
+    <section
+      id="top"
+      className="relative min-h-[90vh] overflow-hidden bg-zinc-950 pt-20 flex items-center justify-center"
+    >
+      {/* --- Premium Background Layer --- */}
+      <div className="absolute inset-0 z-0 text-center">
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 h-[60%] w-[60%] rounded-full bg-blue-600/10 blur-[140px] animate-pulse" />
+        <img
+          src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
+          className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+          alt="Luxury Car Detail"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/20 via-zinc-950 to-zinc-950" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-20 text-center flex flex-col items-center">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 mb-8"
         >
-          <div className="grid h-10 w-10 place-items-center rounded-xl border border-blue-500/30 bg-blue-600/10 shadow-[0_0_15px_rgba(37,99,235,0.2)] transition-all group-hover:border-blue-500/60">
-            <Car className="h-6 w-6 text-blue-500" />
-          </div>
-          <div className="leading-tight">
-            <div className="text-base font-black uppercase tracking-tighter text-white">
-              {business.name}
-            </div>
-            <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
-              Precision Detailing • {business.city}
-            </div>
-          </div>
-        </Link>
+          <Zap className="h-3 w-3 fill-blue-400" />
+          The Gold Standard of Mobile Detailing
+        </motion.div>
 
-        {/* Desktop Nav (Hidden on Mobile) */}
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-xs uppercase tracking-widest font-bold text-zinc-400 hover:text-blue-500 transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Main Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-6xl font-black leading-[0.85] tracking-tighter text-white sm:text-8xl lg:text-[120px] uppercase mb-8"
+        >
+          Showroom <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+            Perfection
+          </span>
+        </motion.h1>
 
-        {/* Action Buttons & Mobile Toggle */}
-        <div className="flex items-center gap-3 relative z-50">
-          {/* Admin UI (Only if logged in) */}
-          {isAdmin && (
-            <div className="hidden md:flex items-center gap-3 mr-4 border-r border-white/10 pr-4">
-              <Link
-                to="/admin/portfolio"
-                className="flex items-center gap-2 rounded-xl bg-zinc-900 border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-all"
-              >
-                <LayoutDashboard className="h-3.5 w-3.5" />
-                <span>Dashboard</span>
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all"
-              >
-                <LogOut className="h-4 w-4" />
-              </button>
-            </div>
-          )}
+        {/* Subtext */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="max-w-2xl text-lg sm:text-xl text-zinc-400 font-medium mb-10 leading-relaxed italic"
+        >
+          Professional mobile detailing at your doorstep in {business.city}. We
+          restore, protect, and maintain your vehicle to its peak condition.
+        </motion.p>
 
-          {/* Contact & Booking (Always visible for Users) */}
-          <a
-            href={`tel:${business.phoneTel}`}
-            className="hidden xl:flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-colors mr-4"
-          >
-            <PhoneCall size={14} className="text-blue-500" />
-            {business.phone}
-          </a>
-
-          <a
-            href={generateWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group hidden sm:flex items-center gap-3 rounded-2xl bg-blue-600 px-7 py-4 text-[10px] font-black uppercase tracking-widest text-white hover:bg-blue-500 transition-all hover:scale-105 active:scale-95 shadow-[0_15px_30px_-10px_rgba(37,99,235,0.4)]"
-          >
-            <Calendar className="h-4 w-4" />
-            <span>Book Appointment</span>
-          </a>
-
-          {/* Mobile Menu Toggle */}
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="flex flex-col items-center gap-8"
+        >
+          {/* UPDATED: Button now triggers the modal */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white md:hidden"
+            onClick={onOpenBooking}
+            className="group relative flex items-center gap-3 rounded-2xl bg-blue-600 px-12 py-6 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-500 hover:-translate-y-1"
           >
-            {isMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            Get an Instant Quote
+            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </button>
-        </div>
+
+          {/* Social Proof */}
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex items-center gap-1 text-amber-500">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={14} fill="currentColor" />
+              ))}
+              <span className="ml-2 text-white font-black text-xs uppercase tracking-widest">
+                5.0 Rated
+              </span>
+            </div>
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-zinc-700" />
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+              Trusted by <span className="text-white">200+</span> Local Owners
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Mobile Slide-down Menu */}
-      <div
-        className={`absolute top-0 left-0 w-full bg-zinc-950 border-b border-white/10 transition-all duration-300 ease-in-out md:hidden ${isMenuOpen ? "translate-y-20 opacity-100 visible" : "-translate-y-full opacity-0 invisible"}`}
-      >
-        <div className="flex flex-col space-y-1 p-6">
-          {isAdmin ? (
-            /* Admin Mobile Items */
-            <>
-              <Link
-                to="/admin/portfolio"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-3 rounded-xl p-4 text-sm font-bold text-white bg-white/5 mb-2"
-              >
-                <LayoutDashboard className="h-5 w-5 text-blue-500" /> Dashboard
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-3 rounded-xl p-4 text-sm font-bold text-red-500 border border-red-500/20 bg-red-500/5"
-              >
-                <LogOut className="h-5 w-5" /> Logout
-              </button>
-            </>
-          ) : (
-            /* User Mobile Items */
-            <>
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="rounded-xl p-4 text-sm font-bold uppercase tracking-widest text-zinc-400 active:bg-white/5 active:text-blue-500"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <div className="pt-4 mt-4 border-t border-white/5">
-                <a
-                  href={generateWhatsAppLink()}
-                  className="flex w-full items-center justify-center gap-3 rounded-2xl bg-blue-600 py-4 text-sm font-black uppercase tracking-widest text-white"
-                >
-                  <Calendar className="h-4 w-4" /> Book via WhatsApp
-                </a>
-              </div>
-            </>
-          )}
-        </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20">
+        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
       </div>
-    </header>
+    </section>
   );
 }
