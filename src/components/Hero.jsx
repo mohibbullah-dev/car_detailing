@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Zap, Star } from "lucide-react";
 import { business } from "../data/business";
 
-export default function Hero({ onOpenBooking }) {
-  // Add the prop here
+export default function Hero() {
   return (
     <section
       id="top"
@@ -62,16 +61,15 @@ export default function Hero({ onOpenBooking }) {
           transition={{ delay: 0.3 }}
           className="flex flex-col items-center gap-8"
         >
-          {/* UPDATED: Button now triggers the modal */}
-          <button
-            onClick={onOpenBooking}
+          <a
+            href="#quote"
             className="group relative flex items-center gap-3 rounded-2xl bg-blue-600 px-12 py-6 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-500 hover:-translate-y-1"
           >
             Get an Instant Quote
             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          </a>
 
-          {/* Social Proof */}
+          {/* Social Proof Social Proof */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <div className="flex items-center gap-1 text-amber-500">
               {[...Array(5)].map((_, i) => (
