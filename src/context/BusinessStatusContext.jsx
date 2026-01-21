@@ -8,7 +8,7 @@ export const BusinessStatusProvider = ({ children }) => {
 
   // Load status from Database on mount (Fixes Incognito/Refresh)
   useEffect(() => {
-    fetch(`${API_URL}/settings/status`)
+    fetch(`${import.meta.env.VITE_API_BASE}/settings/status`)
       .then((res) => res.json())
       .then((data) => {
         setIsClosed(data.isClosed);
