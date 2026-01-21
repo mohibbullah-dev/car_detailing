@@ -71,13 +71,26 @@ export default function AdminPortfolio() {
     await del.mutateAsync(id);
   };
 
+  // Ensure you are spreading the existing form data correctly
   const onSave = async () => {
     if (!editId) return;
-    await upd.mutateAsync({
-      id: editId,
-      payload: { ...form, beforeFile: replaceBefore, afterFile: replaceAfter },
-    });
-    setEditId(null);
+    try {
+      await upd.mutateAsync({
+        id: editId,
+        payload: {
+          title: form.title, // Explicitly map these
+          location: form.location,
+          notes: form.notes,
+          beforeFile: replaceBefore,
+          afterFile: replaceAfter,
+        },
+      });
+      setEditId(null);
+      setReplaceBefore(null);
+      setReplaceAfter(null);
+    } catch (e) {
+      alert("Update failed: " + e.message);
+    }
   };
 
   if (!token) {

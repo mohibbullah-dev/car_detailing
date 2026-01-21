@@ -3,29 +3,37 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const BusinessStatusContext = createContext();
 
 export const BusinessStatusProvider = ({ children }) => {
-  // Initial state: Open by default
-  const [status, setStatus] = useState({
-    isClosed: false,
-    reason: "We are currently fully booked. Please check back later!",
-  });
+  const [isClosed, setIsClosed] = useState(false);
+  const [reason, setReason] = useState("");
 
-  // Sync with LocalStorage so it remembers the setting on refresh
+  // Load status from Database on mount (Fixes Incognito/Refresh)
   useEffect(() => {
-    const savedStatus = localStorage.getItem("business_status");
-    if (savedStatus) setStatus(JSON.parse(savedStatus));
+    fetch(`${API_URL}/settings/status`)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsClosed(data.isClosed);
+        setReason(data.reason);
+      });
   }, []);
 
-  const toggleStatus = (newReason = "") => {
-    const updatedStatus = {
-      isClosed: !status.isClosed,
-      reason: newReason || status.reason,
-    };
-    setStatus(updatedStatus);
-    localStorage.setItem("business_status", JSON.stringify(updatedStatus));
+  const toggleStatus = async (newReason) => {
+    const nextState = !isClosed;
+    // Save to Database
+    await fetch(`${API_URL}/settings/toggle`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ isClosed: nextState, reason: newReason }),
+    });
+
+    setIsClosed(nextState);
+    setReason(newReason);
   };
 
   return (
-    <BusinessStatusContext.Provider value={{ ...status, toggleStatus }}>
+    <BusinessStatusContext.Provider value={{ isClosed, reason, toggleStatus }}>
       {children}
     </BusinessStatusContext.Provider>
   );
