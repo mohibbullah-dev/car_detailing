@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"; // Added useEffect
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Car, MapPin, Sparkles, Send } from "lucide-react";
 import { business } from "../data/business";
-import { generateWhatsAppLink } from "../data/whatsapp";
+import { generateWhatsAppLink } from "../lib/whatsapp";
 
 export default function BookingModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
