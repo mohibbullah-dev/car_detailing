@@ -527,7 +527,7 @@ export default function AdminPortfolio() {
         ) : (
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start">
             {data?.map((item) => {
-              const isEditing = editId === item._id;
+              const isEditing = editId === item._id
 
               return (
                 <div
