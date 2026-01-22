@@ -379,7 +379,7 @@ export default function PriceCalculator() {
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex h-16 items-center justify-center gap-3 rounded-2xl bg-blue-600 text-[12px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 shadow-lg shadow-blue-600/20 active:scale-95"
+                  className="w-full p-2.5 text-center flex h-16 items-center justify-center gap-3 rounded-2xl bg-blue-600 text-[12px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 shadow-lg shadow-blue-600/20 active:scale-95"
                 >
                   Confirm via WhatsApp <MessageCircle size={18} />
                 </a>
