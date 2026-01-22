@@ -468,6 +468,7 @@ import {
   StickyNote,
   Type,
   ImageIcon,
+  Loader2,
 } from "lucide-react";
 import {
   usePortfolioList,
