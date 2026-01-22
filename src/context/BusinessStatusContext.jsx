@@ -7,7 +7,7 @@ export const BusinessStatusProvider = ({ children }) => {
   const [isClosed, setIsClosed] = useState(false);
   const [reason, setReason] = useState("");
 
-  // Load status from Database on mount (Fixes Incognito/Refresh)
+  // Load status from Database on mount (Does NOT require a token)
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_BASE}/settings/status`)
       .then((res) => res.json())
@@ -20,6 +20,13 @@ export const BusinessStatusProvider = ({ children }) => {
 
   const toggleStatus = async (newReason) => {
     const token = tokenStorage.get();
+
+    // Check if token exists before even trying to fetch
+    if (!token) {
+      alert("You are not logged in. Please go to the login page.");
+      return;
+    }
+
     const nextState = !isClosed;
 
     try {
@@ -29,7 +36,7 @@ export const BusinessStatusProvider = ({ children }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Ensure "Bearer " is present
           },
           body: JSON.stringify({ isClosed: nextState, reason: newReason }),
         },
@@ -39,10 +46,15 @@ export const BusinessStatusProvider = ({ children }) => {
         setIsClosed(nextState);
         setReason(newReason);
       } else {
-        alert("Action failed. Please log in again.");
+        // Show the specific error code to help debugging
+        const errorData = await res.json().catch(() => ({}));
+        alert(
+          `Action failed (Error ${res.status}): ${errorData.message || "Please log in again."}`,
+        );
       }
     } catch (err) {
       console.error("Toggle failed", err);
+      alert("Network error. Please check your connection.");
     }
   };
 
