@@ -613,7 +613,7 @@ export default function AdminPortfolio() {
         </div>
 
         {/* Portfolio List */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start">
           {data?.map((item) => {
             const isEditing = editId === item._id;
 
