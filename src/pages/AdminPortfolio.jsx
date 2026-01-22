@@ -261,21 +261,9 @@
 // }
 
 import { useMemo, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useBusinessStatus } from "../context/BusinessStatusContext";
-import {
-  Trash2,
-  Edit3,
-  Plus,
-  Save,
-  X,
-  Image as ImageIcon,
-  MapPin,
-  Lock,
-  Loader2,
-  AlertOctagon,
-} from "lucide-react";
+import { Trash2, Save, Lock, AlertOctagon, ImageIcon } from "lucide-react";
 import {
   usePortfolioList,
   useDeletePortfolio,
@@ -284,12 +272,11 @@ import {
 import { tokenStorage } from "../lib/storage";
 
 export default function AdminPortfolio() {
-  const nav = useNavigate();
   const token = tokenStorage.get();
   const { isClosed, reason, toggleStatus } = useBusinessStatus();
   const [newReason, setNewReason] = useState("");
 
-  const { data, isLoading } = usePortfolioList();
+  const { data } = usePortfolioList();
   const del = useDeletePortfolio();
   const upd = useUpdatePortfolio();
 
@@ -297,8 +284,6 @@ export default function AdminPortfolio() {
   const [form, setForm] = useState({ title: "", location: "", notes: "" });
   const [replaceBefore, setReplaceBefore] = useState(null);
   const [replaceAfter, setReplaceAfter] = useState(null);
-  const [beforePreview, setBeforePreview] = useState("");
-  const [afterPreview, setAfterPreview] = useState("");
 
   const currentItem = useMemo(
     () => data?.find((x) => x._id === editId) || null,
@@ -316,8 +301,6 @@ export default function AdminPortfolio() {
       location: currentItem.location || "",
       notes: currentItem.notes || "",
     });
-    setBeforePreview(currentItem.beforeUrl || "");
-    setAfterPreview(currentItem.afterUrl || "");
   }, [currentItem]);
 
   const onSave = async () => {
@@ -334,6 +317,7 @@ export default function AdminPortfolio() {
       setEditId(null);
       setReplaceBefore(null);
       setReplaceAfter(null);
+      alert("Updated successfully!");
     } catch (e) {
       alert("Update failed: " + e.message);
     }
@@ -371,7 +355,7 @@ export default function AdminPortfolio() {
           {isClosed && (
             <div className="mt-6 flex gap-3">
               <input
-                className="flex-1 bg-zinc-800 p-4 rounded-xl outline-none border border-white/5 focus:border-red-500"
+                className="flex-1 bg-zinc-800 p-4 rounded-xl outline-none border border-white/5"
                 value={newReason}
                 onChange={(e) => setNewReason(e.target.value)}
               />
@@ -397,12 +381,12 @@ export default function AdminPortfolio() {
                 <h3 className="font-bold mb-4">{item.title}</h3>
                 <div className="grid grid-cols-2 gap-2 rounded-xl overflow-hidden mb-4">
                   <img
-                    src={isEditing ? beforePreview : item.beforeUrl}
+                    src={item.beforeUrl}
                     className="h-20 w-full object-cover grayscale opacity-40"
                     alt="Before"
                   />
                   <img
-                    src={isEditing ? afterPreview : item.afterUrl}
+                    src={item.afterUrl}
                     className="h-20 w-full object-cover"
                     alt="After"
                   />
@@ -410,7 +394,7 @@ export default function AdminPortfolio() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setEditId(isEditing ? null : item._id)}
-                    className="flex-1 bg-white/5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-white"
+                    className="flex-1 bg-white/5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-zinc-400"
                   >
                     {isEditing ? "Cancel" : "Edit"}
                   </button>
@@ -418,21 +402,42 @@ export default function AdminPortfolio() {
                     onClick={() => {
                       if (confirm("Delete?")) del.mutate(item._id);
                     }}
-                    className="bg-red-500/10 p-3 rounded-xl text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+                    className="bg-red-500/10 p-3 rounded-xl text-red-500 hover:bg-red-500 hover:text-white"
                   >
                     <Trash2 size={16} />
                   </button>
                 </div>
                 {isEditing && (
-                  <div className="mt-4 space-y-2 border-t border-white/5 pt-4">
+                  <div className="mt-4 space-y-3 border-t border-white/5 pt-4">
                     <input
-                      className="w-full bg-zinc-800 p-3 rounded-xl text-xs border border-white/5"
+                      className="w-full bg-zinc-800 p-3 rounded-xl text-xs"
                       value={form.title}
                       onChange={(e) =>
                         setForm({ ...form, title: e.target.value })
                       }
                       placeholder="Title"
                     />
+
+                    {/* FILE INPUTS ADDED HERE */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <label className="cursor-pointer bg-blue-500/10 p-2 rounded-xl text-[8px] uppercase text-center text-blue-400 border border-blue-500/20">
+                        {replaceBefore ? "Selected ✅" : "New Before Image"}
+                        <input
+                          type="file"
+                          className="hidden"
+                          onChange={(e) => setReplaceBefore(e.target.files[0])}
+                        />
+                      </label>
+                      <label className="cursor-pointer bg-blue-500/10 p-2 rounded-xl text-[8px] uppercase text-center text-blue-400 border border-blue-500/20">
+                        {replaceAfter ? "Selected ✅" : "New After Image"}
+                        <input
+                          type="file"
+                          className="hidden"
+                          onChange={(e) => setReplaceAfter(e.target.files[0])}
+                        />
+                      </label>
+                    </div>
+
                     <button
                       onClick={onSave}
                       className="w-full bg-blue-600 py-3 rounded-xl text-[10px] font-black uppercase text-white"
