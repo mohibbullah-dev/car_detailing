@@ -19,7 +19,7 @@ export const BusinessStatusProvider = ({ children }) => {
   const toggleStatus = async (newReason) => {
     const nextState = !isClosed;
     // Save to Database
-    await fetch(`${API_URL}/settings/toggle`, {
+    await fetch(`${import.meta.env.VITE_API_BASE}/settings/toggle`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
