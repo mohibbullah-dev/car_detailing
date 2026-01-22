@@ -9,7 +9,7 @@ export const BusinessStatusProvider = ({ children }) => {
 
   // Load status from Database on mount (Does NOT require a token)
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE}/settings/status`)
+    fetch(`${import.meta.env.VITE_API_BASE}/api/settings/status`)
       .then((res) => res.json())
       .then((data) => {
         setIsClosed(data.isClosed);
@@ -31,7 +31,7 @@ export const BusinessStatusProvider = ({ children }) => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE}/settings/toggle`,
+        `${import.meta.env.VITE_API_BASE}/api/settings/toggle`,
         {
           method: "POST",
           headers: {
