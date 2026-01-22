@@ -1,6 +1,59 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 html,
 body {
-  background-color: #09090b; /* This matches zinc-950 */
+  background-color: #09090b; 
   color: #ffffff;
+} */
+
+@import "tailwindcss";
+
+@theme {
+  /* This ensures your custom "rounded-4xl" used in your admin cards works */
+  --radius-4xl: 2rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #09090b;
+}
+
+body {
+  background-color: #09090b;
+  color: #ffffff;
+  /* This makes fonts look sharper on modern screens */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Utility - Use this on your cards or headers */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Selection Color - A small detail that looks very professional */
+::selection {
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a; /* zinc-800 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46; /* zinc-700 */
 }
