@@ -467,6 +467,7 @@ import {
   MapPin,
   StickyNote,
   Type,
+  ImageIcon,
 } from "lucide-react";
 import {
   usePortfolioList,
