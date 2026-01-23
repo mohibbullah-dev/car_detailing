@@ -251,15 +251,172 @@
 //   );
 // }
 
+// import React, { useMemo, useState } from "react";
+// import { motion } from "framer-motion";
+// import { CheckCircle2, MessageCircle, PhoneCall, Sparkles } from "lucide-react";
+// import { business } from "../data/business";
+
+// const SIZE_MULTIPLIER = { Small: 1, Sedan: 1.15, SUV: 1.3 };
+
+// // Note: Base price is now hidden but used for calculation.
+// // You can pass this via props later from the Curated Packages!
+// const BASE_PRICE = 80;
+
+// const formatGBP = (n) =>
+//   new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(
+//     n,
+//   );
+
+// export default function PriceCalculator() {
+//   const [carSize, setCarSize] = useState("Sedan");
+
+//   const total = useMemo(() => {
+//     const multiplier = SIZE_MULTIPLIER[carSize] ?? 1;
+//     return Math.round(BASE_PRICE * multiplier);
+//   }, [carSize]);
+
+//   const waLink = `https://wa.me/${business.whatsappNumber}?text=Hi! I'd like a quote for my ${carSize}. Total: ${formatGBP(total)}`;
+
+//   return (
+//     <section id="quote" className="relative bg-zinc-950 py-24 overflow-hidden">
+//       <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-600/10 blur-[120px]" />
+
+//       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+//         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+//           <motion.div
+//             initial={{ opacity: 0, x: -20 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             className="space-y-8"
+//           >
+//             <div>
+//               <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-blue-500 mb-4">
+//                 <Sparkles className="h-3 w-3" /> Step 02: Estimate
+//               </div>
+//               <h2 className="text-5xl font-black tracking-tighter text-white sm:text-6xl uppercase leading-[0.85]">
+//                 Instant <br />
+//                 <span className="text-zinc-600 italic">Quote.</span>
+//               </h2>
+//               <p className="mt-6 max-w-md text-lg text-zinc-400 leading-relaxed">
+//                 Prices vary based on vehicle size. Select your profile below to
+//                 finalize your booking for {business.city}.
+//               </p>
+//             </div>
+
+//             <div className="space-y-4">
+//               {[
+//                 "Full Mobile Equipment",
+//                 "Eco-Friendly Chemicals",
+//                 "Insured Professionals",
+//               ].map((t) => (
+//                 <div
+//                   key={t}
+//                   className="flex items-center gap-3 text-sm font-bold text-zinc-300"
+//                 >
+//                   <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-500">
+//                     <CheckCircle2 className="h-3 w-3" />
+//                   </div>
+//                   {t}
+//                 </div>
+//               ))}
+//             </div>
+//           </motion.div>
+
+//           <motion.div
+//             initial={{ opacity: 0, y: 20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             viewport={{ once: true }}
+//             className="relative group rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-6 shadow-2xl backdrop-blur-xl sm:p-10"
+//           >
+//             <div className="relative z-10 space-y-8">
+//               {/* 1. Size Selector */}
+//               <div>
+//                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 block mb-4">
+//                   01. Select Vehicle Size
+//                 </label>
+//                 <div className="grid grid-cols-3 gap-3">
+//                   {Object.keys(SIZE_MULTIPLIER).map((size) => (
+//                     <button
+//                       key={size}
+//                       onClick={() => setCarSize(size)}
+//                       className={`rounded-xl py-4 text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${
+//                         carSize === size
+//                           ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+//                           : "bg-zinc-800/50 text-zinc-500 hover:text-zinc-300 border border-transparent hover:border-white/5"
+//                       }`}
+//                     >
+//                       {size}
+//                     </button>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {/* Total Display */}
+//               <div className="relative overflow-hidden rounded-3xl bg-zinc-950 border border-white/5 p-8 shadow-inner text-center sm:text-left">
+//                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+//                   <div>
+//                     <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
+//                       Estimated Total
+//                     </div>
+//                     <div className="text-[10px] font-bold text-blue-500 italic">
+//                       Includes VAT & Travel to {business.city}
+//                     </div>
+//                   </div>
+//                   <motion.div
+//                     key={total}
+//                     initial={{ y: 10, opacity: 0 }}
+//                     animate={{ y: 0, opacity: 1 }}
+//                     className="text-5xl font-black tracking-tighter text-white"
+//                   >
+//                     {formatGBP(total)}
+//                   </motion.div>
+//                 </div>
+//               </div>
+
+//               {/* Actions - FIXED MOBILE BUTTONS */}
+//               <div className="flex flex-col gap-3 sm:flex-row w-full">
+//                 <a
+//                   href={waLink}
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="w-full p-2.5 text-center flex h-16 items-center justify-center gap-3 rounded-2xl bg-blue-600 text-[12px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 shadow-lg shadow-blue-600/20 active:scale-95"
+//                 >
+//                   Confirm via WhatsApp <MessageCircle size={18} />
+//                 </a>
+//                 <a
+//                   href={`tel:${business.phoneTel}`}
+//                   className="w-full flex h-16 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 text-[12px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white active:scale-95"
+//                 >
+//                   Call Us <PhoneCall size={18} />
+//                 </a>
+//               </div>
+//             </div>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, MessageCircle, PhoneCall, Sparkles } from "lucide-react";
+import {
+  CheckCircle2,
+  MessageCircle,
+  PhoneCall,
+  Sparkles,
+  Zap,
+  Car,
+} from "lucide-react";
 import { business } from "../data/business";
 
-const SIZE_MULTIPLIER = { Small: 1, Sedan: 1.15, SUV: 1.3 };
+// Refined multipliers for a more premium pricing structure
+const SIZE_DATA = {
+  Small: { multiplier: 1, label: "Hatchback / 2-Door", icon: "🚗" },
+  Sedan: { multiplier: 1.15, label: "Saloon / Coupe", icon: "🏎️" },
+  SUV: { multiplier: 1.35, label: "4x4 / Large SUV", icon: "🚐" },
+};
 
-// Note: Base price is now hidden but used for calculation.
-// You can pass this via props later from the Curated Packages!
 const BASE_PRICE = 80;
 
 const formatGBP = (n) =>
@@ -271,123 +428,142 @@ export default function PriceCalculator() {
   const [carSize, setCarSize] = useState("Sedan");
 
   const total = useMemo(() => {
-    const multiplier = SIZE_MULTIPLIER[carSize] ?? 1;
+    const multiplier = SIZE_DATA[carSize]?.multiplier ?? 1;
     return Math.round(BASE_PRICE * multiplier);
   }, [carSize]);
 
-  const waLink = `https://wa.me/${business.whatsappNumber}?text=Hi! I'd like a quote for my ${carSize}. Total: ${formatGBP(total)}`;
+  const waLink = `https://wa.me/${business.whatsappNumber}?text=Hi! I'd like a quote for my ${carSize}. Total estimated: ${formatGBP(total)}`;
 
   return (
-    <section id="quote" className="relative bg-zinc-950 py-24 overflow-hidden">
-      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-600/10 blur-[120px]" />
+    <section id="quote" className="relative bg-obsidian py-32 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-blue-600/5 blur-[120px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
+          {/* Left Content: The Hook */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-10"
           >
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-blue-500 mb-4">
-                <Sparkles className="h-3 w-3" /> Step 02: Estimate
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-2 text-[9px] font-black uppercase tracking-[0.3em] text-blue-400 mb-6">
+                <Zap className="h-3 w-3 fill-blue-400" /> Transparent Pricing
               </div>
-              <h2 className="text-5xl font-black tracking-tighter text-white sm:text-6xl uppercase leading-[0.85]">
+              <h2 className="text-6xl font-black tracking-tighter text-white sm:text-8xl uppercase leading-[0.85] italic">
                 Instant <br />
-                <span className="text-zinc-600 italic">Quote.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-600 to-zinc-400 not-italic">
+                  Quote.
+                </span>
               </h2>
-              <p className="mt-6 max-w-md text-lg text-zinc-400 leading-relaxed">
-                Prices vary based on vehicle size. Select your profile below to
-                finalize your booking for {business.city}.
+              <p className="mt-8 max-w-md text-base text-zinc-500 leading-relaxed font-medium italic border-l-2 border-blue-600/30 pl-6">
+                Precision detailing tailored to your vehicle's footprint. Get an
+                immediate estimate for our mobile service in {business.city}.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                "Full Mobile Equipment",
-                "Eco-Friendly Chemicals",
-                "Insured Professionals",
+                "Full On-Board Power",
+                "Ph-Neutral Chemicals",
+                "Fully Insured Staff",
+                "Mobile Water Supply",
               ].map((t) => (
                 <div
                   key={t}
-                  className="flex items-center gap-3 text-sm font-bold text-zinc-300"
+                  className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-zinc-400"
                 >
-                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/20 text-blue-500">
-                    <CheckCircle2 className="h-3 w-3" />
-                  </div>
+                  <CheckCircle2 className="h-4 w-4 text-blue-500" />
                   {t}
                 </div>
               ))}
             </div>
           </motion.div>
 
+          {/* Right Content: The Interactive Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative group rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-6 shadow-2xl backdrop-blur-xl sm:p-10"
+            className="relative glass rounded-[3rem] border border-white/5 p-2 sm:p-3"
           >
-            <div className="relative z-10 space-y-8">
+            <div className="bg-zinc-900/40 rounded-[2.5rem] p-8 sm:p-12 space-y-10">
               {/* 1. Size Selector */}
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 block mb-4">
-                  01. Select Vehicle Size
+              <div className="space-y-6">
+                <label className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 block text-center">
+                  01. Select Vehicle Profile
                 </label>
-                <div className="grid grid-cols-3 gap-3">
-                  {Object.keys(SIZE_MULTIPLIER).map((size) => (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {Object.keys(SIZE_DATA).map((size) => (
                     <button
                       key={size}
                       onClick={() => setCarSize(size)}
-                      className={`rounded-xl py-4 text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${
+                      className={`group relative flex flex-col items-center justify-center gap-2 rounded-2xl py-6 transition-all duration-500 ${
                         carSize === size
-                          ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                          : "bg-zinc-800/50 text-zinc-500 hover:text-zinc-300 border border-transparent hover:border-white/5"
+                          ? "bg-blue-600 text-white shadow-glow-blue scale-[1.02] z-10"
+                          : "bg-zinc-950/50 text-zinc-600 border border-white/5 hover:border-blue-500/30"
                       }`}
                     >
-                      {size}
+                      <span className="text-2xl mb-1">
+                        {SIZE_DATA[size].icon}
+                      </span>
+                      <span className="text-[10px] font-black uppercase tracking-widest">
+                        {size}
+                      </span>
+                      <span
+                        className={`text-[8px] font-medium uppercase tracking-tighter opacity-60 ${carSize === size ? "text-white" : "text-zinc-500"}`}
+                      >
+                        {SIZE_DATA[size].label}
+                      </span>
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Total Display */}
-              <div className="relative overflow-hidden rounded-3xl bg-zinc-950 border border-white/5 p-8 shadow-inner text-center sm:text-left">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
-                  <div>
-                    <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                      Estimated Total
-                    </div>
-                    <div className="text-[10px] font-bold text-blue-500 italic">
-                      Includes VAT & Travel to {business.city}
-                    </div>
+              <div className="relative overflow-hidden rounded-[2rem] bg-zinc-950 border border-white/5 p-10 shadow-inner group">
+                {/* Background Sparkle Decoration */}
+                <Sparkles className="absolute top-4 right-4 h-12 w-12 text-zinc-900 group-hover:text-blue-900/30 transition-colors duration-700" />
+
+                <div className="relative z-10 flex flex-col items-center gap-2">
+                  <div className="text-[9px] font-black uppercase tracking-[0.4em] text-blue-500">
+                    Est. Investment
                   </div>
                   <motion.div
                     key={total}
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    className="text-5xl font-black tracking-tighter text-white"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-7xl font-black tracking-tighter text-white italic"
                   >
                     {formatGBP(total)}
                   </motion.div>
+                  <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest mt-2">
+                    Taxes & Travel Included
+                  </div>
                 </div>
               </div>
 
-              {/* Actions - FIXED MOBILE BUTTONS */}
-              <div className="flex flex-col gap-3 sm:flex-row w-full">
+              {/* Actions */}
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <a
                   href={waLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full p-2.5 text-center flex h-16 items-center justify-center gap-3 rounded-2xl bg-blue-600 text-[12px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 shadow-lg shadow-blue-600/20 active:scale-95"
+                  className="group flex-1 flex h-20 items-center justify-center gap-4 rounded-3xl bg-blue-600 text-[11px] font-black uppercase tracking-widest text-white transition-all hover:bg-blue-500 shadow-glow-blue active:scale-95"
                 >
-                  Confirm via WhatsApp <MessageCircle size={18} />
+                  Book Securely{" "}
+                  <MessageCircle
+                    size={20}
+                    className="transition-transform group-hover:rotate-12"
+                  />
                 </a>
                 <a
                   href={`tel:${business.phoneTel}`}
-                  className="w-full flex h-16 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/50 text-[12px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white active:scale-95"
+                  className="flex-1 flex h-20 items-center justify-center gap-4 rounded-3xl border border-white/5 bg-zinc-950/50 text-[11px] font-black uppercase tracking-widest text-zinc-400 transition-all hover:text-white active:scale-95 hover:border-white/10"
                 >
-                  Call Us <PhoneCall size={18} />
+                  Call Specialist <PhoneCall size={18} />
                 </a>
               </div>
             </div>
