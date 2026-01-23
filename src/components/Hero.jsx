@@ -363,132 +363,119 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldCheck, Zap, ArrowRight, Star } from "lucide-react";
+import { Zap, ArrowRight, Star, ShieldCheck } from "lucide-react";
 import { business } from "../data/business";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-obsidian flex items-center pt-20 overflow-hidden">
-      {/* Background Cinematic Image Overlay */}
+    <section className="relative min-h-[90vh] lg:min-h-screen bg-obsidian flex items-center pt-24 pb-12 overflow-hidden">
+      {/* Background Cinematic Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-obsidian/60 to-obsidian lg:bg-gradient-to-r lg:from-obsidian lg:via-obsidian/80 lg:to-transparent z-10" />
         <img
           src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=2070&auto=format&fit=crop"
           alt="Luxury Car Detail"
-          className="w-full h-full object-cover object-right opacity-60"
+          className="w-full h-full object-cover object-center lg:object-right opacity-40 lg:opacity-60"
         />
       </div>
 
-      <div className="relative z-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/10 border border-blue-500/20 mb-8 shadow-glow-blue/20">
-            <Zap size={14} className="text-blue-500 fill-blue-500" />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">
-              Elite Mobile Detailing
-            </span>
-          </div>
-
-          {/* Main Title - Restored "Transformation" typography */}
-          <h1 className="text-7xl md:text-8xl lg:text-[110px] font-black uppercase leading-[0.8] tracking-tighter text-white mb-8 italic">
-            THE
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 not-italic">
-              TRANSFORMATION.
-            </span>
-          </h1>
-
-          <p className="max-w-md text-zinc-400 text-lg mb-10 leading-tight font-medium italic border-l-4 border-blue-600 pl-6">
-            Restoring showroom perfection at your location in{" "}
-            <span className="text-white">{business.city}</span>. Precision paint
-            correction and ceramic protection.
-          </p>
-
-          <div className="flex flex-wrap gap-4">
-            <button className="h-16 px-10 rounded-2xl bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest flex items-center gap-3 hover:bg-blue-500 transition-all shadow-glow-blue active:scale-95">
-              Book Appointment <ArrowRight size={18} />
-            </button>
-            <div className="flex items-center gap-4 px-6 glass rounded-2xl border-white/5">
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-8 w-8 rounded-full border-2 border-obsidian bg-zinc-800 flex items-center justify-center"
-                  >
-                    <Star size={12} className="text-blue-500 fill-blue-500" />
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white text-xs font-black">
-                  5.0 RATING
-                </span>
-                <span className="text-zinc-500 text-[9px] font-bold uppercase tracking-widest">
-                  200+ Verified Works
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Floating Detail Panel (Right Side) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 1 }}
-          className="hidden lg:block relative"
-        >
-          <div className="glass p-8 rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-              <ShieldCheck size={120} />
+      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          {/* Left Content Column */}
+          <motion.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 mb-6 lg:mb-8">
+              <Zap size={12} className="text-blue-500 fill-blue-500" />
+              <span className="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">
+                Elite Mobile Detailing
+              </span>
             </div>
 
-            <div className="space-y-6 relative z-10">
-              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
-                Service Coverage
-              </div>
-              <div className="text-3xl font-black text-white italic uppercase tracking-tighter leading-none">
-                {business.city} & <br />
-                Surrounding Areas
-              </div>
+            {/* Main Title - Responsive sizing fixed here */}
+            <h1 className="text-[14vw] sm:text-[10vw] lg:text-[100px] font-black uppercase leading-[0.85] tracking-tighter text-white mb-6 lg:mb-8 italic break-words">
+              THE
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 not-italic block sm:inline">
+                TRANSFORMATION.
+              </span>
+            </h1>
 
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                {[
-                  "Ceramic Coating",
-                  "Paint Correction",
-                  "Interior Detail",
-                  "Engine Bay",
-                ].map((tag) => (
-                  <div
-                    key={tag}
-                    className="flex items-center gap-2 bg-white/5 border border-white/5 rounded-xl px-4 py-3"
-                  >
-                    <div className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-                    <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">
-                      {tag}
-                    </span>
-                  </div>
-                ))}
+            <p className="max-w-md text-zinc-400 text-base lg:text-lg mb-8 lg:mb-10 leading-snug font-medium italic border-l-4 border-blue-600 pl-4 lg:pl-6">
+              Restoring showroom perfection at your location in{" "}
+              <span className="text-white">{business.city}</span>.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="h-14 lg:h-16 px-8 lg:px-10 rounded-2xl bg-blue-600 text-white text-[10px] lg:text-[11px] font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-blue-500 transition-all shadow-glow-blue">
+                Book Appointment <ArrowRight size={18} />
+              </button>
+
+              <div className="flex items-center gap-4 px-5 h-14 lg:h-16 glass rounded-2xl border-white/5">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((i) => (
+                    <Star
+                      key={i}
+                      size={14}
+                      className="text-blue-500 fill-blue-500"
+                    />
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-white text-[10px] font-black leading-none">
+                    5.0 RATING
+                  </span>
+                  <span className="text-zinc-500 text-[8px] font-bold uppercase tracking-widest">
+                    Verified Works
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Decorative Elements */}
-          <div className="absolute -bottom-10 -left-10 h-32 w-32 bg-blue-600/20 blur-[60px] rounded-full" />
-          <div className="absolute -top-10 -right-10 h-32 w-32 bg-blue-600/20 blur-[60px] rounded-full" />
-        </motion.div>
-      </div>
-
-      {/* Floating Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[8px] font-black uppercase tracking-[0.4em] text-zinc-600">
-          Explore Vault
-        </span>
-        <div className="w-px h-12 bg-gradient-to-b from-blue-600 to-transparent" />
+          {/* Right Content Column - Bento Card */}
+          <motion.div
+            className="lg:col-span-5 hidden lg:block"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <div className="glass p-8 rounded-[2.5rem] relative overflow-hidden">
+              <ShieldCheck
+                size={80}
+                className="absolute -top-4 -right-4 opacity-5"
+              />
+              <div className="space-y-6 relative z-10">
+                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
+                  Service Coverage
+                </div>
+                <div className="text-3xl font-black text-white italic uppercase tracking-tighter leading-none">
+                  {business.city} & <br />
+                  Surrounding Areas
+                </div>
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  {["Ceramic", "Paint Prep", "Deep Clean", "Interior"].map(
+                    (tag) => (
+                      <div
+                        key={tag}
+                        className="flex items-center gap-2 bg-white/5 rounded-xl px-3 py-2 border border-white/5"
+                      >
+                        <div className="h-1 w-1 rounded-full bg-blue-500" />
+                        <span className="text-[8px] font-bold text-zinc-400 uppercase">
+                          {tag}
+                        </span>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
