@@ -250,7 +250,7 @@ export default function Hero({ onOpenBooking }) {
   return (
     <section
       id="top"
-      className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-10 pb-10 px-4"
+      className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-10 px-4"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0">
