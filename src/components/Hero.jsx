@@ -119,126 +119,245 @@
 //   );
 // }
 
+// import { motion } from "framer-motion";
+// import { ChevronRight, Zap, Star, ShieldCheck } from "lucide-react";
+// import { business } from "../data/business";
+
+// export default function Hero({ onOpenBooking }) {
+//   return (
+//     <section
+//       id="top"
+//       className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-20"
+//     >
+//       {/* --- Premium Background Layer with Neon Accents --- */}
+//       <div className="absolute inset-0 z-0">
+//         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 h-[80%] w-[80%] rounded-full bg-blue-600/10 blur-[150px] animate-pulse" />
+//         <img
+//           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
+//           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+//           alt="Luxury Car Detail"
+//         />
+//         <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/90 to-obsidian" />
+//       </div>
+
+//       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-12 text-center flex flex-col items-center">
+//         {/* Luxury Bento Badge */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 10 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           className="inline-flex items-center gap-3 rounded-2xl glass px-5 py-2.5 text-[9px] font-black uppercase tracking-[0.4em] text-blue-400 mb-8 border-white/5 shadow-2xl"
+//         >
+//           <Zap className="h-3 w-3 fill-blue-400 shadow-glow-blue" />
+//           Mobile Master Detailers
+//         </motion.div>
+
+//         {/* High-Impact Typography */}
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.98 }}
+//           animate={{ opacity: 1, scale: 1 }}
+//           transition={{ duration: 0.8 }}
+//           className="relative mb-8"
+//         >
+//           <h1 className="text-[12vw] sm:text-[10vw] lg:text-[130px] font-black leading-[0.85] tracking-tighter text-white uppercase italic">
+//             Precision <br />
+//             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-700">
+//               Restoration
+//               <span className="absolute inset-0 blur-3xl bg-blue-500/30 -z-10" />
+//             </span>
+//           </h1>
+//         </motion.div>
+
+//         {/* Glass-Bordered Value Statement */}
+//         <motion.p
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ delay: 0.2 }}
+//           className="max-w-2xl text-zinc-400 font-medium mb-14 leading-relaxed text-sm sm:text-base lg:text-lg border-l-2 border-blue-600/40 pl-8 text-left"
+//         >
+//           Experience showroom perfection at your doorstep in{" "}
+//           <span className="text-white font-bold">{business.city}</span>. We
+//           provide elite ceramic coating and paint correction services that
+//           safeguard your vehicle's value.
+//         </motion.p>
+
+//         {/* Main Interaction Area */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.3 }}
+//           className="flex flex-col items-center gap-12 w-full"
+//         >
+//           <button
+//             onClick={onOpenBooking}
+//             className="group relative flex items-center gap-5 rounded-2xl bg-blue-600 px-12 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
+//           >
+//             Get Professional Quote
+//             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+//           </button>
+
+//           {/* Social Proof Module */}
+//           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 items-center border-t border-white/5 pt-12 w-full max-w-2xl">
+//             <div className="flex flex-col items-center sm:items-end gap-2">
+//               <div className="flex items-center gap-1.5 text-amber-500">
+//                 {[...Array(5)].map((_, i) => (
+//                   <Star
+//                     key={i}
+//                     size={16}
+//                     fill="currentColor"
+//                     className="drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]"
+//                   />
+//                 ))}
+//               </div>
+//               <span className="text-white font-black text-[9px] uppercase tracking-[0.2em]">
+//                 Elite Detailing Specialist
+//               </span>
+//             </div>
+
+//             <div className="flex items-center justify-center sm:justify-start gap-5">
+//               <div className="h-12 w-[1px] bg-white/10 hidden sm:block" />
+//               <div className="text-left">
+//                 <div className="flex items-center gap-2 text-blue-500 mb-1">
+//                   <ShieldCheck size={16} className="shadow-glow-blue" />
+//                   <span className="text-[10px] font-black uppercase tracking-widest">
+//                     Guaranteed Finish
+//                   </span>
+//                 </div>
+//                 <div className="text-[9px] font-bold uppercase tracking-[0.1em] text-zinc-500">
+//                   Trusted by <span className="text-white font-black">200+</span>{" "}
+//                   Luxury Owners
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </motion.div>
+//       </div>
+
+//       {/* Explore Indicator */}
+//       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+//         <span className="text-[8px] uppercase tracking-[0.5em] font-black text-blue-400">
+//           The Gallery
+//         </span>
+//         <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
+//       </div>
+//     </section>
+//   );
+// }
+
 import { motion } from "framer-motion";
-import { ChevronRight, Zap, Star, ShieldCheck } from "lucide-react";
+import { ChevronRight, MapPin, Star, ShieldCheck, Zap } from "lucide-react";
 import { business } from "../data/business";
 
 export default function Hero({ onOpenBooking }) {
   return (
-    <section
-      id="top"
-      className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-20"
-    >
-      {/* --- Premium Background Layer with Neon Accents --- */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 h-[80%] w-[80%] rounded-full bg-blue-600/10 blur-[150px] animate-pulse" />
-        <img
-          src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
-          className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
-          alt="Luxury Car Detail"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/90 to-obsidian" />
+    <section className="relative min-h-screen bg-obsidian flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-full max-w-7xl">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-900/10 blur-[150px] rounded-full" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-12 text-center flex flex-col items-center">
-        {/* Luxury Bento Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-3 rounded-2xl glass px-5 py-2.5 text-[9px] font-black uppercase tracking-[0.4em] text-blue-400 mb-8 border-white/5 shadow-2xl"
-        >
-          <Zap className="h-3 w-3 fill-blue-400 shadow-glow-blue" />
-          Mobile Master Detailers
-        </motion.div>
-
-        {/* High-Impact Typography */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="relative mb-8"
-        >
-          <h1 className="text-[12vw] sm:text-[10vw] lg:text-[130px] font-black leading-[0.85] tracking-tighter text-white uppercase italic">
-            Precision <br />
-            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-700">
-              Restoration
-              <span className="absolute inset-0 blur-3xl bg-blue-500/30 -z-10" />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 w-full max-w-5xl glass rounded-[2.5rem] overflow-hidden border-white/5 shadow-2xl"
+      >
+        {/* Top Header Bar of the Card */}
+        <div className="flex items-center justify-between px-8 py-5 border-b border-white/5 bg-white/[0.02]">
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
+              The Showroom Standards
             </span>
-          </h1>
-        </motion.div>
-
-        {/* Glass-Bordered Value Statement */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="max-w-2xl text-zinc-400 font-medium mb-14 leading-relaxed text-sm sm:text-base lg:text-lg border-l-2 border-blue-600/40 pl-8 text-left"
-        >
-          Experience showroom perfection at your doorstep in{" "}
-          <span className="text-white font-bold">{business.city}</span>. We
-          provide elite ceramic coating and paint correction services that
-          safeguard your vehicle's value.
-        </motion.p>
-
-        {/* Main Interaction Area */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="flex flex-col items-center gap-12 w-full"
-        >
-          <button
-            onClick={onOpenBooking}
-            className="group relative flex items-center gap-5 rounded-2xl bg-blue-600 px-12 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
-          >
-            Get Professional Quote
-            <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <div className="h-4 w-[1px] bg-white/10" />
+            <span className="text-[9px] font-bold bg-white/5 px-2 py-1 rounded-md text-zinc-400">
+              EST. {new Date().getFullYear() - 5}
+            </span>
+          </div>
+          <button className="text-[9px] font-black uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">
+            View All Projects —&gt;
           </button>
+        </div>
 
-          {/* Social Proof Module */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 items-center border-t border-white/5 pt-12 w-full max-w-2xl">
-            <div className="flex flex-col items-center sm:items-end gap-2">
-              <div className="flex items-center gap-1.5 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    fill="currentColor"
-                    className="drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]"
-                  />
-                ))}
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Left Side: The "Blue Arrow" Branding */}
+          <div className="relative p-10 lg:p-14 flex flex-col justify-between overflow-hidden">
+            {/* The Neon Blue Slant from the Demo */}
+            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-blue-600/20 to-transparent skew-x-[-15deg] translate-x-16" />
+
+            <div className="relative z-10">
+              <h1 className="text-5xl lg:text-7xl font-black italic tracking-tighter text-white leading-[0.9] uppercase mb-6">
+                The <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">
+                  Transformation.
+                </span>
+              </h1>
+              <div className="flex items-center gap-2 mb-8">
+                <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                <span className="text-xs font-bold text-zinc-300">
+                  Trusted by 200+ Local Owners
+                </span>
               </div>
-              <span className="text-white font-black text-[9px] uppercase tracking-[0.2em]">
-                Elite Detailing Specialist
+              <button
+                onClick={onOpenBooking}
+                className="bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black uppercase tracking-widest px-8 py-4 rounded-xl shadow-glow-blue transition-all active:scale-95"
+              >
+                Book Appointment
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side: Vehicle Details & Tags */}
+          <div className="p-10 lg:p-14 bg-white/[0.01] border-l border-white/5">
+            <div className="flex items-center gap-2 text-blue-500 mb-4">
+              <MapPin size={14} />
+              <span className="text-[10px] font-black uppercase tracking-widest">
+                {business.city}
               </span>
             </div>
 
-            <div className="flex items-center justify-center sm:justify-start gap-5">
-              <div className="h-12 w-[1px] bg-white/10 hidden sm:block" />
-              <div className="text-left">
-                <div className="flex items-center gap-2 text-blue-500 mb-1">
-                  <ShieldCheck size={16} className="shadow-glow-blue" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">
-                    Guaranteed Finish
-                  </span>
-                </div>
-                <div className="text-[9px] font-bold uppercase tracking-[0.1em] text-zinc-500">
-                  Trusted by <span className="text-white font-black">200+</span>{" "}
-                  Luxury Owners
-                </div>
-              </div>
+            <h2 className="text-3xl font-black text-white uppercase italic tracking-tight mb-4">
+              Tesla Model Ceramic
+            </h2>
+            <p className="text-zinc-400 text-sm leading-relaxed mb-8 font-medium italic">
+              "Full paint decontamination followed by a year Ceramic Coating
+              application. Replication. Restored depth and high gloss finish."
+            </p>
+
+            {/* Service Chips from the Demo */}
+            <div className="flex flex-wrap gap-3">
+              <span className="px-4 py-2 rounded-lg bg-blue-600/10 border border-blue-500/30 text-[9px] font-black uppercase tracking-widest text-blue-400">
+                Ceramic Coating
+              </span>
+              <span className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-[9px] font-black uppercase tracking-widest text-zinc-400">
+                Paint Correction
+              </span>
             </div>
           </div>
-        </motion.div>
-      </div>
+        </div>
 
-      {/* Explore Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
-        <span className="text-[8px] uppercase tracking-[0.5em] font-black text-blue-400">
-          The Gallery
-        </span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
-      </div>
+        {/* Bottom Section: Client Showcase Slider Area */}
+        <div className="px-8 pb-8">
+          <div className="w-full h-80 lg:h-96 rounded-[1.5rem] overflow-hidden relative group">
+            <img
+              src="https://images.unsplash.com/photo-1527383214149-cb7be04ae387?auto=format&fit=crop&q=80"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              alt="Tesla Detailing"
+            />
+            {/* Before/After Divider Line */}
+            <div className="absolute top-0 left-1/2 w-[2px] h-full bg-blue-400 shadow-glow-blue">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-blue-400 border-4 border-obsidian" />
+            </div>
+            <div className="absolute bottom-6 left-6 flex gap-4">
+              <span className="glass px-3 py-1 rounded-md text-[8px] font-black uppercase tracking-widest text-white">
+                Before
+              </span>
+              <span className="glass px-3 py-1 rounded-md text-[8px] font-black uppercase tracking-widest text-blue-400">
+                Professional After
+              </span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
