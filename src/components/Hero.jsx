@@ -256,7 +256,7 @@ export default function Hero({ onOpenBooking }) {
     >
       {/* --- Background Layer --- */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[80%] rounded-full bg-blue-600/10 blur-[120px] animate-pulse" />
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[85%] rounded-full bg-blue-600/10 blur-[120px] animate-pulse" />
         <img
           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
@@ -281,7 +281,9 @@ export default function Hero({ onOpenBooking }) {
             </div>
 
             {/* FIXED OVERLAP: Increased leading from 0.85 to 1.0 or tight */}
-            <h3 className="text-4xl lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tighter text-white uppercase italic mb-6">
+            <h3
+              className={` lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tighter text-white uppercase italic mb-6`}
+            >
               The <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
                 Transformation.
