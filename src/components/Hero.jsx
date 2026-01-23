@@ -281,7 +281,7 @@ export default function Hero({ onOpenBooking }) {
             </div>
 
             {/* FIXED OVERLAP: Increased leading from 0.85 to 1.0 or tight */}
-            <h1 className="text-[65px] lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tighter text-white uppercase italic mb-6">
+            <h1 className="text-4xl lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tighter text-white uppercase italic mb-6">
               The <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
                 Transformation.
