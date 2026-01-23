@@ -251,9 +251,10 @@ export default function Hero({ onOpenBooking }) {
   return (
     <section
       id="top"
-      className="relative min-h-screen overflow-hidden bg-obsidian flex items-center justify-center pt-20 px-4"
+      /* Reduced padding-top and changed min-height for better framing */
+      className="relative min-h-[85vh] overflow-hidden bg-obsidian flex items-center justify-center pt-12 pb-12 px-4"
     >
-      {/* --- Premium Background Engine --- */}
+      {/* --- Background Layer --- */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[80%] rounded-full bg-blue-600/10 blur-[120px] animate-pulse" />
         <img
@@ -261,67 +262,64 @@ export default function Hero({ onOpenBooking }) {
           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
           alt="Luxury Car Detail"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/80 to-obsidian" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/90 to-obsidian" />
       </div>
 
       {/* --- Main Bento-Hero Container --- */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 w-full max-w-6xl glass rounded-[3rem] border-white/5 overflow-hidden shadow-2xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        /* Added max-h to prevent excessive vertical stretching */
+        className="relative z-10 w-full max-w-6xl glass rounded-[2.5rem] border-white/5 overflow-hidden shadow-2xl"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12">
           {/* LEFT COLUMN: BRAND IMPACT */}
-          <div className="lg:col-span-7 p-8 lg:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/10 border border-blue-500/20 text-[9px] font-black uppercase tracking-[0.4em] text-blue-400 mb-8 w-fit">
+          <div className="lg:col-span-7 p-8 lg:p-14 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/10 border border-blue-500/20 text-[9px] font-black uppercase tracking-[0.4em] text-blue-400 mb-6 w-fit">
               <Zap size={12} className="fill-blue-400" />
               Elite Mobile Detailing
             </div>
 
-            <h1 className="text-6xl lg:text-8xl font-black leading-[0.85] tracking-tighter text-white uppercase italic mb-8">
+            {/* FIXED OVERLAP: Increased leading from 0.85 to 1.0 or tight */}
+            <h1 className="text-5xl lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tighter text-white uppercase italic mb-6">
               The <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
                 Transformation.
               </span>
             </h1>
 
-            <p className="max-w-md text-zinc-400 font-medium mb-10 leading-relaxed text-sm lg:text-base border-l-2 border-blue-600/40 pl-6 italic">
+            <p className="max-w-md text-zinc-400 font-medium mb-8 leading-relaxed text-sm lg:text-base border-l-2 border-blue-600/40 pl-6 italic">
               Restoring showroom perfection at your location in{" "}
               <span className="text-white">{business.city}</span>. Precision
               paint correction and ceramic protection.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={onOpenBooking}
-                className="group flex items-center gap-4 rounded-2xl bg-blue-600 px-8 py-5 text-[10px] font-black uppercase tracking-widest text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
-              >
-                Book Appointment
-                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
+            <button
+              onClick={onOpenBooking}
+              className="group w-fit flex items-center gap-4 rounded-xl bg-blue-600 px-8 py-4 text-[10px] font-black uppercase tracking-widest text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
+            >
+              Book Appointment
+              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </button>
           </div>
 
           {/* RIGHT COLUMN: DATA & PROOF */}
-          <div className="lg:col-span-5 bg-white/[0.01] p-8 lg:p-16 flex flex-col justify-center gap-10">
-            {/* Location Module */}
-            <div className="space-y-2">
+          <div className="lg:col-span-5 bg-white/[0.01] p-8 lg:p-14 flex flex-col justify-center gap-8">
+            <div className="space-y-1">
               <div className="flex items-center gap-2 text-blue-500">
-                <MapPin size={16} />
+                <MapPin size={14} />
                 <span className="text-[10px] font-black uppercase tracking-widest">
                   Service Area
                 </span>
               </div>
-              <p className="text-2xl font-display italic text-white uppercase tracking-tight">
+              <p className="text-xl font-display italic text-white uppercase tracking-tight">
                 {business.city} & Surrounding
               </p>
             </div>
 
-            {/* Verification Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                <div className="flex items-center gap-1 text-amber-500 mb-2">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                <div className="flex items-center gap-1 text-amber-500 mb-1">
                   <Star size={12} fill="currentColor" />
                   <span className="text-[10px] font-black text-white">5.0</span>
                 </div>
@@ -329,21 +327,20 @@ export default function Hero({ onOpenBooking }) {
                   Google Rating
                 </p>
               </div>
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                <div className="flex items-center gap-1 text-blue-500 mb-2">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                <div className="flex items-center gap-1 text-blue-500 mb-1">
                   <ShieldCheck size={12} />
                   <span className="text-[10px] font-black text-white">
                     200+
                   </span>
                 </div>
                 <p className="text-[8px] uppercase tracking-widest text-zinc-500 font-bold">
-                  Cars Perfected
+                  Verified Work
                 </p>
               </div>
             </div>
 
-            {/* Service Tags */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-2">
               {["Ceramic Coating", "Paint Correction", "Interior Detail"].map(
                 (tag) => (
                   <span
@@ -358,11 +355,6 @@ export default function Hero({ onOpenBooking }) {
           </div>
         </div>
       </motion.div>
-
-      {/* Explore Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-20">
-        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
-      </div>
     </section>
   );
 }
