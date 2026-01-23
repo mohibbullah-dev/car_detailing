@@ -286,7 +286,7 @@ export default function Hero({ onOpenBooking }) {
                 3. Tightened tracking further to ensure it stays in the safe zone.
                
               */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-none tracking-[-0.07em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic pr-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-none tracking-[-0.07em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic pr-4">
                 Transformation.
               </h1>
             </div>
