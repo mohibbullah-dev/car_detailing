@@ -1,4 +1,4 @@
-/* @import "tailwindcss";
+/* /* @import "tailwindcss";
 html,
 body {
   background-color: #09090b; 
@@ -56,4 +56,77 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46; /* zinc-700 */
+} */
+
+
+
+/* latest version starts from here ------------------------ */
+
+@import "tailwindcss";
+
+@theme {
+  /* Define the Luxury Palette */
+  --color-obsidian: #09090b;
+  --color-glass-dark: rgba(255, 255, 255, 0.03);
+  --color-neon-blue: #2563eb;
+  --color-neon-red: #ef4444;
+
+  /* Custom Glow Shadows for the Dashboard */
+  --shadow-glow-blue: 0 0 20px rgba(37, 99, 235, 0.4);
+  --shadow-glow-red: 0 0 25px rgba(239, 68, 68, 0.5);
+  
+  /* Radii for Bento-grid cards */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
 }
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-obsidian);
+}
+
+body {
+  background-color: var(--color-obsidian);
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Utility - Updated for more depth */
+@utility glass {
+  background: var(--color-glass-dark);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Interactive Glass for Hover Effects */
+@utility glass-interactive {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@utility glass-interactive:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Red Pulse for "Business Closed" Status */
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.6); border-color: rgba(239, 68, 68, 0.8); }
+}
+
+.animate-pulse-red {
+  animation: pulse-red 2s infinite;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-obsidian); }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
