@@ -242,121 +242,254 @@
 //     </section>
 //   );
 // }\
+// import { motion } from "framer-motion";
+// import { ChevronRight, Zap, Star, ShieldCheck, MapPin } from "lucide-react";
+// import { business } from "../data/business";
+
+// export default function Hero({ onOpenBooking }) {
+//   return (
+//     <section
+//       id="top"
+//       className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-10 px-4"
+//     >
+//       {/* Background Ambience */}
+//       <div className="absolute inset-0 z-0">
+//         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[80%] rounded-full bg-blue-600/10 blur-[120px] animate-pulse" />
+//         <img
+//           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
+//           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+//           alt="Luxury Car Detail"
+//         />
+//         <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/90 to-obsidian" />
+//       </div>
+
+//       <motion.div
+//         initial={{ opacity: 0, y: 20 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         className="relative z-10 w-full max-w-6xl glass rounded-[2.5rem] border-white/5 overflow-hidden shadow-2xl"
+//       >
+//         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
+//           {/* LEFT COLUMN: BRAND IMPACT */}
+//           <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
+//             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-[8px] font-black uppercase tracking-[0.4em] text-blue-400 mb-6 w-fit">
+//               <Zap size={10} className="fill-blue-400" />
+//               Elite Mobile Detailing
+//             </div>
+
+//             <div className="mb-6">
+//               <h1 className="text-4xl lg:text-5xl font-black leading-tight text-white uppercase italic">
+//                 The
+//               </h1>
+//               {/* FIXED CROPPING:
+//                 1. Added 'pr-4' to give the italic 'lean' some breathing room.
+//                 2. Dropped desktop size to 6xl.
+//                 3. Tightened tracking further to ensure it stays in the safe zone.
+
+//               */}
+//               <h1 className="text-5xl sm:text-5xl lg:text-6xl font-black leading-none tracking-[-0.07em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic pr-4">
+//                 Transformation.
+//               </h1>
+//             </div>
+
+//             <p className="max-w-md text-zinc-400 font-medium mb-8 leading-relaxed text-sm border-l-2 border-blue-600/40 pl-6 italic">
+//               Restoring showroom perfection at your location in{" "}
+//               <span className="text-white font-bold">{business.city}</span>.
+//             </p>
+
+//             <button
+//               onClick={onOpenBooking}
+//               className="group w-fit flex items-center gap-4 rounded-xl bg-blue-600 px-8 py-4 text-[10px] font-black uppercase tracking-widest text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
+//             >
+//               Book Appointment
+//               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+//             </button>
+//           </div>
+
+//           {/* RIGHT COLUMN: DATA & PROOF */}
+//           <div className="lg:col-span-5 bg-white/[0.01] p-8 lg:p-12 flex flex-col justify-center gap-8">
+//             <div className="space-y-1">
+//               <div className="flex items-center gap-2 text-blue-500">
+//                 <MapPin size={14} />
+//                 <span className="text-[10px] font-black uppercase tracking-widest">
+//                   Service Area
+//                 </span>
+//               </div>
+//               <p className="text-lg font-black italic text-white uppercase tracking-tight">
+//                 {business.city} & Surrounding
+//               </p>
+//             </div>
+
+//             <div className="grid grid-cols-2 gap-4">
+//               <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center">
+//                 <div className="flex items-center gap-1 text-amber-500 mb-1">
+//                   <Star size={12} fill="currentColor" />
+//                   <span className="text-[10px] font-black text-white">5.0</span>
+//                 </div>
+//                 <p className="text-[7px] uppercase tracking-widest text-zinc-500 font-bold">
+//                   Google Rating
+//                 </p>
+//               </div>
+//               <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center">
+//                 <div className="flex items-center gap-1 text-blue-500 mb-1">
+//                   <ShieldCheck size={12} />
+//                   <span className="text-[10px] font-black text-white">
+//                     200+
+//                   </span>
+//                 </div>
+//                 <p className="text-[7px] uppercase tracking-widest text-zinc-500 font-bold">
+//                   Verified Work
+//                 </p>
+//               </div>
+//             </div>
+
+//             <div className="flex flex-wrap gap-2">
+//               {["Ceramic Coating", "Paint Correction", "Interior"].map(
+//                 (tag) => (
+//                   <span
+//                     key={tag}
+//                     className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[8px] font-black uppercase tracking-widest text-zinc-500"
+//                   >
+//                     {tag}
+//                   </span>
+//                 ),
+//               )}
+//             </div>
+//           </div>
+//         </div>
+//       </motion.div>
+//     </section>
+//   );
+// }
+
+import React from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, Zap, Star, ShieldCheck, MapPin } from "lucide-react";
+import { ShieldCheck, Zap, ArrowRight, Star } from "lucide-react";
 import { business } from "../data/business";
 
-export default function Hero({ onOpenBooking }) {
+export default function Hero() {
   return (
-    <section
-      id="top"
-      className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-10 px-4"
-    >
-      {/* Background Ambience */}
+    <section className="relative min-h-screen bg-obsidian flex items-center pt-20 overflow-hidden">
+      {/* Background Cinematic Image Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[80%] rounded-full bg-blue-600/10 blur-[120px] animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent z-10" />
         <img
-          src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
-          className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+          src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=2070&auto=format&fit=crop"
           alt="Luxury Car Detail"
+          className="w-full h-full object-cover object-right opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/90 to-obsidian" />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-6xl glass rounded-[2.5rem] border-white/5 overflow-hidden shadow-2xl"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
-          {/* LEFT COLUMN: BRAND IMPACT */}
-          <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-[8px] font-black uppercase tracking-[0.4em] text-blue-400 mb-6 w-fit">
-              <Zap size={10} className="fill-blue-400" />
+      <div className="relative z-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/10 border border-blue-500/20 mb-8 shadow-glow-blue/20">
+            <Zap size={14} className="text-blue-500 fill-blue-500" />
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">
               Elite Mobile Detailing
-            </div>
-
-            <div className="mb-6">
-              <h1 className="text-4xl lg:text-5xl font-black leading-tight text-white uppercase italic">
-                The
-              </h1>
-              {/* FIXED CROPPING: 
-                1. Added 'pr-4' to give the italic 'lean' some breathing room.
-                2. Dropped desktop size to 6xl.
-                3. Tightened tracking further to ensure it stays in the safe zone.
-               
-              */}
-              <h1 className="text-5xl sm:text-5xl lg:text-6xl font-black leading-none tracking-[-0.07em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic pr-4">
-                Transformation.
-              </h1>
-            </div>
-
-            <p className="max-w-md text-zinc-400 font-medium mb-8 leading-relaxed text-sm border-l-2 border-blue-600/40 pl-6 italic">
-              Restoring showroom perfection at your location in{" "}
-              <span className="text-white font-bold">{business.city}</span>.
-            </p>
-
-            <button
-              onClick={onOpenBooking}
-              className="group w-fit flex items-center gap-4 rounded-xl bg-blue-600 px-8 py-4 text-[10px] font-black uppercase tracking-widest text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
-            >
-              Book Appointment
-              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </button>
+            </span>
           </div>
 
-          {/* RIGHT COLUMN: DATA & PROOF */}
-          <div className="lg:col-span-5 bg-white/[0.01] p-8 lg:p-12 flex flex-col justify-center gap-8">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 text-blue-500">
-                <MapPin size={14} />
-                <span className="text-[10px] font-black uppercase tracking-widest">
-                  Service Area
+          {/* Main Title - Restored "Transformation" typography */}
+          <h1 className="text-7xl md:text-8xl lg:text-[110px] font-black uppercase leading-[0.8] tracking-tighter text-white mb-8 italic">
+            THE
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 not-italic">
+              TRANSFORMATION.
+            </span>
+          </h1>
+
+          <p className="max-w-md text-zinc-400 text-lg mb-10 leading-tight font-medium italic border-l-4 border-blue-600 pl-6">
+            Restoring showroom perfection at your location in{" "}
+            <span className="text-white">{business.city}</span>. Precision paint
+            correction and ceramic protection.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <button className="h-16 px-10 rounded-2xl bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest flex items-center gap-3 hover:bg-blue-500 transition-all shadow-glow-blue active:scale-95">
+              Book Appointment <ArrowRight size={18} />
+            </button>
+            <div className="flex items-center gap-4 px-6 glass rounded-2xl border-white/5">
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="h-8 w-8 rounded-full border-2 border-obsidian bg-zinc-800 flex items-center justify-center"
+                  >
+                    <Star size={12} className="text-blue-500 fill-blue-500" />
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-white text-xs font-black">
+                  5.0 RATING
+                </span>
+                <span className="text-zinc-500 text-[9px] font-bold uppercase tracking-widest">
+                  200+ Verified Works
                 </span>
               </div>
-              <p className="text-lg font-black italic text-white uppercase tracking-tight">
-                {business.city} & Surrounding
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center">
-                <div className="flex items-center gap-1 text-amber-500 mb-1">
-                  <Star size={12} fill="currentColor" />
-                  <span className="text-[10px] font-black text-white">5.0</span>
-                </div>
-                <p className="text-[7px] uppercase tracking-widest text-zinc-500 font-bold">
-                  Google Rating
-                </p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col items-center text-center">
-                <div className="flex items-center gap-1 text-blue-500 mb-1">
-                  <ShieldCheck size={12} />
-                  <span className="text-[10px] font-black text-white">
-                    200+
-                  </span>
-                </div>
-                <p className="text-[7px] uppercase tracking-widest text-zinc-500 font-bold">
-                  Verified Work
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {["Ceramic Coating", "Paint Correction", "Interior"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[8px] font-black uppercase tracking-widest text-zinc-500"
-                  >
-                    {tag}
-                  </span>
-                ),
-              )}
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* Floating Detail Panel (Right Side) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 1 }}
+          className="hidden lg:block relative"
+        >
+          <div className="glass p-8 rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+              <ShieldCheck size={120} />
+            </div>
+
+            <div className="space-y-6 relative z-10">
+              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
+                Service Coverage
+              </div>
+              <div className="text-3xl font-black text-white italic uppercase tracking-tighter leading-none">
+                {business.city} & <br />
+                Surrounding Areas
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-4">
+                {[
+                  "Ceramic Coating",
+                  "Paint Correction",
+                  "Interior Detail",
+                  "Engine Bay",
+                ].map((tag) => (
+                  <div
+                    key={tag}
+                    className="flex items-center gap-2 bg-white/5 border border-white/5 rounded-xl px-4 py-3"
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">
+                      {tag}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute -bottom-10 -left-10 h-32 w-32 bg-blue-600/20 blur-[60px] rounded-full" />
+          <div className="absolute -top-10 -right-10 h-32 w-32 bg-blue-600/20 blur-[60px] rounded-full" />
+        </motion.div>
+      </div>
+
+      {/* Floating Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-[8px] font-black uppercase tracking-[0.4em] text-zinc-600">
+          Explore Vault
+        </span>
+        <div className="w-px h-12 bg-gradient-to-b from-blue-600 to-transparent" />
+      </div>
     </section>
   );
 }
