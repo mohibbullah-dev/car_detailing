@@ -241,7 +241,7 @@
 //       </div>
 //     </section>
 //   );
-// }
+// }\
 import { motion } from "framer-motion";
 import { ChevronRight, Zap, Star, ShieldCheck, MapPin } from "lucide-react";
 import { business } from "../data/business";
