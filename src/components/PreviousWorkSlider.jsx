@@ -270,7 +270,7 @@ export default function PreviousWorkSlider({ limit = 4 }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-obsidian py-32" id="work">
+    <section className="relative overflow-hidden bg-obsidian py-15" id="work">
       {/* Background FX */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] pointer-events-none" />
 
