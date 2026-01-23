@@ -280,8 +280,13 @@ export default function Hero({ onOpenBooking }) {
               <h1 className="text-4xl lg:text-5xl font-black leading-tight text-white uppercase italic">
                 The
               </h1>
-              {/* FIXED SIZE & TRACKING: Decreased size and increased negative tracking to prevent cropping */}
-              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black leading-none tracking-[-0.06em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic">
+              {/* FIXED CROPPING: 
+                1. Added 'pr-4' to give the italic 'lean' some breathing room.
+                2. Dropped desktop size to 6xl.
+                3. Tightened tracking further to ensure it stays in the safe zone.
+               
+              */}
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-none tracking-[-0.07em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic pr-4">
                 Transformation.
               </h1>
             </div>
@@ -338,7 +343,7 @@ export default function Hero({ onOpenBooking }) {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {["Ceramic Coating", "Paint Correction", "Interior Detail"].map(
+              {["Ceramic Coating", "Paint Correction", "Interior"].map(
                 (tag) => (
                   <span
                     key={tag}
