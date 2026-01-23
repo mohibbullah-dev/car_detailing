@@ -1,57 +1,64 @@
 // import { motion } from "framer-motion";
-// import { ChevronRight, Zap, Star } from "lucide-react";
+// import { ChevronRight, Zap, Star, ShieldCheck } from "lucide-react";
 // import { business } from "../data/business";
 
-// export default function Hero() {
+// export default function Hero({ onOpenBooking }) {
 //   return (
 //     <section
 //       id="top"
-//       className="relative min-h-[90vh] overflow-hidden bg-zinc-950 pt-20 flex items-center justify-center"
+//       className="relative min-h-screen overflow-hidden bg-zinc-950 flex items-center justify-center"
 //     >
 //       {/* --- Premium Background Layer --- */}
-//       <div className="absolute inset-0 z-0 text-center">
-//         <div className="absolute top-[20%] left-1/2 -translate-x-1/2 h-[60%] w-[60%] rounded-full bg-blue-600/10 blur-[140px] animate-pulse" />
+//       <div className="absolute inset-0 z-0">
+//         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[70%] rounded-full bg-blue-600/20 blur-[120px] animate-pulse" />
 //         <img
 //           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
-//           className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
+//           className="w-full h-full object-cover opacity-30 mix-blend-overlay grayscale"
 //           alt="Luxury Car Detail"
 //         />
-//         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/20 via-zinc-950 to-zinc-950" />
+//         {/* Deep Overlay for readability */}
+//         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-zinc-950/80 to-zinc-950" />
 //       </div>
 
-//       <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-20 text-center flex flex-col items-center">
-//         {/* Badge */}
+//       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 text-center flex flex-col items-center">
+//         {/* Premium Badge */}
 //         <motion.div
 //           initial={{ opacity: 0, y: 10 }}
 //           animate={{ opacity: 1, y: 0 }}
-//           className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 mb-8"
+//           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-4 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-blue-400 mb-10 shadow-xl"
 //         >
 //           <Zap className="h-3 w-3 fill-blue-400" />
 //           The Gold Standard of Mobile Detailing
 //         </motion.div>
 
-//         {/* Main Title */}
-//         <motion.h1
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ delay: 0.1 }}
-//           className="text-6xl font-black leading-[0.85] tracking-tighter text-white sm:text-8xl lg:text-[120px] uppercase mb-8"
+//         {/* Main Title - Extreme Impact */}
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.95 }}
+//           animate={{ opacity: 1, scale: 1 }}
+//           transition={{ duration: 0.5 }}
+//           className="relative mb-10"
 //         >
-//           Showroom <br />
-//           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
-//             Perfection
-//           </span>
-//         </motion.h1>
+//           <h1 className="text-[14vw] sm:text-[10vw] lg:text-[140px] font-black leading-[0.8] tracking-tighter text-white uppercase italic">
+//             Showroom <br />
+//             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-700">
+//               Perfection
+//               {/* Subtle Glow behind the main word */}
+//               <span className="absolute inset-0 blur-2xl bg-blue-500/20 -z-10" />
+//             </span>
+//           </h1>
+//         </motion.div>
 
-//         {/* Subtext */}
+//         {/* Subtext - Better spacing and weight */}
 //         <motion.p
 //           initial={{ opacity: 0 }}
 //           animate={{ opacity: 1 }}
 //           transition={{ delay: 0.2 }}
-//           className="max-w-2xl text-lg sm:text-xl text-zinc-400 font-medium mb-10 leading-relaxed italic"
+//           className="max-w-xl text-zinc-400 font-medium mb-12 leading-relaxed text-sm sm:text-base lg:text-lg border-l-2 border-blue-600/30 pl-6 text-left"
 //         >
-//           Professional mobile detailing at your doorstep in {business.city}. We
-//           restore, protect, and maintain your vehicle to its peak condition.
+//           Professional mobile detailing at your doorstep in{" "}
+//           <span className="text-white font-bold">{business.city}</span>.
+//           Expertly restoring your vehicle to its peak aesthetic condition with
+//           ceramic-grade protection.
 //         </motion.p>
 
 //         {/* CTA Section */}
@@ -59,37 +66,54 @@
 //           initial={{ opacity: 0, y: 20 }}
 //           animate={{ opacity: 1, y: 0 }}
 //           transition={{ delay: 0.3 }}
-//           className="flex flex-col items-center gap-8"
+//           className="flex flex-col items-center gap-10 w-full"
 //         >
-//           <a
-//             href="#quote"
-//             className="group relative flex items-center gap-3 rounded-2xl bg-blue-600 px-12 py-6 text-xs font-black uppercase tracking-[0.2em] text-white shadow-[0_20px_40px_-15px_rgba(37,99,235,0.4)] transition-all hover:bg-blue-500 hover:-translate-y-1"
+//           <button
+//             onClick={onOpenBooking}
+//             className="group relative flex items-center gap-4 rounded-full bg-blue-600 px-10 py-5 text-[11px] font-black uppercase tracking-[0.25em] text-white shadow-[0_20px_50px_-15px_rgba(37,99,235,0.5)] transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
 //           >
 //             Get an Instant Quote
 //             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-//           </a>
+//           </button>
 
-//           {/* Social Proof Social Proof */}
-//           <div className="flex flex-col sm:flex-row items-center gap-4">
-//             <div className="flex items-center gap-1 text-amber-500">
-//               {[...Array(5)].map((_, i) => (
-//                 <Star key={i} size={14} fill="currentColor" />
-//               ))}
-//               <span className="ml-2 text-white font-black text-xs uppercase tracking-widest">
-//                 5.0 Rated
+//           {/* Luxury Proof Section */}
+//           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center border-t border-white/5 pt-10 w-full max-w-2xl">
+//             <div className="flex flex-col items-center sm:items-end gap-1">
+//               <div className="flex items-center gap-1 text-amber-500">
+//                 {[...Array(5)].map((_, i) => (
+//                   <Star key={i} size={14} fill="currentColor" />
+//                 ))}
+//               </div>
+//               <span className="text-white font-black text-[10px] uppercase tracking-widest">
+//                 5.0 Rated Master Detailing
 //               </span>
 //             </div>
-//             <div className="hidden sm:block w-1 h-1 rounded-full bg-zinc-700" />
-//             <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
-//               Trusted by <span className="text-white">200+</span> Local Owners
+
+//             <div className="flex items-center justify-center sm:justify-start gap-3">
+//               <div className="h-10 w-[1px] bg-zinc-800 hidden sm:block" />
+//               <div className="text-left">
+//                 <div className="flex items-center gap-2 text-emerald-500 mb-0.5">
+//                   <ShieldCheck size={14} />
+//                   <span className="text-[10px] font-black uppercase tracking-tighter">
+//                     Verified Service
+//                   </span>
+//                 </div>
+//                 <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-zinc-500">
+//                   Trusted by <span className="text-white">200+</span> Local
+//                   Owners
+//                 </div>
+//               </div>
 //             </div>
 //           </div>
 //         </motion.div>
 //       </div>
 
 //       {/* Scroll Indicator */}
-//       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20">
-//         <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
+//       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30">
+//         <span className="text-[8px] uppercase tracking-[0.4em] font-black">
+//           Explore
+//         </span>
+//         <div className="w-[1px] h-10 bg-gradient-to-b from-blue-500 to-transparent" />
 //       </div>
 //     </section>
 //   );
@@ -103,101 +127,104 @@ export default function Hero({ onOpenBooking }) {
   return (
     <section
       id="top"
-      className="relative min-h-screen overflow-hidden bg-zinc-950 flex items-center justify-center"
+      className="relative min-h-[90vh] overflow-hidden bg-obsidian flex items-center justify-center pt-20"
     >
-      {/* --- Premium Background Layer --- */}
+      {/* --- Premium Background Layer with Neon Accents --- */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 h-[70%] w-[70%] rounded-full bg-blue-600/20 blur-[120px] animate-pulse" />
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 h-[80%] w-[80%] rounded-full bg-blue-600/10 blur-[150px] animate-pulse" />
         <img
           src="https://images.unsplash.com/photo-1601362840469-51e4d8d59085?auto=format&fit=crop&q=80"
-          className="w-full h-full object-cover opacity-30 mix-blend-overlay grayscale"
+          className="w-full h-full object-cover opacity-20 mix-blend-overlay grayscale"
           alt="Luxury Car Detail"
         />
-        {/* Deep Overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-zinc-950/80 to-zinc-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/90 to-obsidian" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 text-center flex flex-col items-center">
-        {/* Premium Badge */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-12 text-center flex flex-col items-center">
+        {/* Luxury Bento Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-4 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-blue-400 mb-10 shadow-xl"
+          className="inline-flex items-center gap-3 rounded-2xl glass px-5 py-2.5 text-[9px] font-black uppercase tracking-[0.4em] text-blue-400 mb-8 border-white/5 shadow-2xl"
         >
-          <Zap className="h-3 w-3 fill-blue-400" />
-          The Gold Standard of Mobile Detailing
+          <Zap className="h-3 w-3 fill-blue-400 shadow-glow-blue" />
+          Mobile Master Detailers
         </motion.div>
 
-        {/* Main Title - Extreme Impact */}
+        {/* High-Impact Typography */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative mb-10"
+          transition={{ duration: 0.8 }}
+          className="relative mb-8"
         >
-          <h1 className="text-[14vw] sm:text-[10vw] lg:text-[140px] font-black leading-[0.8] tracking-tighter text-white uppercase italic">
-            Showroom <br />
+          <h1 className="text-[12vw] sm:text-[10vw] lg:text-[130px] font-black leading-[0.85] tracking-tighter text-white uppercase italic">
+            Precision <br />
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-700">
-              Perfection
-              {/* Subtle Glow behind the main word */}
-              <span className="absolute inset-0 blur-2xl bg-blue-500/20 -z-10" />
+              Restoration
+              <span className="absolute inset-0 blur-3xl bg-blue-500/30 -z-10" />
             </span>
           </h1>
         </motion.div>
 
-        {/* Subtext - Better spacing and weight */}
+        {/* Glass-Bordered Value Statement */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="max-w-xl text-zinc-400 font-medium mb-12 leading-relaxed text-sm sm:text-base lg:text-lg border-l-2 border-blue-600/30 pl-6 text-left"
+          className="max-w-2xl text-zinc-400 font-medium mb-14 leading-relaxed text-sm sm:text-base lg:text-lg border-l-2 border-blue-600/40 pl-8 text-left"
         >
-          Professional mobile detailing at your doorstep in{" "}
-          <span className="text-white font-bold">{business.city}</span>.
-          Expertly restoring your vehicle to its peak aesthetic condition with
-          ceramic-grade protection.
+          Experience showroom perfection at your doorstep in{" "}
+          <span className="text-white font-bold">{business.city}</span>. We
+          provide elite ceramic coating and paint correction services that
+          safeguard your vehicle's value.
         </motion.p>
 
-        {/* CTA Section */}
+        {/* Main Interaction Area */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="flex flex-col items-center gap-10 w-full"
+          className="flex flex-col items-center gap-12 w-full"
         >
           <button
             onClick={onOpenBooking}
-            className="group relative flex items-center gap-4 rounded-full bg-blue-600 px-10 py-5 text-[11px] font-black uppercase tracking-[0.25em] text-white shadow-[0_20px_50px_-15px_rgba(37,99,235,0.5)] transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
+            className="group relative flex items-center gap-5 rounded-2xl bg-blue-600 px-12 py-6 text-[10px] font-black uppercase tracking-[0.3em] text-white shadow-glow-blue transition-all hover:bg-blue-500 hover:-translate-y-1 active:scale-95"
           >
-            Get an Instant Quote
+            Get Professional Quote
             <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </button>
 
-          {/* Luxury Proof Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center border-t border-white/5 pt-10 w-full max-w-2xl">
-            <div className="flex flex-col items-center sm:items-end gap-1">
-              <div className="flex items-center gap-1 text-amber-500">
+          {/* Social Proof Module */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 items-center border-t border-white/5 pt-12 w-full max-w-2xl">
+            <div className="flex flex-col items-center sm:items-end gap-2">
+              <div className="flex items-center gap-1.5 text-amber-500">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} fill="currentColor" />
+                  <Star
+                    key={i}
+                    size={16}
+                    fill="currentColor"
+                    className="drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]"
+                  />
                 ))}
               </div>
-              <span className="text-white font-black text-[10px] uppercase tracking-widest">
-                5.0 Rated Master Detailing
+              <span className="text-white font-black text-[9px] uppercase tracking-[0.2em]">
+                Elite Detailing Specialist
               </span>
             </div>
 
-            <div className="flex items-center justify-center sm:justify-start gap-3">
-              <div className="h-10 w-[1px] bg-zinc-800 hidden sm:block" />
+            <div className="flex items-center justify-center sm:justify-start gap-5">
+              <div className="h-12 w-[1px] bg-white/10 hidden sm:block" />
               <div className="text-left">
-                <div className="flex items-center gap-2 text-emerald-500 mb-0.5">
-                  <ShieldCheck size={14} />
-                  <span className="text-[10px] font-black uppercase tracking-tighter">
-                    Verified Service
+                <div className="flex items-center gap-2 text-blue-500 mb-1">
+                  <ShieldCheck size={16} className="shadow-glow-blue" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">
+                    Guaranteed Finish
                   </span>
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-zinc-500">
-                  Trusted by <span className="text-white">200+</span> Local
-                  Owners
+                <div className="text-[9px] font-bold uppercase tracking-[0.1em] text-zinc-500">
+                  Trusted by <span className="text-white font-black">200+</span>{" "}
+                  Luxury Owners
                 </div>
               </div>
             </div>
@@ -205,12 +232,12 @@ export default function Hero({ onOpenBooking }) {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30">
-        <span className="text-[8px] uppercase tracking-[0.4em] font-black">
-          Explore
+      {/* Explore Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+        <span className="text-[8px] uppercase tracking-[0.5em] font-black text-blue-400">
+          The Gallery
         </span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-blue-500 to-transparent" />
+        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent" />
       </div>
     </section>
   );
