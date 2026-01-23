@@ -277,11 +277,11 @@ export default function Hero({ onOpenBooking }) {
             </div>
 
             <div className="mb-6">
-              <h1 className="text-5xl lg:text-6xl font-black leading-[0.9] tracking-tighter text-white uppercase italic">
+              <h1 className="text-4xl lg:text-5xl font-black leading-tight text-white uppercase italic">
                 The
               </h1>
-              {/* FIXED OVERFLOW: Reduced size to 5xl/6xl and tightened tracking */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[5.5rem] font-black leading-none tracking-[-0.05em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic">
+              {/* FIXED SIZE & TRACKING: Decreased size and increased negative tracking to prevent cropping */}
+              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black leading-none tracking-[-0.06em] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 uppercase italic">
                 Transformation.
               </h1>
             </div>
