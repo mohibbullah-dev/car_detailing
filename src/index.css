@@ -3,7 +3,8 @@
 @theme {
   --color-obsidian: #09090b;
   /* --color-glass-dark: rgba(255, 255, 255, 0.03); */
-  --color-glass-dark: rgba(255, 255, 255, 0.3);
+  /* --color-glass-dark: rgba(255, 255, 255, 0.3); */
+  --color-glass-dark: rgba(0, 0, 0, 0.3);
 
   --color-neon-blue: #2563eb;
   --color-neon-red: #ef4444;
