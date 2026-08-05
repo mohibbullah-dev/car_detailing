@@ -1,11 +1,16 @@
-// lib/whatsapp.js
-import { business } from "../data/business";
+export const generateWhatsAppLink = (
+  serviceName = "",
+  price = "",
+  business = {},
+) => {
+  const digits = String(
+    business.whatsappNumber || business.phoneTel || "",
+  ).replace(/\D/g, "");
 
-export const generateWhatsAppLink = (serviceName = "", price = "") => {
-  const baseUrl = `https://wa.me/${business.phoneTel.replace(/\s+/g, "")}`;
+  const baseUrl = `https://wa.me/${digits}`;
+  const name = business.name || "Royal Shine Detailing";
 
-  // Custom message logic
-  let message = `Hi ${business.name}! 🚗 `;
+  let message = `Hi ${name}! 🚗 `;
 
   if (serviceName) {
     message += `I'm interested in the *${serviceName}* package (${price}). `;

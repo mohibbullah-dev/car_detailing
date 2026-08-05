@@ -53,7 +53,7 @@
 //           </div>
 
 //           <button
-//             className="w-full rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800 disabled:opacity-60"
+//             className="w-full rounded-xl bg-[#E10600] px-5 py-3 text-sm font-semibold text-white hover:bg-[#9a0400] disabled:opacity-60"
 //             type="submit"
 //             disabled={isPending}
 //           >
@@ -138,7 +138,7 @@
 //           </div>
 
 //           <button
-//             className="w-full rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800 disabled:opacity-60"
+//             className="w-full rounded-xl bg-[#E10600] px-5 py-3 text-sm font-semibold text-white hover:bg-[#9a0400] disabled:opacity-60"
 //             type="submit"
 //             disabled={isPending}
 //           >
@@ -201,8 +201,8 @@ export default function AdminLogin() {
   return (
     <main className="relative min-h-screen flex items-center justify-center bg-zinc-950 px-4 overflow-hidden">
       {/* Decorative Background Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 blur-[120px] rounded-full" />
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#E10600]/10 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#E10600]/10 blur-[120px] rounded-full" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -211,11 +211,11 @@ export default function AdminLogin() {
       >
         {/* Logo/Icon Header */}
         <div className="flex flex-col items-center mb-8">
-          <div className="h-16 w-16 bg-blue-600 rounded-2xl flex items-center justify-center shadow-[0_0_30px_-5px_rgba(37,99,235,0.6)] mb-4">
+          <div className="h-16 w-16 bg-[#E10600] rounded-2xl flex items-center justify-center shadow-[0_0_30px_-5px_rgba(225,6,0,0.6)] mb-4">
             <ShieldCheck className="text-white h-8 w-8" />
           </div>
           <h1 className="text-3xl font-black tracking-tighter text-white uppercase italic">
-            Command <span className="text-blue-600 not-italic">Center</span>
+            Command <span className="text-[#E10600] not-italic">Center</span>
           </h1>
           <p className="text-zinc-500 text-sm mt-1 uppercase tracking-widest font-bold">
             Authorized Personnel Only
@@ -227,13 +227,13 @@ export default function AdminLogin() {
             {/* Email Field */}
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">
-                <Mail className="h-3 w-3 text-blue-500" /> Admin Email
+                <Mail className="h-3 w-3 text-[#E10600]" /> Admin Email
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-2xl border border-white/5 bg-zinc-800/50 px-4 py-4 text-white placeholder:text-zinc-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+                className="w-full rounded-2xl border border-white/5 bg-zinc-800/50 px-4 py-4 text-white placeholder:text-zinc-600 focus:border-[#E10600] focus:outline-none focus:ring-1 focus:ring-[#E10600] transition-all"
                 placeholder="admin@royalshine.com"
                 required
               />
@@ -242,13 +242,13 @@ export default function AdminLogin() {
             {/* Password Field */}
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">
-                <Lock className="h-3 w-3 text-blue-500" /> Password
+                <Lock className="h-3 w-3 text-[#E10600]" /> Password
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-2xl border border-white/5 bg-zinc-800/50 px-4 py-4 text-white placeholder:text-zinc-600 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+                className="w-full rounded-2xl border border-white/5 bg-zinc-800/50 px-4 py-4 text-white placeholder:text-zinc-600 focus:border-[#E10600] focus:outline-none focus:ring-1 focus:ring-[#E10600] transition-all"
                 placeholder="••••••••"
                 required
               />
@@ -270,7 +270,7 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={isPending}
-              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-blue-600 py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-500 active:scale-[0.98] disabled:opacity-50"
+              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#E10600] py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-[#c00500] active:scale-[0.98] disabled:opacity-50"
             >
               {isPending ? (
                 <Loader2 className="h-5 w-5 animate-spin" />

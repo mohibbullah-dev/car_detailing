@@ -109,7 +109,7 @@
 //     <main className="min-h-screen bg-obsidian pb-20 pt-32 text-white overflow-hidden">
 //       {/* Immersive Background */}
 //       <div className="fixed inset-0 pointer-events-none">
-//         <div className="absolute top-0 right-0 h-[600px] w-[600px] bg-blue-600/5 blur-[140px] rounded-full" />
+//         <div className="absolute top-0 right-0 h-[600px] w-[600px] bg-[#E10600]/5 blur-[140px] rounded-full" />
 //         <div className="absolute bottom-0 left-0 h-[400px] w-[400px] bg-red-600/5 blur-[120px] rounded-full opacity-40" />
 //       </div>
 
@@ -117,8 +117,8 @@
 //         {/* TOP ADMIN BAR */}
 //         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 glass p-6 rounded-[2rem] border-white/5">
 //           <div>
-//             <div className="flex items-center gap-2 text-blue-500 mb-1">
-//               <ShieldCheck size={14} className="shadow-glow-blue" />
+//             <div className="flex items-center gap-2 text-[#E10600] mb-1">
+//               <ShieldCheck size={14} className="shadow-[0_0_20px_rgba(225,6,0,0.4)]" />
 //               <span className="text-[9px] font-black uppercase tracking-[0.3em]">
 //                 Authorized Access Only
 //               </span>
@@ -136,12 +136,12 @@
 //               />
 //               <input
 //                 placeholder="Search projects..."
-//                 className="bg-white/5 border border-white/5 rounded-xl pl-10 pr-4 py-3 text-[10px] uppercase font-bold tracking-widest outline-none focus:border-blue-500/50 transition-all w-48"
+//                 className="bg-white/5 border border-white/5 rounded-xl pl-10 pr-4 py-3 text-[10px] uppercase font-bold tracking-widest outline-none focus:border-[#E10600]/50 transition-all w-48"
 //               />
 //             </div>
 //             <button
 //               onClick={() => nav("/admin/upload")}
-//               className="p-3 bg-blue-600 rounded-xl hover:bg-blue-500 transition-all shadow-glow-blue"
+//               className="p-3 bg-[#E10600] rounded-xl hover:bg-[#c00500] transition-all shadow-[0_0_20px_rgba(225,6,0,0.4)]"
 //             >
 //               <PlusCircle size={20} />
 //             </button>
@@ -157,7 +157,7 @@
 //               <div className="flex items-center justify-between mb-8">
 //                 <div className="flex items-center gap-4">
 //                   <div
-//                     className={`p-4 rounded-2xl ${isClosed ? "bg-red-500 shadow-glow-red" : "bg-emerald-500 shadow-glow-blue"}`}
+//                     className={`p-4 rounded-2xl ${isClosed ? "bg-red-500 shadow-glow-red" : "bg-emerald-500 shadow-[0_0_20px_rgba(225,6,0,0.4)]"}`}
 //                   >
 //                     <AlertOctagon className="text-white" size={20} />
 //                   </div>
@@ -192,7 +192,7 @@
 //                     className="absolute left-4 top-4 text-zinc-500"
 //                   />
 //                   <textarea
-//                     className="w-full glass bg-white/5 pl-11 p-4 rounded-2xl outline-none border border-white/5 focus:border-blue-500 text-[10px] font-bold uppercase transition-all resize-none h-24"
+//                     className="w-full glass bg-white/5 pl-11 p-4 rounded-2xl outline-none border border-white/5 focus:border-[#E10600] text-[10px] font-bold uppercase transition-all resize-none h-24"
 //                     value={newReason}
 //                     onChange={(e) => setNewReason(e.target.value)}
 //                     placeholder="Notice for clients..."
@@ -238,12 +238,12 @@
 //               return (
 //                 <div
 //                   key={item._id}
-//                   className={`glass rounded-[2.5rem] p-6 transition-all duration-500 border-white/5 ${isEditing ? "border-blue-500/50 bg-blue-500/[0.02]" : ""}`}
+//                   className={`glass rounded-[2.5rem] p-6 transition-all duration-500 border-white/5 ${isEditing ? "border-[#E10600]/50 bg-[#E10600]/[0.02]" : ""}`}
 //                 >
 //                   {/* Card Header */}
 //                   <div className="flex items-center justify-between mb-4">
 //                     <div className="flex items-center gap-2">
-//                       <MapPin size={10} className="text-blue-500" />
+//                       <MapPin size={10} className="text-[#E10600]" />
 //                       <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">
 //                         {item.location || "Birmingham"}
 //                       </span>
@@ -270,7 +270,7 @@
 //                       />
 //                       <img
 //                         src={activeAfterUrl}
-//                         className="h-full w-full object-cover border-l border-blue-500"
+//                         className="h-full w-full object-cover border-l border-[#E10600]"
 //                       />
 //                     </div>
 //                     <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent" />
@@ -298,7 +298,7 @@
 //                         className="space-y-3"
 //                       >
 //                         <input
-//                           className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-blue-500 transition-all"
+//                           className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-[#E10600] transition-all"
 //                           value={form.title}
 //                           onChange={(e) =>
 //                             setForm({ ...form, title: e.target.value })
@@ -306,7 +306,7 @@
 //                           placeholder="Title"
 //                         />
 //                         <input
-//                           className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-blue-500 transition-all"
+//                           className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-[#E10600] transition-all"
 //                           value={form.location}
 //                           onChange={(e) =>
 //                             setForm({ ...form, location: e.target.value })
@@ -339,7 +339,7 @@
 //                         </div>
 //                         <button
 //                           onClick={onSave}
-//                           className="w-full bg-blue-600 py-3 rounded-xl text-[9px] font-black uppercase shadow-glow-blue flex items-center justify-center gap-2"
+//                           className="w-full bg-[#E10600] py-3 rounded-xl text-[9px] font-black uppercase shadow-[0_0_20px_rgba(225,6,0,0.4)] flex items-center justify-center gap-2"
 //                         >
 //                           {upd.isPending ? (
 //                             <Loader2 size={12} className="animate-spin" />
@@ -379,6 +379,7 @@ import {
   Search,
   PlusCircle,
   LayoutGrid,
+  Settings2,
 } from "lucide-react";
 import {
   usePortfolioList,
@@ -486,15 +487,15 @@ export default function AdminPortfolio() {
   return (
     <main className="min-h-screen bg-obsidian pb-20 pt-32 text-white overflow-hidden">
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 h-[600px] w-[600px] bg-blue-600/5 blur-[140px] rounded-full" />
+        <div className="absolute top-0 right-0 h-[600px] w-[600px] bg-[#E10600]/5 blur-[140px] rounded-full" />
         <div className="absolute bottom-0 left-0 h-[400px] w-[400px] bg-red-600/5 blur-[120px] rounded-full opacity-40" />
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 glass p-6 rounded-[2rem] border-white/5">
           <div>
-            <div className="flex items-center gap-2 text-blue-500 mb-1">
-              <ShieldCheck size={14} className="shadow-glow-blue" />
+            <div className="flex items-center gap-2 text-[#E10600] mb-1">
+              <ShieldCheck size={14} className="shadow-[0_0_20px_rgba(225,6,0,0.4)]" />
               <span className="text-[9px] font-black uppercase tracking-[0.3em]">
                 Authorized Access Only
               </span>
@@ -515,12 +516,20 @@ export default function AdminPortfolio() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects..."
-                className="bg-white/5 border border-white/5 rounded-xl pl-10 pr-4 py-3 text-[10px] uppercase font-bold tracking-widest outline-none focus:border-blue-500/50 transition-all w-48"
+                className="bg-white/5 border border-white/5 rounded-xl pl-10 pr-4 py-3 text-[10px] uppercase font-bold tracking-widest outline-none focus:border-[#E10600]/50 transition-all w-48"
               />
             </div>
             <button
+              onClick={() => nav("/admin/settings")}
+              className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all"
+              title="Site Settings"
+            >
+              <Settings2 size={20} />
+            </button>
+            <button
               onClick={() => nav("/admin/upload")}
-              className="p-3 bg-blue-600 rounded-xl hover:bg-blue-500 transition-all shadow-glow-blue"
+              className="p-3 bg-[#E10600] rounded-xl hover:bg-[#c00500] transition-all shadow-[0_0_20px_rgba(225,6,0,0.4)]"
+              title="Upload Project"
             >
               <PlusCircle size={20} />
             </button>
@@ -535,7 +544,7 @@ export default function AdminPortfolio() {
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-4">
                   <div
-                    className={`p-4 rounded-2xl ${isClosed ? "bg-red-500 shadow-glow-red" : "bg-emerald-500 shadow-glow-blue"}`}
+                    className={`p-4 rounded-2xl ${isClosed ? "bg-red-500 shadow-glow-red" : "bg-emerald-500 shadow-[0_0_20px_rgba(225,6,0,0.4)]"}`}
                   >
                     <AlertOctagon className="text-white" size={20} />
                   </div>
@@ -569,7 +578,7 @@ export default function AdminPortfolio() {
                     className="absolute left-4 top-4 text-zinc-500"
                   />
                   <textarea
-                    className="w-full glass bg-white/5 pl-11 p-4 rounded-2xl outline-none border border-white/5 focus:border-blue-500 text-[10px] font-bold uppercase transition-all resize-none h-24"
+                    className="w-full glass bg-white/5 pl-11 p-4 rounded-2xl outline-none border border-white/5 focus:border-[#E10600] text-[10px] font-bold uppercase transition-all resize-none h-24"
                     value={newReason}
                     onChange={(e) => setNewReason(e.target.value)}
                     placeholder="Notice for clients..."
@@ -614,11 +623,11 @@ export default function AdminPortfolio() {
               return (
                 <div
                   key={item._id}
-                  className={`glass rounded-[2.5rem] p-6 transition-all duration-500 border-white/5 ${isEditing ? "border-blue-500/50 bg-blue-500/[0.02]" : ""}`}
+                  className={`glass rounded-[2.5rem] p-6 transition-all duration-500 border-white/5 ${isEditing ? "border-[#E10600]/50 bg-[#E10600]/[0.02]" : ""}`}
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <MapPin size={10} className="text-blue-500" />
+                      <MapPin size={10} className="text-[#E10600]" />
                       <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">
                         {item.location || "Birmingham"}
                       </span>
@@ -644,7 +653,7 @@ export default function AdminPortfolio() {
                       />
                       <img
                         src={activeAfterUrl}
-                        className="h-full w-full object-cover border-l border-blue-500"
+                        className="h-full w-full object-cover border-l border-[#E10600]"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent" />
@@ -671,7 +680,7 @@ export default function AdminPortfolio() {
                         className="space-y-3"
                       >
                         <input
-                          className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-blue-500 transition-all"
+                          className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-[#E10600] transition-all"
                           value={form.title}
                           onChange={(e) =>
                             setForm({ ...form, title: e.target.value })
@@ -679,7 +688,7 @@ export default function AdminPortfolio() {
                           placeholder="Title"
                         />
                         <input
-                          className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-blue-500 transition-all"
+                          className="w-full bg-white/5 p-3 rounded-xl text-[10px] uppercase font-bold border border-white/5 outline-none focus:border-[#E10600] transition-all"
                           value={form.location}
                           onChange={(e) =>
                             setForm({ ...form, location: e.target.value })
@@ -712,7 +721,7 @@ export default function AdminPortfolio() {
                         </div>
                         <button
                           onClick={onSave}
-                          className="w-full bg-blue-600 py-3 rounded-xl text-[9px] font-black uppercase shadow-glow-blue flex items-center justify-center gap-2"
+                          className="w-full bg-[#E10600] py-3 rounded-xl text-[9px] font-black uppercase shadow-[0_0_20px_rgba(225,6,0,0.4)] flex items-center justify-center gap-2"
                         >
                           {upd.isPending ? (
                             <Loader2 size={12} className="animate-spin" />

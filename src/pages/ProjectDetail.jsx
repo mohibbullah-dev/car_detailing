@@ -41,14 +41,14 @@
 //         {/* Navigation Top */}
 //         <Link
 //           to="/portfolio"
-//           className="inline-flex items-center gap-2 text-zinc-500 hover:text-blue-500 mb-12 transition-colors uppercase text-[10px] font-black tracking-widest"
+//           className="inline-flex items-center gap-2 text-zinc-500 hover:text-[#E10600] mb-12 transition-colors uppercase text-[10px] font-black tracking-widest"
 //         >
 //           <ArrowLeft size={14} /> Back to Gallery
 //         </Link>
 
 //         <header className="mb-12">
 //           <div className="flex items-center gap-3 mb-4">
-//             <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-500 text-[10px] font-black uppercase tracking-widest rounded-full">
+//             <span className="px-3 py-1 bg-[#E10600]/10 border border-[#E10600]/20 text-[#E10600] text-[10px] font-black uppercase tracking-widest rounded-full">
 //               Verified Result
 //             </span>
 //             <span className="text-zinc-600 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
@@ -60,7 +60,7 @@
 //           </h1>
 //           <div className="flex items-center gap-6 text-zinc-400">
 //             <span className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider">
-//               <MapPin size={16} className="text-blue-500" /> {project.location}
+//               <MapPin size={16} className="text-[#E10600]" /> {project.location}
 //             </span>
 //           </div>
 //         </header>
@@ -75,7 +75,7 @@
 //             />
 //             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
 //             <div className="absolute bottom-8 left-8">
-//               <p className="text-xs font-black uppercase tracking-[0.3em] text-blue-500 mb-2">
+//               <p className="text-xs font-black uppercase tracking-[0.3em] text-[#E10600] mb-2">
 //                 Final Finish
 //               </p>
 //               <h3 className="text-2xl font-bold italic group-hover:translate-x-2 transition-transform">
@@ -87,7 +87,7 @@
 //           <div className="grid sm:grid-cols-2 gap-6">
 //             <div className="bg-zinc-900/50 border border-white/5 rounded-[2rem] p-8">
 //               <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 mb-4 flex items-center gap-2">
-//                 <ShieldCheck size={14} className="text-blue-500" /> The
+//                 <ShieldCheck size={14} className="text-[#E10600]" /> The
 //                 Assignment
 //               </h4>
 //               <p className="text-xl text-zinc-300 leading-relaxed italic">
@@ -115,7 +115,7 @@
 //                 to={`/portfolio/${prevProject._id}`}
 //                 className="group flex flex-col items-start gap-2"
 //               >
-//                 <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600 flex items-center gap-2 group-hover:text-blue-500">
+//                 <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600 flex items-center gap-2 group-hover:text-[#E10600]">
 //                   <ChevronLeft size={14} /> Previous Project
 //                 </span>
 //                 <span className="text-lg font-bold text-zinc-400 group-hover:text-white transition-colors">
@@ -131,7 +131,7 @@
 //                 to={`/portfolio/${nextProject._id}`}
 //                 className="group flex flex-col items-end gap-2 text-right"
 //               >
-//                 <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600 flex items-center gap-2 group-hover:text-blue-500">
+//                 <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600 flex items-center gap-2 group-hover:text-[#E10600]">
 //                   Next Project <ChevronRight size={14} />
 //                 </span>
 //                 <span className="text-lg font-bold text-zinc-400 group-hover:text-white transition-colors">
@@ -171,7 +171,7 @@ export default function ProjectDetail() {
   if (isLoading)
     return (
       <div className="min-h-screen bg-obsidian flex flex-col items-center justify-center text-white">
-        <Zap className="h-10 w-10 text-blue-600 animate-pulse mb-4" />
+        <Zap className="h-10 w-10 text-[#E10600] animate-pulse mb-4" />
         <p className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
           Decrypting Case Study...
         </p>
@@ -196,7 +196,7 @@ export default function ProjectDetail() {
     <div className="min-h-screen bg-obsidian text-white pt-32 pb-24 px-4 sm:px-6 overflow-hidden">
       {/* Ambient Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_10%,rgba(37,99,235,0.1),transparent_50%)]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_10%,rgba(225,6,0,0.1),transparent_50%)]" />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -218,11 +218,11 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-4 mb-6"
           >
-            <span className="px-4 py-1.5 bg-blue-600 text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg shadow-glow-blue">
+            <span className="px-4 py-1.5 bg-[#E10600] text-white text-[9px] font-black uppercase tracking-[0.2em] rounded-lg shadow-[0_0_20px_rgba(225,6,0,0.4)]">
               Master Detail
             </span>
             <span className="text-zinc-500 text-[9px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
-              <Calendar size={12} className="text-blue-500" /> Professional
+              <Calendar size={12} className="text-[#E10600]" /> Professional
               Grade
             </span>
           </motion.div>
@@ -244,7 +244,7 @@ export default function ProjectDetail() {
 
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2 px-4 py-2 glass rounded-xl border-white/5">
-              <MapPin size={14} className="text-blue-500" />
+              <MapPin size={14} className="text-[#E10600]" />
               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
                 {project.location}
               </span>
@@ -267,7 +267,7 @@ export default function ProjectDetail() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80" />
             <div className="absolute bottom-10 left-10">
-              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-400 mb-2">
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#E10600] mb-2">
                 Final Outcome
               </p>
               <h3 className="text-3xl font-black italic uppercase tracking-tighter">
@@ -286,7 +286,7 @@ export default function ProjectDetail() {
               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-6 flex items-center gap-3">
                 <ShieldCheck
                   size={16}
-                  className="text-blue-500 shadow-glow-blue"
+                  className="text-[#E10600] shadow-[0_0_20px_rgba(225,6,0,0.4)]"
                 />
                 The Specs
               </h4>
@@ -305,7 +305,7 @@ export default function ProjectDetail() {
                 className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
                 alt="Before"
               />
-              <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
+              <div className="absolute inset-0 bg-[#E10600]/10 mix-blend-overlay" />
             </div>
           </div>
         </div>
@@ -316,9 +316,9 @@ export default function ProjectDetail() {
             {prevProject ? (
               <Link
                 to={`/portfolio/${prevProject._id}`}
-                className="group flex flex-col items-start gap-4 p-8 glass rounded-[2rem] border-white/5 hover:border-blue-500/30 transition-all"
+                className="group flex flex-col items-start gap-4 p-8 glass rounded-[2rem] border-white/5 hover:border-[#E10600]/30 transition-all"
               >
-                <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3 group-hover:text-blue-500 transition-colors">
+                <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3 group-hover:text-[#E10600] transition-colors">
                   <ChevronLeft size={14} /> Previous Entry
                 </span>
                 <span className="text-lg sm:text-2xl font-black uppercase italic tracking-tighter text-zinc-400 group-hover:text-white transition-colors line-clamp-1">
@@ -332,9 +332,9 @@ export default function ProjectDetail() {
             {nextProject ? (
               <Link
                 to={`/portfolio/${nextProject._id}`}
-                className="group flex flex-col items-end gap-4 p-8 glass rounded-[2rem] border-white/5 hover:border-blue-500/30 transition-all text-right"
+                className="group flex flex-col items-end gap-4 p-8 glass rounded-[2rem] border-white/5 hover:border-[#E10600]/30 transition-all text-right"
               >
-                <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3 group-hover:text-blue-500 transition-colors">
+                <span className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-600 flex items-center gap-3 group-hover:text-[#E10600] transition-colors">
                   Next Entry <ChevronRight size={14} />
                 </span>
                 <span className="text-lg sm:text-2xl font-black uppercase italic tracking-tighter text-zinc-400 group-hover:text-white transition-colors line-clamp-1">

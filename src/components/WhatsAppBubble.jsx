@@ -1,9 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import { business } from "../data/business";
+import { useBusiness } from "../context/SiteContentContext";
 
 export default function WhatsAppBubble({ onOpenBooking }) {
+  const business = useBusiness();
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4">
       <motion.div

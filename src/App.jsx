@@ -6,18 +6,20 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import ProjectDetail from "./pages/ProjectDetail";
+import Reviews from "./pages/Reviews";
 import AdminLogin from "./pages/AdminLogin";
 import AdminUpload from "./pages/AdminUpload";
 import AdminPortfolio from "./pages/AdminPortfolio";
+import AdminSiteSettings from "./pages/AdminSiteSettings";
 import WhatsAppBubble from "./components/WhatsAppBubble";
 import BookingModal from "./components/BookingModal";
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const { isClosed } = useBusinessStatus(); // Listen to the Brain
+  const { isClosed } = useBusinessStatus();
 
   const handleOpenBooking = () => {
-    if (isClosed) return; // Block opening if closed
+    if (isClosed) return;
     setIsBookingOpen(true);
   };
 
@@ -29,14 +31,15 @@ export default function App() {
         <Route path="/" element={<Home onOpenBooking={handleOpenBooking} />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/portfolio/:id" element={<ProjectDetail />} />
+        <Route path="/reviews" element={<Reviews />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/upload" element={<AdminUpload />} />
         <Route path="/admin/portfolio" element={<AdminPortfolio />} />
+        <Route path="/admin/settings" element={<AdminSiteSettings />} />
       </Routes>
 
       <Footer />
 
-      {/* Only show WhatsApp bubble if business is open */}
       {!isClosed && <WhatsAppBubble onOpenBooking={handleOpenBooking} />}
 
       <BookingModal

@@ -267,7 +267,7 @@
 //           </div>
 
 //           <button
-//             className="w-full rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800 disabled:opacity-60"
+//             className="w-full rounded-xl bg-[#E10600] px-5 py-3 text-sm font-semibold text-white hover:bg-[#9a0400] disabled:opacity-60"
 //             type="submit"
 //             disabled={isPending || !tokenStorage.get()}
 //             title={!tokenStorage.get() ? "Login required" : ""}
@@ -394,7 +394,7 @@ export default function AdminUpload() {
         <div className="mb-10">
           <h1 className="text-3xl font-black tracking-tighter text-white uppercase italic">
             Add New{" "}
-            <span className="text-blue-600 not-italic">Transformation</span>
+            <span className="text-[#E10600] not-italic">Transformation</span>
           </h1>
           <p className="mt-2 text-zinc-500">
             Document your latest work for the gallery.
@@ -407,12 +407,12 @@ export default function AdminUpload() {
             <div className="grid gap-6 sm:grid-cols-2">
               <div className="space-y-2">
                 <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">
-                  <FileText className="h-3 w-3 text-blue-500" /> Project Title
+                  <FileText className="h-3 w-3 text-[#E10600]" /> Project Title
                 </label>
                 <input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-[#E10600] focus:outline-none transition-colors"
                   placeholder="Tesla Model 3 Detail"
                   required
                 />
@@ -420,12 +420,12 @@ export default function AdminUpload() {
 
               <div className="space-y-2">
                 <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">
-                  <MapPin className="h-3 w-3 text-blue-500" /> Location
+                  <MapPin className="h-3 w-3 text-[#E10600]" /> Location
                 </label>
                 <input
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-[#E10600] focus:outline-none transition-colors"
                   placeholder="Birmingham"
                   required
                 />
@@ -434,12 +434,12 @@ export default function AdminUpload() {
 
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">
-                <Tag className="h-3 w-3 text-blue-500" /> Service Tags
+                <Tag className="h-3 w-3 text-[#E10600]" /> Service Tags
               </label>
               <input
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
-                className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-[#E10600] focus:outline-none transition-colors"
                 placeholder="Comma separated tags..."
               />
             </div>
@@ -451,7 +451,7 @@ export default function AdminUpload() {
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-blue-500 focus:outline-none transition-colors"
+                className="w-full rounded-xl border border-white/5 bg-zinc-800 px-4 py-3 text-white focus:border-[#E10600] focus:outline-none transition-colors"
                 placeholder="Describe the process and results..."
                 rows={4}
                 required
@@ -470,7 +470,7 @@ export default function AdminUpload() {
                 className={`relative flex aspect-video cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border-2 border-dashed transition-all ${
                   beforePreview
                     ? "border-white/10 bg-zinc-900"
-                    : "border-white/5 bg-zinc-900/30 hover:bg-zinc-900 hover:border-blue-500/50"
+                    : "border-white/5 bg-zinc-900/30 hover:bg-zinc-900 hover:border-[#E10600]/50"
                 }`}
               >
                 {beforePreview ? (
@@ -505,7 +505,7 @@ export default function AdminUpload() {
                 className={`relative flex aspect-video cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border-2 border-dashed transition-all ${
                   afterPreview
                     ? "border-white/10 bg-zinc-900"
-                    : "border-white/5 bg-zinc-900/30 hover:bg-zinc-900 hover:border-blue-500/50"
+                    : "border-white/5 bg-zinc-900/30 hover:bg-zinc-900 hover:border-[#E10600]/50"
                 }`}
               >
                 {afterPreview ? (
@@ -559,7 +559,7 @@ export default function AdminUpload() {
             <button
               type="submit"
               disabled={isPending || !token}
-              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-blue-600 py-5 text-sm font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-blue-500 hover:shadow-[0_0_30px_-5px_rgba(37,99,235,0.5)] disabled:opacity-50"
+              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#E10600] py-5 text-sm font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-[#c00500] hover:shadow-[0_0_30px_-5px_rgba(225,6,0,0.5)] disabled:opacity-50"
             >
               {isPending ? (
                 <Loader2 className="h-5 w-5 animate-spin" />

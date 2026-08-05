@@ -1,27 +1,33 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { tokenStorage } from "../lib/storage";
+import { API_BASE } from "../lib/apiClient";
 
 const BusinessStatusContext = createContext();
 
 export const BusinessStatusProvider = ({ children }) => {
   const [isClosed, setIsClosed] = useState(false);
   const [reason, setReason] = useState("");
+  const [statusLoaded, setStatusLoaded] = useState(false);
 
-  // Load status from Database on mount (Does NOT require a token)
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE}/api/settings/status`)
-      .then((res) => res.json())
+    fetch(`${API_BASE}/api/settings/status`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
-        setIsClosed(data.isClosed);
+        setIsClosed(!!data.isClosed);
         setReason(data.reason || "We are currently fully booked.");
       })
-      .catch((err) => console.error("Error loading status:", err));
+      .catch((err) => {
+        console.warn("Business status unavailable:", err);
+      })
+      .finally(() => setStatusLoaded(true));
   }, []);
 
   const toggleStatus = async (newReason) => {
     const token = tokenStorage.get();
 
-    // Check if token exists before even trying to fetch
     if (!token) {
       alert("You are not logged in. Please go to the login page.");
       return;
@@ -30,23 +36,19 @@ export const BusinessStatusProvider = ({ children }) => {
     const nextState = !isClosed;
 
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_BASE}/api/settings/toggle`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Ensure "Bearer " is present
-          },
-          body: JSON.stringify({ isClosed: nextState, reason: newReason }),
+      const res = await fetch(`${API_BASE}/api/settings/toggle`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify({ isClosed: nextState, reason: newReason }),
+      });
 
       if (res.ok) {
         setIsClosed(nextState);
         setReason(newReason);
       } else {
-        // Show the specific error code to help debugging
         const errorData = await res.json().catch(() => ({}));
         alert(
           `Action failed (Error ${res.status}): ${errorData.message || "Please log in again."}`,
@@ -59,7 +61,9 @@ export const BusinessStatusProvider = ({ children }) => {
   };
 
   return (
-    <BusinessStatusContext.Provider value={{ isClosed, reason, toggleStatus }}>
+    <BusinessStatusContext.Provider
+      value={{ isClosed, reason, toggleStatus, statusLoaded }}
+    >
       {children}
     </BusinessStatusContext.Provider>
   );

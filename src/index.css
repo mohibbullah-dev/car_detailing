@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
+
 html {
   scroll-behavior: smooth;
 }
@@ -8,11 +10,11 @@ html {
   /* --color-glass-dark: rgba(255, 255, 255, 0.3); */
   --color-glass-dark: rgba(0, 0, 0, 0.7);
 
-  --color-neon-blue: #2563eb;
-  --color-neon-red: #ef4444;
+  --color-neon-blue: #E10600;
+  --color-neon-red: #E10600;
 
-  --shadow-glow-blue: 0 0 20px rgba(37, 99, 235, 0.4);
-  --shadow-glow-red: 0 0 25px rgba(239, 68, 68, 0.5);
+  --shadow-glow-blue: 0 0 20px rgba(225, 6, 0, 0.4);
+  --shadow-glow-red: 0 0 25px rgba(225, 6, 0, 0.5);
 
   --radius-4xl: 2rem;
   --radius-5xl: 2.5rem;
@@ -66,6 +68,304 @@ html {
 
   /* Standard hover instead of @utility to prevent build errors */
   .glass-card:hover {
-    @apply bg-white/10 border-white/20 shadow-[0_0_30px_rgba(37,99,235,0.2)];
+    @apply bg-white/10 border-white/20 shadow-[0_0_30px_rgba(225,6,0,0.2)];
+  }
+
+  /* ── Hero section (Titan-style) ── */
+  .font-hero-display {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+  }
+
+  .hero-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .hero-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  .hero-glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-primary-btn {
+    background: linear-gradient(180deg, #e10600 0%, #7a0000 100%);
+    box-shadow: 0 8px 32px -8px rgba(225, 6, 0, 0.45);
+  }
+
+  .hero-primary-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 48px -8px rgba(225, 6, 0.55);
+  }
+
+  .hero-primary-btn:active {
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .hero-comparison:focus-visible {
+    outline: 2px solid rgba(225, 6, 0, 0.6);
+    outline-offset: 4px;
+  }
+
+  .portfolio-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .process-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .process-step-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(225, 6, 0, 0.35);
+    border-radius: 32px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .process-step-card:hover {
+    border-color: rgba(225, 6, 0, 0.55);
+    transform: translateY(-2px);
+  }
+
+  .why-choose-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .why-choose-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .why-choose-card:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  .pricing-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .pricing-hex-icon {
+    background: rgba(225, 6, 0, 0.08);
+    border: 1px solid rgba(225, 6, 0, 0.25);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .pricing-plan-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .pricing-plan-card--featured {
+    border-color: rgba(225, 6, 0, 0.45);
+    box-shadow: 0 12px 48px -12px rgba(225, 6, 0, 0.25);
+  }
+
+  .pricing-plan-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .pricing-plan-card--featured:hover {
+    border-color: rgba(225, 6, 0, 0.6);
+  }
+
+  .reviews-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .review-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .review-card:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+  }
+
+  @keyframes reviews-marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .reviews-marquee-viewport {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent
+    );
+  }
+
+  .reviews-marquee-track {
+    animation: reviews-marquee 45s linear infinite;
+    will-change: transform;
+  }
+
+  .reviews-marquee:hover .reviews-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-marquee-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      mask-image: none;
+      -webkit-mask-image: none;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(225, 6, 0, 0.4) transparent;
+    }
+
+    .reviews-marquee-track {
+      animation: none;
+    }
+
+    .reviews-marquee-item {
+      scroll-snap-align: start;
+    }
+  }
+
+  .faq-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .faq-accordion-item--open {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+    border: 1px solid rgba(225, 6, 0, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  @media (min-width: 640px) {
+    .faq-accordion-item--open {
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+    }
+  }
+
+  .faq-cta-banner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .faq-cta-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+    pointer-events: none;
+  }
+
+  .contact-section {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .contact-form-brand-bar {
+    background: linear-gradient(
+      90deg,
+      #7a0000 0%,
+      #e10600 40%,
+      #ff2a20 70%,
+      #e10600 100%
+    );
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.45);
+  }
+
+  .contact-info-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, transform 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  .contact-info-card:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.055);
+    transform: translateY(-2px);
+  }
+
+  .contact-map-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+
+  .contact-map-iframe {
+    filter: grayscale(0.85) invert(0.92) hue-rotate(180deg) contrast(1.1);
+  }
+
+  .contact-input {
+    width: 100%;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.875rem 1rem;
+    font-size: 13px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .contact-input::placeholder {
+    color: rgba(161, 161, 161, 0.7);
+  }
+
+  .contact-input:focus {
+    border-color: rgba(225, 6, 0, 0.45);
+    background: rgba(255, 255, 255, 0.05);
   }
 }

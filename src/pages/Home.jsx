@@ -3,13 +3,13 @@ import { useBusinessStatus } from "../context/BusinessStatusContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertCircle } from "lucide-react";
 import Hero from "../components/Hero";
-import PriceCalculator from "../components/PriceCalculator";
-import Services from "../components/Services";
-import PreviousWorkSlider from "../components/PreviousWorkSlider";
-import TestimonialSlider from "../components/TestimonialSlider";
-import MaintenanceSection from "../components/MaintenanceSection";
-import ServiceArea from "../components/ServiceArea";
-import FAQ from "../components/FAQ";
+import PortfolioPreview from "../components/portfolio/PortfolioPreview";
+import ReviewsSection from "../components/reviews/ReviewsSection";
+import ProcessSection from "../components/process/ProcessSection";
+import WhyChooseSection from "../components/whyChoose/WhyChooseSection";
+import PricingSection from "../components/pricing/PricingSection";
+import FaqSection from "../components/faq/FaqSection";
+import ContactSection from "../components/contact/ContactSection";
 
 export default function Home({ onOpenBooking }) {
   const { isClosed, reason } = useBusinessStatus();
@@ -45,14 +45,14 @@ export default function Home({ onOpenBooking }) {
       <div
         className={`transition-all duration-700 ${isClosed ? "grayscale-[0.5] brightness-[0.7]" : ""}`}
       >
-        <Hero onOpenBooking={onOpenBooking} />
-        <PreviousWorkSlider limit={4} />
-        <MaintenanceSection />
-        <PriceCalculator />
-        <Services onOpenBooking={onOpenBooking} />
-        <TestimonialSlider />
-        <FAQ />
-        <ServiceArea />
+        <Hero />
+        <PortfolioPreview />
+        <ProcessSection onOpenBooking={onOpenBooking} />
+        <WhyChooseSection onOpenBooking={onOpenBooking} />
+        <PricingSection onOpenBooking={onOpenBooking} />
+        <ReviewsSection />
+        <FaqSection onOpenBooking={onOpenBooking} />
+        <ContactSection />
       </div>
     </div>
   );

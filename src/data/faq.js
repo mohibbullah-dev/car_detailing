@@ -1,22 +1,64 @@
-export const faqData = [
+export const faqItems = [
   {
-    question: "Do you need access to water or power?",
+    id: "faq-1",
+    question: "What services do you offer?",
     answer:
-      "No. Our mobile studio is fully self-contained with a professional-grade water tank and a silent generator. We can detail your car anywhere—at home or your workplace.",
+      "We offer a full range of premium detailing services including exterior and interior detailing, paint correction, ceramic coating, and mobile detailing. Each service is tailored to restore and protect your vehicle to showroom condition.",
   },
   {
-    question: "How long does a Full Detail take?",
+    id: "faq-2",
+    question: "How long does a detail take?",
     answer:
-      "Depending on the vehicle size and condition, a Full Detail typically takes between 3 to 5 hours. Ceramic coatings may require a longer curing time.",
+      "Depending on the package and vehicle condition, a standard detail takes 3–5 hours. Paint correction and ceramic coating may require a full day or multiple sessions for optimal results.",
   },
   {
-    question: "What happens if it rains on my appointment day?",
+    id: "faq-3",
+    question: "Do I need to be home for the service?",
     answer:
-      "If the weather is too severe for a safe exterior finish, we will contact you at least 2 hours before to reschedule for the next available slot at no extra cost.",
+      "Not necessarily. As long as we have access to your vehicle and a suitable work area, we can complete the detail while you're at work or running errands. We'll coordinate access details when you book.",
   },
   {
-    question: "Do you offer multi-car discounts?",
+    id: "faq-4",
+    question: "What forms of payment do you accept?",
     answer:
-      "Yes. If you book two or more vehicles at the same location on the same day, we offer a 10% discount on the total service price.",
+      "We accept all major credit and debit cards, bank transfers, and contactless payments. Payment is due upon completion of your service unless otherwise arranged for corporate or fleet accounts.",
+  },
+  {
+    id: "faq-5",
+    question: "How far in advance should I book?",
+    answer:
+      "We recommend booking at least 3–5 days in advance, especially for weekends and ceramic coating appointments. Same-week slots may be available — contact us and we'll do our best to accommodate you.",
+  },
+  {
+    id: "faq-6",
+    question: "Do you offer any guarantees?",
+    answer:
+      "Yes. Every service is backed by our 100% satisfaction guarantee. If you're not completely happy with the results, we'll make it right at no additional cost within 48 hours of your appointment.",
+  },
+  {
+    id: "faq-7",
+    question: "What areas do you service?",
+    answer:
+      "We provide mobile detailing across Birmingham and surrounding areas including Sutton Coldfield, Solihull, Edgbaston, Harborne, Moseley, and Dorridge — within a 10-mile radius of the city centre.",
+  },
+];
+
+export const faqCtaFeatures = [
+  {
+    id: "satisfaction",
+    title: "100% Satisfaction Guarantee",
+    icon: "shield",
+  },
+  {
+    id: "scheduling",
+    title: "Convenient Scheduling",
+    subtitle: "Online Booking",
+    icon: "clock",
+  },
+  {
+    id: "experts",
+    title: "Expert Detailers",
+    subtitle: "Certified & Trained",
+    icon: "award",
   },
 ];
