@@ -69,7 +69,7 @@ export default function Header({ onOpenBooking }) {
           {isAdmin ? (
             <div className="hidden lg:flex items-center gap-2 mr-2">
               <Link
-                to="/admin/portfolio"
+                to="/admin"
                 className="flex items-center gap-2 rounded-xl border border-[#E10600]/20 bg-[#E10600]/10 px-4 py-2 text-[9px] font-black uppercase tracking-widest text-[#E10600] transition-all hover:bg-[#E10600]/20"
               >
                 <ShieldCheck className="h-3.5 w-3.5" /> Dashboard
@@ -145,7 +145,7 @@ export default function Header({ onOpenBooking }) {
 
           {isAdmin && (
             <Link
-              to="/admin/portfolio"
+              to="/admin"
               onClick={() => setIsMenuOpen(false)}
               className="flex items-center gap-3 rounded-2xl bg-[#E10600]/5 p-4 text-xs font-black uppercase tracking-widest text-[#E10600] transition-all"
             >

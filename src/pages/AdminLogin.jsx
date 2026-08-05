@@ -37,7 +37,7 @@ export default function AdminLogin() {
         return;
       }
 
-      nav("/admin/portfolio");
+      nav("/admin");
     } catch {
       setErrMsg(
         "Authentication failed. Check email/password in Supabase Auth (confirm email must be enabled or confirmed).",
