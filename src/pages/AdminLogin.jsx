@@ -40,7 +40,7 @@ export default function AdminLogin() {
       nav("/admin/portfolio");
     } catch {
       setErrMsg(
-        "Authentication failed. Check email/password, or use localhost with the new backend (Vercel still points to the old API).",
+        "Authentication failed. Check email/password in Supabase Auth (confirm email must be enabled or confirmed).",
       );
     }
   };
