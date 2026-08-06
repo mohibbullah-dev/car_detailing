@@ -1,12 +1,9 @@
-// frontend/src/api/http.js
 import axios from "axios";
 import { tokenStorage } from "../lib/storage";
-
-const rawBase = import.meta.env.VITE_API_BASE;
-const BASE_URL = (rawBase || "").replace(/\/$/, "");
+import { API_BASE } from "../lib/apiClient";
 
 export const http = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE || undefined,
 });
 
 http.interceptors.request.use((config) => {

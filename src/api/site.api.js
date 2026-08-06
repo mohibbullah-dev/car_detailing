@@ -1,20 +1,15 @@
-import { apiFetch, useBackendWrites } from "../lib/apiClient";
+import { apiFetch, preferLocalBackend } from "../lib/apiClient";
 import { tokenStorage } from "../lib/storage";
 import { isSupabaseMode } from "../lib/supabase";
 import { sbGetSite, sbSaveSite } from "../lib/supabaseData";
 import { DEFAULT_SITE, mergeSite } from "../data/siteDefaults";
 
-function preferLocalBackend() {
-  const base = import.meta.env.VITE_API_BASE || "";
-  return useBackendWrites && /^https?:\/\//i.test(base);
-}
-
 export function getSiteContentApi() {
-  if (preferLocalBackend()) return apiFetch("/api/site");
-  if (isSupabaseMode) {
+  if (isSupabaseMode && !preferLocalBackend()) {
     return sbGetSite().then((data) => data || {});
   }
-  if (useBackendWrites) return apiFetch("/api/site");
+  if (preferLocalBackend()) return apiFetch("/api/site");
+  if (isSupabaseMode) return sbGetSite().then((data) => data || {});
   return Promise.resolve({});
 }
 

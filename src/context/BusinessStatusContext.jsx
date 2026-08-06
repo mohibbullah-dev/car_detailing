@@ -1,10 +1,26 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { tokenStorage } from "../lib/storage";
-import { API_BASE, useBackendWrites } from "../lib/apiClient";
+import { API_BASE, preferLocalBackend } from "../lib/apiClient";
 import { isSupabaseMode } from "../lib/supabase";
 import { sbGetSettings, sbSaveSettings } from "../lib/supabaseData";
 
 const BusinessStatusContext = createContext();
+
+async function postToggle(url, token, payload) {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.message || `Toggle failed (${res.status})`);
+  }
+  return data;
+}
 
 export const BusinessStatusProvider = ({ children }) => {
   const [isClosed, setIsClosed] = useState(false);
@@ -15,7 +31,7 @@ export const BusinessStatusProvider = ({ children }) => {
 
   const loadStatus = async () => {
     try {
-      if (useBackendWrites) {
+      if (preferLocalBackend()) {
         const res = await fetch(`${API_BASE}/api/settings/status`);
         if (!res.ok) throw new Error(`Status ${res.status}`);
         const data = await res.json();
@@ -23,8 +39,8 @@ export const BusinessStatusProvider = ({ children }) => {
         setReason(data.reason || "We are currently fully booked.");
         return;
       }
+
       if (isSupabaseMode) {
-        // Try same-origin serverless first (Vercel), then public Supabase JSON
         try {
           const res = await fetch(`/api/settings/status?t=${Date.now()}`, {
             cache: "no-store",
@@ -36,7 +52,7 @@ export const BusinessStatusProvider = ({ children }) => {
             return;
           }
         } catch {
-          /* fall through */
+          /* public JSON fallback */
         }
         const data = await sbGetSettings();
         setIsClosed(!!data.isClosed);
@@ -75,43 +91,20 @@ export const BusinessStatusProvider = ({ children }) => {
     setToggleError("");
 
     try {
-      if (useBackendWrites) {
-        const res = await fetch(`${API_BASE}/api/settings/toggle`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) {
-          const errorData = await res.json().catch(() => ({}));
-          throw new Error(
-            errorData.message ||
-              `Action failed (${res.status}). Log out, log in again.`,
-          );
-        }
+      if (preferLocalBackend()) {
+        await postToggle(`${API_BASE}/api/settings/toggle`, token, payload);
         return;
       }
 
-      // Vercel / supabase-direct: serverless toggle, then sbSaveSettings fallback
+      // Vercel same-origin serverless (service role)
       try {
-        const res = await fetch("/api/settings/toggle", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
-        });
-        if (res.ok) return;
-        const errorData = await res.json().catch(() => ({}));
-        // If API missing locally, fall through to supabase helper
-        if (res.status !== 404) {
-          throw new Error(errorData.message || `Toggle failed (${res.status})`);
-        }
+        await postToggle("/api/settings/toggle", token, payload);
+        return;
       } catch (err) {
-        if (String(err.message || "").includes("Toggle failed")) throw err;
+        // Local vite has no /api — fall through to supabase helper
+        if (!String(err.message || "").includes("404")) {
+          // still try sbSaveSettings which may proxy via /api/admin/json in PROD
+        }
       }
 
       if (isSupabaseMode) {
@@ -119,7 +112,7 @@ export const BusinessStatusProvider = ({ children }) => {
         return;
       }
 
-      throw new Error("No write target configured (API or Supabase).");
+      throw new Error("Could not update status.");
     } catch (err) {
       setIsClosed(prevClosed);
       setReason(prevReason);

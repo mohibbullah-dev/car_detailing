@@ -1,4 +1,4 @@
-import { apiFetch, useBackendWrites } from "../lib/apiClient";
+import { apiFetch, preferLocalBackend } from "../lib/apiClient";
 import { tokenStorage } from "../lib/storage";
 import { isSupabaseMode } from "../lib/supabase";
 import {
@@ -8,15 +8,13 @@ import {
   sbUpdatePortfolio,
 } from "../lib/supabaseData";
 
-function preferLocalBackend() {
-  const base = import.meta.env.VITE_API_BASE || "";
-  return useBackendWrites && /^https?:\/\//i.test(base);
-}
-
 export function getPortfolioApi() {
+  // Production / Vercel: always Supabase public JSON (seed data)
+  if (isSupabaseMode && !preferLocalBackend()) {
+    return sbGetPortfolio();
+  }
   if (preferLocalBackend()) return apiFetch("/api/portfolio");
   if (isSupabaseMode) return sbGetPortfolio();
-  if (useBackendWrites) return apiFetch("/api/portfolio");
   return Promise.resolve([]);
 }
 

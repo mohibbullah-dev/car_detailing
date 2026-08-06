@@ -115,8 +115,8 @@ export default function AdminSettings() {
           Business Availability
         </h2>
         <p className="text-xs text-zinc-500">
-          If the toggle does nothing, log out and log in again (fresh session),
-          and keep the backend running on port 8080.
+          Toggle booking on the public site. If it fails, log out and log in
+          again. On Vercel, set SUPABASE_SERVICE_ROLE_KEY in project env.
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
