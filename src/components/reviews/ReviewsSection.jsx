@@ -8,7 +8,7 @@ export default function ReviewsSection() {
   return (
     <section
       id="reviews"
-      className="reviews-section relative min-h-[100svh] overflow-hidden bg-[#070707] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
+      className="reviews-section relative min-h-[100svh] overflow-hidden bg-[#050505] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
       aria-labelledby="reviews-heading"
     >
       <ReviewsBackground />

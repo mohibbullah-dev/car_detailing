@@ -7,7 +7,7 @@ export default function ProcessSection({ onOpenBooking }) {
   return (
     <section
       id="process"
-      className="process-section relative overflow-hidden bg-[#070707] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
+      className="process-section relative overflow-hidden bg-[#050505] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
       aria-labelledby="process-heading"
     >
       <ProcessBackground />

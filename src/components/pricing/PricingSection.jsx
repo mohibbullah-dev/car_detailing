@@ -6,7 +6,7 @@ export default function PricingSection({ onOpenBooking }) {
   return (
     <section
       id="pricing"
-      className="pricing-section relative overflow-hidden bg-[#070707] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
+      className="pricing-section relative overflow-hidden bg-[#050505] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
       aria-labelledby="pricing-heading"
     >
       <PricingBackground />

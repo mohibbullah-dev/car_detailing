@@ -62,15 +62,13 @@ export default function Footer() {
     "Detailing";
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-[#070707] pt-16 pb-8 font-[Inter,system-ui,sans-serif]">
-      <div
-        className="hero-noise pointer-events-none absolute inset-0 opacity-[0.025]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 left-1/2 h-64 w-[80%] -translate-x-1/2 rounded-full bg-[#E10600]/[0.06] blur-[100px]"
-        aria-hidden="true"
-      />
+    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-[#050505] pt-16 pb-8 font-[Inter,system-ui,sans-serif]">
+      <div className="lux-bg" aria-hidden="true">
+        <div className="bg-lux-base" />
+        <div className="bg-grid bg-grid--fine" />
+        <div className="bg-noise--soft bg-noise" />
+        <div className="bg-footer-glow" />
+      </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 lg:px-16">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">

@@ -19,7 +19,7 @@ export default function PortfolioPreview() {
   return (
     <section
       id="work"
-      className="portfolio-section relative overflow-hidden bg-[#070707] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
+      className="portfolio-section relative overflow-hidden bg-[#050505] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
       aria-labelledby="portfolio-preview-heading"
     >
       <PortfolioBackground />

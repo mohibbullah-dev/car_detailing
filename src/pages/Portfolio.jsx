@@ -13,7 +13,7 @@ export default function Portfolio() {
   const { data, isLoading, error } = usePortfolioList();
 
   return (
-    <main className="portfolio-section relative min-h-[100svh] overflow-hidden bg-[#070707] pt-28 pb-20 font-[Inter,system-ui,sans-serif] lg:pt-32 lg:pb-24">
+    <main className="portfolio-section relative min-h-[100svh] overflow-hidden bg-[#050505] pt-28 pb-20 font-[Inter,system-ui,sans-serif] lg:pt-32 lg:pb-24">
       <PortfolioBackground />
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 lg:px-16">

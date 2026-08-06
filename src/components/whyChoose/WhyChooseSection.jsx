@@ -7,7 +7,7 @@ export default function WhyChooseSection({ onOpenBooking }) {
   return (
     <section
       id="why-us"
-      className="why-choose-section relative overflow-hidden bg-[#070707] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
+      className="why-choose-section relative overflow-hidden bg-[#050505] py-20 font-[Inter,system-ui,sans-serif] sm:py-24 lg:py-28"
       aria-labelledby="why-choose-heading"
     >
       <WhyChooseBackground />
