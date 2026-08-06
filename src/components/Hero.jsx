@@ -13,7 +13,7 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-section relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
+      className="hero-section relative flex min-h-[100svh] items-center overflow-hidden bg-[#050505] pt-28 pb-16 lg:pt-32 lg:pb-20"
       aria-labelledby="hero-heading"
     >
       <HeroBackground />

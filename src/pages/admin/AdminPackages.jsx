@@ -79,14 +79,14 @@ export default function AdminPackages() {
 
   return (
     <form onSubmit={handleSave} className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-zinc-500">
           Edit pricing plans shown on the public site.
         </p>
         <button
           type="button"
           onClick={addPlan}
-          className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-white"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-white sm:w-auto"
         >
           <Plus size={14} /> Add Plan
         </button>

@@ -942,10 +942,12 @@ html {
   letter-spacing: -0.04em;
   color: rgba(255, 255, 255, 0.028);
   font-size: clamp(8rem, 18vw, 16rem);
+  white-space: nowrap;
+  transform: translateX(12%);
   pointer-events: none;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .lux-watermark {
     display: block;
   }

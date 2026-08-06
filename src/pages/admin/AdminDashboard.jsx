@@ -16,18 +16,21 @@ import { usePortfolioList } from "../../hooks/usePortfolio";
 
 function StatCard({ label, value, icon: Icon, accent }) {
   return (
-    <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-5">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+    <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-3.5 sm:p-5">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 sm:text-[10px]">
             {label}
           </p>
-          <p className="mt-2 text-3xl font-bold text-white">{value}</p>
+          <p className="mt-1.5 truncate text-2xl font-bold text-white sm:mt-2 sm:text-3xl">
+            {value}
+          </p>
         </div>
         <div
-          className={`flex h-10 w-10 items-center justify-center rounded-xl ${accent}`}
+          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl sm:h-10 sm:w-10 ${accent}`}
         >
-          <Icon size={18} />
+          <Icon size={16} className="sm:hidden" />
+          <Icon size={18} className="hidden sm:block" />
         </div>
       </div>
     </div>
@@ -61,7 +64,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
         <StatCard
           label="Portfolio Projects"
           value={isLoading ? "—" : portfolio.length}

@@ -28,7 +28,8 @@ const EMPTY_BUSINESS = {
 
 export default function AdminSettings() {
   const { business, heroStats, updateSite, fromApi, refresh } = useSite();
-  const { isClosed, reason, toggleStatus } = useBusinessStatus();
+  const { isClosed, reason, toggleStatus, toggling, toggleError } =
+    useBusinessStatus();
 
   const [form, setForm] = useState(EMPTY_BUSINESS);
   const [stats, setStats] = useState([
@@ -113,6 +114,10 @@ export default function AdminSettings() {
         <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
           Business Availability
         </h2>
+        <p className="text-xs text-zinc-500">
+          If the toggle does nothing, log out and log in again (fresh session),
+          and keep the backend running on port 8080.
+        </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <div
@@ -131,8 +136,10 @@ export default function AdminSettings() {
           </div>
           <button
             type="button"
+            disabled={toggling}
             onClick={() => toggleStatus(newReason)}
-            className={`relative h-8 w-14 rounded-full p-1 transition ${isClosed ? "bg-red-500" : "bg-zinc-700"}`}
+            className={`relative h-8 w-14 rounded-full p-1 transition disabled:opacity-50 ${isClosed ? "bg-red-500" : "bg-emerald-500"}`}
+            aria-label={isClosed ? "Open business" : "Close business"}
           >
             <motion.div
               animate={{ x: isClosed ? 24 : 0 }}
@@ -155,11 +162,15 @@ export default function AdminSettings() {
         </div>
         <button
           type="button"
+          disabled={toggling}
           onClick={() => toggleStatus(newReason)}
-          className="rounded-xl border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 hover:text-white"
+          className="rounded-xl border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:text-white disabled:opacity-50"
         >
-          Update Live Status
+          {toggling ? "Updating..." : "Update Live Status"}
         </button>
+        {toggleError ? (
+          <p className="text-xs text-red-400">{toggleError}</p>
+        ) : null}
       </section>
 
       <form onSubmit={handleSave} className="space-y-8">

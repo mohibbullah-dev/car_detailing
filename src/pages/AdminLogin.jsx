@@ -59,15 +59,19 @@ export default function AdminLogin() {
           <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E10600] shadow-[0_0_30px_-5px_rgba(225,6,0,0.6)]">
             <ShieldCheck className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-3xl font-black uppercase italic tracking-tighter text-white">
+          <h1 className="text-center text-2xl font-black uppercase italic tracking-tighter text-white sm:text-3xl">
             Command <span className="text-[#E10600] not-italic">Center</span>
           </h1>
           <p className="mt-1 text-sm font-bold uppercase tracking-widest text-zinc-500">
             Authorized Personnel Only
           </p>
+          <p className="mt-3 max-w-sm text-center text-[11px] leading-relaxed text-zinc-600">
+            Log out and log in again after updates so Open/Close uses a fresh
+            admin session (backend must be running on :8080).
+          </p>
         </div>
 
-        <div className="rounded-[2.5rem] border border-white/5 bg-zinc-900/50 p-8 shadow-2xl backdrop-blur-xl">
+        <div className="rounded-[1.75rem] border border-white/5 bg-zinc-900/50 p-5 shadow-2xl backdrop-blur-xl sm:rounded-[2.5rem] sm:p-8">
           <form onSubmit={submit} className="space-y-6">
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-400">

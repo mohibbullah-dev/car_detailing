@@ -181,7 +181,8 @@ export default function AdminPortfolioPage() {
                   <button
                     type="button"
                     onClick={() => setEditId(isEditing ? null : item._id)}
-                    className="absolute bottom-3 right-3 rounded-lg bg-white/10 p-2 text-white opacity-0 backdrop-blur-md transition group-hover:opacity-100"
+                    className="absolute bottom-3 right-3 rounded-lg bg-white/10 p-2.5 text-white opacity-100 backdrop-blur-md transition sm:opacity-0 sm:group-hover:opacity-100"
+                    aria-label={isEditing ? "Close edit" : "Edit project"}
                   >
                     {isEditing ? <Lock size={12} /> : <LayoutGrid size={12} />}
                   </button>
