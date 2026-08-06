@@ -4,16 +4,22 @@ import { isSupabaseMode } from "../lib/supabase";
 import { sbGetSite, sbSaveSite } from "../lib/supabaseData";
 import { DEFAULT_SITE, mergeSite } from "../data/siteDefaults";
 
+function preferLocalBackend() {
+  const base = import.meta.env.VITE_API_BASE || "";
+  return useBackendWrites && /^https?:\/\//i.test(base);
+}
+
 export function getSiteContentApi() {
-  if (useBackendWrites) return apiFetch("/api/site");
+  if (preferLocalBackend()) return apiFetch("/api/site");
   if (isSupabaseMode) {
     return sbGetSite().then((data) => data || {});
   }
+  if (useBackendWrites) return apiFetch("/api/site");
   return Promise.resolve({});
 }
 
 export async function updateSiteContentApi(payload) {
-  if (useBackendWrites) {
+  if (preferLocalBackend()) {
     const token = tokenStorage.get();
     return apiFetch("/api/site", {
       method: "PUT",
@@ -35,10 +41,8 @@ export async function updateSiteContentApi(payload) {
     });
     if (payload.business)
       next.business = { ...next.business, ...payload.business };
-    if (payload.pricing)
-      next.pricing = { ...next.pricing, ...payload.pricing };
-    if (payload.reviews)
-      next.reviews = { ...next.reviews, ...payload.reviews };
+    if (payload.pricing) next.pricing = { ...next.pricing, ...payload.pricing };
+    if (payload.reviews) next.reviews = { ...next.reviews, ...payload.reviews };
     if (payload.faq) next.faq = { ...next.faq, ...payload.faq };
     if (payload.heroStats) next.heroStats = payload.heroStats;
     await sbSaveSite(next);

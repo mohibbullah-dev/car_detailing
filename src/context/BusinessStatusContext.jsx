@@ -24,6 +24,20 @@ export const BusinessStatusProvider = ({ children }) => {
         return;
       }
       if (isSupabaseMode) {
+        // Try same-origin serverless first (Vercel), then public Supabase JSON
+        try {
+          const res = await fetch(`/api/settings/status?t=${Date.now()}`, {
+            cache: "no-store",
+          });
+          if (res.ok) {
+            const data = await res.json();
+            setIsClosed(!!data.isClosed);
+            setReason(data.reason || "We are currently fully booked.");
+            return;
+          }
+        } catch {
+          /* fall through */
+        }
         const data = await sbGetSettings();
         setIsClosed(!!data.isClosed);
         setReason(data.reason || "We are currently fully booked.");
@@ -53,7 +67,6 @@ export const BusinessStatusProvider = ({ children }) => {
       reason: newReason || reason || "We are currently fully booked.",
     };
 
-    // Optimistic UI so the toggle feels instant
     const prevClosed = isClosed;
     const prevReason = reason;
     setIsClosed(nextState);
@@ -71,15 +84,34 @@ export const BusinessStatusProvider = ({ children }) => {
           },
           body: JSON.stringify(payload),
         });
-
         if (!res.ok) {
           const errorData = await res.json().catch(() => ({}));
           throw new Error(
             errorData.message ||
-              `Action failed (${res.status}). Log out, log in again, keep backend on :8080.`,
+              `Action failed (${res.status}). Log out, log in again.`,
           );
         }
         return;
+      }
+
+      // Vercel / supabase-direct: serverless toggle, then sbSaveSettings fallback
+      try {
+        const res = await fetch("/api/settings/toggle", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) return;
+        const errorData = await res.json().catch(() => ({}));
+        // If API missing locally, fall through to supabase helper
+        if (res.status !== 404) {
+          throw new Error(errorData.message || `Toggle failed (${res.status})`);
+        }
+      } catch (err) {
+        if (String(err.message || "").includes("Toggle failed")) throw err;
       }
 
       if (isSupabaseMode) {
@@ -89,24 +121,12 @@ export const BusinessStatusProvider = ({ children }) => {
 
       throw new Error("No write target configured (API or Supabase).");
     } catch (err) {
-      // Rollback
       setIsClosed(prevClosed);
       setReason(prevReason);
       console.error("Toggle failed", err);
       const msg = String(err?.message || err);
       setToggleError(msg);
-      if (msg.toLowerCase().includes("row-level security")) {
-        alert(
-          "Storage permission blocked. Start backend (car_detailling_backend → npm run dev) and re-login.",
-        );
-      } else if (
-        msg.toLowerCase().includes("invalid token") ||
-        msg.includes("401")
-      ) {
-        alert("Session expired. Log out and log in again, then retry Open/Close.");
-      } else {
-        alert(msg || "Could not update status.");
-      }
+      alert(msg || "Could not update status.");
     } finally {
       setToggling(false);
     }

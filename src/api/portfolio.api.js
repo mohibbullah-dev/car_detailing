@@ -1,4 +1,4 @@
-import { apiFetch, useBackendWrites, API_BASE } from "../lib/apiClient";
+import { apiFetch, useBackendWrites } from "../lib/apiClient";
 import { tokenStorage } from "../lib/storage";
 import { isSupabaseMode } from "../lib/supabase";
 import {
@@ -8,15 +8,20 @@ import {
   sbUpdatePortfolio,
 } from "../lib/supabaseData";
 
+function preferLocalBackend() {
+  const base = import.meta.env.VITE_API_BASE || "";
+  return useBackendWrites && /^https?:\/\//i.test(base);
+}
+
 export function getPortfolioApi() {
-  // Prefer backend so admin/public see the same service-role data locally
-  if (useBackendWrites) return apiFetch("/api/portfolio");
+  if (preferLocalBackend()) return apiFetch("/api/portfolio");
   if (isSupabaseMode) return sbGetPortfolio();
+  if (useBackendWrites) return apiFetch("/api/portfolio");
   return Promise.resolve([]);
 }
 
 export function createPortfolioApi(payload) {
-  if (useBackendWrites) {
+  if (preferLocalBackend()) {
     const token = tokenStorage.get();
     if (!token) throw new Error("Admin token missing. Please login again.");
 
@@ -40,7 +45,7 @@ export function createPortfolioApi(payload) {
 }
 
 export function updatePortfolioApi(id, payload) {
-  if (useBackendWrites) {
+  if (preferLocalBackend()) {
     const token = tokenStorage.get();
     if (!token) throw new Error("Admin token missing. Please login again.");
 
@@ -64,7 +69,7 @@ export function updatePortfolioApi(id, payload) {
 }
 
 export function deletePortfolioApi(id) {
-  if (useBackendWrites) {
+  if (preferLocalBackend()) {
     const token = tokenStorage.get();
     if (!token) throw new Error("Admin token missing. Please login again.");
 
@@ -77,5 +82,3 @@ export function deletePortfolioApi(id) {
   if (isSupabaseMode) return sbDeletePortfolio(id);
   throw new Error("No write target configured");
 }
-
-export { API_BASE };

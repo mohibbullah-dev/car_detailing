@@ -1,17 +1,12 @@
 /**
  * Routing helpers:
- * - Supabase = public reads + Auth login (works on Vercel)
- * - Backend API = admin writes (service role bypasses storage RLS)
- *   Used whenever VITE_API_BASE is set (local .env).
+ * - Local: VITE_API_BASE=http://localhost:8080 → Express backend (service role)
+ * - Vercel: no API base → Supabase public reads + /api/* serverless writes
  */
-export const isSupabaseMode = Boolean(
-  import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY,
-);
-
 const rawBase = import.meta.env.VITE_API_BASE || "";
 export const API_BASE = String(rawBase).replace(/\/$/, "");
 
-/** Prefer Express/backend for mutations when a base URL is configured */
+/** Absolute backend URL (localhost Express). Relative "/api" counts too. */
 export const useBackendWrites = Boolean(API_BASE);
 
 export async function apiFetch(path, options = {}) {
@@ -19,7 +14,7 @@ export async function apiFetch(path, options = {}) {
     throw new Error("VITE_API_BASE is not configured");
   }
 
-  const url = API_BASE + path;
+  const url = `${API_BASE}${path}`;
 
   let res;
   try {

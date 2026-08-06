@@ -5,7 +5,26 @@ import {
   IMAGES_BUCKET,
 } from "./supabase";
 
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+
+/** Public bucket HTTP read — works on Vercel even when anon SDK hits RLS */
 async function downloadJson(path, fallback) {
+  // 1) Public URL (app-data bucket is public)
+  if (SUPABASE_URL) {
+    try {
+      const url = `${SUPABASE_URL}/storage/v1/object/public/${DATA_BUCKET}/${path}?t=${Date.now()}`;
+      const res = await fetch(url, { cache: "no-store" });
+      if (res.ok) {
+        const text = await res.text();
+        if (text) return JSON.parse(text);
+      }
+    } catch (err) {
+      console.warn("Public JSON fetch failed, trying SDK:", err);
+    }
+  }
+
+  // 2) SDK fallback (local / authenticated)
+  if (!supabase) return fallback;
   const { data, error } = await supabase.storage.from(DATA_BUCKET).download(path);
   if (error) {
     const msg = String(error.message || "").toLowerCase();
@@ -19,14 +38,47 @@ async function downloadJson(path, fallback) {
   return JSON.parse(text);
 }
 
+async function uploadJsonViaApi(path, value) {
+  const token =
+    typeof localStorage !== "undefined"
+      ? localStorage.getItem("admin_token")
+      : null;
+  const res = await fetch("/api/admin/json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify({ path, value }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.message || `Write failed (${res.status})`);
+  }
+  return value;
+}
+
 async function uploadJson(path, value) {
+  // Prefer same-origin serverless write on deployed site (service role)
+  if (typeof window !== "undefined" && import.meta.env.PROD) {
+    return uploadJsonViaApi(path, value);
+  }
+
   const body = JSON.stringify(value, null, 2);
   const blob = new Blob([body], { type: "application/json" });
   const { error } = await supabase.storage.from(DATA_BUCKET).upload(path, blob, {
     upsert: true,
     contentType: "application/json",
   });
-  if (error) throw error;
+
+  if (error) {
+    // RLS blocked — try serverless proxy (works after Vercel deploy)
+    const msg = String(error.message || "").toLowerCase();
+    if (msg.includes("row-level security") || msg.includes("policy")) {
+      return uploadJsonViaApi(path, value);
+    }
+    throw error;
+  }
   return value;
 }
 
